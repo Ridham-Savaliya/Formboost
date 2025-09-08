@@ -1,0 +1,53 @@
+-- Create database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS formboost_db;
+USE formboost_db;
+
+-- Create SequelizeMeta table for migration tracking
+CREATE TABLE IF NOT EXISTS `SequelizeMeta` (
+  `name` VARCHAR(255) NOT NULL UNIQUE,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Create Admins table
+CREATE TABLE IF NOT EXISTS `Admins` (
+  `id` CHAR(36) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL UNIQUE,
+  `password` VARCHAR(255) NOT NULL,
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Create Users table
+CREATE TABLE IF NOT EXISTS `Users` (
+  `id` CHAR(36) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL UNIQUE,
+  `firebaseUid` VARCHAR(255) NULL,
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Create Forms table
+CREATE TABLE IF NOT EXISTS `Forms` (
+  `id` CHAR(36) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `alias` VARCHAR(255) NOT NULL UNIQUE,
+  `userId` CHAR(36) NOT NULL,
+  `filterSpam` TINYINT(1) DEFAULT 1,
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`userId`) REFERENCES `Users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insert migration records
+INSERT IGNORE INTO `SequelizeMeta` (`name`) VALUES 
+('20250908000001-create-admins-table.js'),
+('20250908000002-create-users-table.js'),
+('20250908000003-create-forms-table.js');
+
+-- Show created tables
+SHOW TABLES;

@@ -1,0 +1,45 @@
+name: Build and Deploy to Production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set environment variables for production
+        run: |
+          touch .env
+          echo "VITE_BACKEND_URL=${{ vars.VITE_BACKEND_URL_PRODUCTION }}" >> .env
+          echo "Contents of .env file:"
+          cat .env
+
+      - name: Build project
+        run: npm run build -- --mode production
+
+      - name: FTP Deployer
+        uses: sand4rt/ftp-deployer@v1.8
+        with:
+          sftp: false
+          host: ${{ vars.FTP_HOST }}
+          port: 21
+          username: ${{ vars.FTP_USERNAME }}
+          password: ${{ vars.FTP_PASSWORD }}
+          remote_folder: ${{ vars.FTP_REMOTE_FOLDER_PRODUCTION }}
+          local_folder: dist
+          cleanup: false
+          passive: true

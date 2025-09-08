@@ -1,0 +1,3 @@
+ALTER TABLE `Forms`
+  ADD COLUMN `filterSpam` TINYINT(1) DEFAULT 1,
+  ADD COLUMN `emailNotification` TINYINT(1) DEFAULT 1;

@@ -1,0 +1,53 @@
+name: Build and Deploy to Development
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set environment variables for development
+        run: |
+          touch .env
+          echo "VITE_BACKEND_URL=${{ vars.VITE_BACKEND_URL_DEV }}" >> .env
+          echo "VITE_FORM_ENDPOINT=${{ vars.VITE_FORM_ENDPOINT_DEV }}" >> .env
+          echo "VITE_FB_APIKEY=${{ vars.VITE_FB_APIKEY_DEV }}" >> .env
+          echo "VITE_FB_AUTHDOMAIN=${{ vars.VITE_FB_AUTHDOMAIN_DEV }}" >> .env
+          echo "VITE_FB_PROJECTID=${{ vars.VITE_FB_PROJECTID_DEV }}" >> .env
+          echo "VITE_FB_STORAGEBUCKET=${{ vars.VITE_FB_STORAGEBUCKET_DEV }}" >> .env
+          echo "VITE_FB_MESSAGINGSENDERID=${{ vars.VITE_FB_MESSAGINGSENDERID_DEV }}" >> .env
+          echo "VITE_FB_APPID=${{ vars.VITE_FB_APPID_DEV }}" >> .env
+          echo "VITE_FB_MEASUREMENTID=${{ vars.VITE_FB_MEASUREMENTID_DEV }}" >> .env
+          echo "Contents of .env file:"
+          cat .env
+
+      - name: Build project
+        run: npm run build -- --mode development
+
+      - name: FTP Deployer
+        uses: sand4rt/ftp-deployer@v1.8
+        with:
+          sftp: false
+          host: ${{ vars.FTP_HOST }}
+          port: 21
+          username: ${{ vars.FTP_USERNAME }}
+          password: ${{ vars.FTP_PASSWORD }}
+          remote_folder: ${{ vars.FTP_REMOTE_FOLDER_DEV }}
+          local_folder: dist
+          cleanup: false
+          passive: true
