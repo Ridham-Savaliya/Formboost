@@ -31,7 +31,7 @@ const Transaction = sequelize.define('Transaction', {
   },
 }, {
   sequelize,
-  modelName: 'Transactions',
+  modelName: 'Transaction',
   tableName: 'transactions',
   freezeTableName: true,
 });

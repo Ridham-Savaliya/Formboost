@@ -61,7 +61,7 @@ const Form = sequelize.define('Form', {
 },  {
   // Important: Tell Sequelize to use the lowercase 'users' table name
   sequelize,
-  modelName: 'Forms',
+  modelName: 'Form',
   tableName: 'forms', // Explicitly define the table name as lowercase
   freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
 });
