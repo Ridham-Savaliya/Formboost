@@ -35,6 +35,25 @@ const corsOptions = {
 };
 
 export const corsMiddleware = (req, res, next) => {
+  // Allow ANY origin to submit forms to the public submission endpoint `/:alias`
+  // This enables copy-paste HTML forms to post from any website
+  const isPublicFormSubmission = req.method === 'POST' && /^\/[A-Za-z0-9_-]+$/.test(req.path || '');
+
+  if (isPublicFormSubmission) {
+    const openCors = {
+      origin: true, // reflect request origin
+      credentials: false, // no cookies needed for public submissions
+      methods: ['POST', 'OPTIONS'],
+      allowedHeaders: ['Content-Type'],
+      maxAge: 86400,
+    };
+    return cors(openCors)(req, res, (err) => {
+      if (err) return res.status(403).end();
+      next();
+    });
+  }
+
+  // Default strict CORS for API and authenticated routes
   cors(corsOptions)(req, res, (err) => {
     if (err) {
       return res.status(403).end();

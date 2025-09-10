@@ -50,16 +50,23 @@ export const submitFormData = async (req, res, next) => {
     const ipAddress =
       req.ip || req.headers['x-forwarded-for'] || req.connection?.remoteAddress || 'unknown';
 
-    service.submitFormData(req.params.alias, req.body, ipAddress);
+    const result = await service.submitFormData(req.params.alias, req.body, ipAddress);
 
     if (wantsJson) {
       return sendSuccessResponse({
         res,
         statusCode: 201,
         message: 'Form submitted successfully',
+        data: result,
       });
     } else {
-      return res.redirect('https://formboost.site/');
+      // Serve our custom success page with details via query params
+      const url = new URL(`${req.protocol}://${req.get('host')}/success.html`);
+      if (result?.id) url.searchParams.set('ref', result.id);
+      if (result?.submittedAt) url.searchParams.set('ts', new Date(result.submittedAt).toISOString());
+      const referrer = (req.body?._fb_back) || req.get('referer') || '';
+      if (referrer) url.searchParams.set('back', encodeURIComponent(referrer));
+      return res.redirect(url.toString());
     }
   } catch (error) {
     if (wantsJson) {
@@ -72,7 +79,8 @@ export const submitFormData = async (req, res, next) => {
           error,
         },
       });
-      return res.redirect('https://formboost.site/');
+      // Serve error page or redirect to success page anyway
+      return res.sendFile('success.html', { root: './src/public' });
     }
   }
 };

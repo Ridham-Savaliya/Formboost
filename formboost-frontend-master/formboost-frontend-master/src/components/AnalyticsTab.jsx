@@ -15,7 +15,7 @@ const AnalyticsTab = ({ formId }) => {
     const getFormSubmissionData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/formsubmission/${formId}/form`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/formsubmission/${formId}/form`,
           {
             headers: {
               Authorization: localStorage.getItem("token"),

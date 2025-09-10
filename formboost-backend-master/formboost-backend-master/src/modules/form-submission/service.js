@@ -11,6 +11,39 @@ import { throwAppError, handleError } from '#utils/exception.js';
 import logger from '#utils/logger.js';
 import { sendSubmissionMail } from '#utils/mail/index.js';
 import { isSpamWithOpenAIasync } from '#service/gemini.js';
+import { sendTelegramMessage, formatTelegramSubmissionMessage } from '#service/telegram.js';
+
+// Email notification limit tracking
+const emailNotificationCounts = new Map(); // userId -> { count, resetDate }
+
+const checkEmailNotificationLimit = async (userId) => {
+  const now = new Date();
+  const currentMonth = `${now.getFullYear()}-${now.getMonth()}`;
+  
+  const userCount = emailNotificationCounts.get(userId);
+  
+  if (!userCount || userCount.resetDate !== currentMonth) {
+    // Reset for new month
+    emailNotificationCounts.set(userId, { count: 0, resetDate: currentMonth });
+    return false;
+  }
+  
+  return userCount.count >= 50; // 50 email limit per month
+};
+
+const incrementEmailNotificationCount = async (userId) => {
+  const now = new Date();
+  const currentMonth = `${now.getFullYear()}-${now.getMonth()}`;
+  
+  const userCount = emailNotificationCounts.get(userId);
+  
+  if (!userCount || userCount.resetDate !== currentMonth) {
+    emailNotificationCounts.set(userId, { count: 1, resetDate: currentMonth });
+  } else {
+    userCount.count += 1;
+    emailNotificationCounts.set(userId, userCount);
+  }
+};
 
 export const downloadCSV = async (formId, query) => {
   try {
@@ -101,29 +134,72 @@ export const submitFormData = async (alias, formData, ip) => {
       include: [{ model: User, attributes: ['email', 'id'] }],
     });
 
+    if (!form) {
+      throwAppError({
+        name: 'FORM_NOT_FOUND',
+        message: 'Form not found with the provided alias',
+        status: 404,
+      });
+    }
+
+    logger.info({
+      name: 'FORM_SUBMISSION_DEBUG',
+      data: {
+        formId: form.id,
+        formName: form.formName,
+        emailNotification: form.emailNotification,
+        telegramNotification: form.telegramNotification,
+        targetEmail: form.targetEmail,
+        telegramBotToken: form.telegramBotToken ? 'Set' : 'Not set',
+        telegramChatId: form.telegramChatId ? 'Set' : 'Not set',
+        formData,
+      },
+    });
+
     const formSubmissionObj = {
       formId: form.id,
       ip,
     };
 
     if (form.filterSpam) {
-      const { isSpam, score, reason } = await isSpamWithOpenAIasync(formData, form.formDescription);
+      try {
+        const { isSpam, score, reason } = await isSpamWithOpenAIasync(formData, form.formDescription);
 
-      logger.info({
-        name: 'SPAM_CHECK',
-        data: {
-          alias,
-          formData,
-          ip,
-          isSpam,
-          spamScore: score,
-          spamReason: reason,
-        },
-      });
+        logger.info({
+          name: 'SPAM_CHECK',
+          data: {
+            alias,
+            formData,
+            ip,
+            isSpam,
+            spamScore: score,
+            spamReason: reason,
+          },
+        });
 
-      formSubmissionObj.isSpam = isSpam;
-      formSubmissionObj.spamScore = score;
-      formSubmissionObj.spamReason = reason;
+        formSubmissionObj.isSpam = isSpam || false;
+        formSubmissionObj.spamScore = score || 0;
+        formSubmissionObj.spamReason = reason || 'No spam check performed';
+      } catch (error) {
+        logger.error({
+          name: 'GEMINI_SPAM_CHECK_ERROR',
+          data: {
+            error,
+            submissionData: formData,
+            formContext: form.formDescription,
+          },
+        });
+
+        // Default to not spam if check fails
+        formSubmissionObj.isSpam = false;
+        formSubmissionObj.spamScore = 0;
+        formSubmissionObj.spamReason = 'Error during spam check';
+      }
+    } else {
+      // If spam filtering is disabled, set default values
+      formSubmissionObj.isSpam = false;
+      formSubmissionObj.spamScore = 0;
+      formSubmissionObj.spamReason = 'Spam filtering disabled';
     }
 
     const submission = await FormSubmission.create(formSubmissionObj);
@@ -137,12 +213,104 @@ export const submitFormData = async (alias, formData, ip) => {
 
     await FormSubmissionData.bulkCreate(formSubmissionDataEntries);
 
-    // send email notification
-    if (form.emailNotification && !formSubmissionObj.isSpam) {
-      await sendSubmissionMail(form, formData, ip);
+    // Check email notification limits and send email
+    if (form.emailNotification && !formSubmissionObj.isSpam && form.targetEmail) {
+      const emailLimitReached = await checkEmailNotificationLimit(form.userId);
+      if (!emailLimitReached) {
+        logger.info({
+          name: 'SENDING_EMAIL_NOTIFICATION',
+          data: {
+            formId: form.id,
+            targetEmail: form.targetEmail,
+            formData,
+          },
+        });
+        try {
+          await sendSubmissionMail(form, formData, ip);
+          await incrementEmailNotificationCount(form.userId);
+          logger.info({
+            name: 'EMAIL_NOTIFICATION_SENT',
+            data: {
+              formId: form.id,
+              targetEmail: form.targetEmail,
+            },
+          });
+        } catch (emailError) {
+          logger.error({
+            name: 'EMAIL_SEND_ERROR',
+            data: {
+              formId: form.id,
+              targetEmail: form.targetEmail,
+              error: emailError.message,
+            },
+          });
+        }
+      } else {
+        logger.warn({
+          name: 'EMAIL_LIMIT_REACHED',
+          data: {
+            userId: form.userId,
+            formId: form.id,
+            alias,
+          },
+        });
+      }
+    } else {
+      logger.info({
+        name: 'EMAIL_NOTIFICATION_SKIPPED',
+        data: {
+          formId: form.id,
+          emailNotification: form.emailNotification,
+          isSpam: formSubmissionObj.isSpam,
+          hasTargetEmail: !!form.targetEmail,
+        },
+      });
+    }
+    
+    // send telegram notification (unlimited)
+    if (form.telegramNotification && !formSubmissionObj.isSpam && form.telegramBotToken && form.telegramChatId) {
+      logger.info({
+        name: 'SENDING_TELEGRAM_NOTIFICATION',
+        data: {
+          formId: form.id,
+          telegramChatId: form.telegramChatId,
+          formData,
+        },
+      });
+      try {
+        const telegramMessage = formatTelegramSubmissionMessage(form, formData, ip);
+        await sendTelegramMessage(form.telegramBotToken, form.telegramChatId, telegramMessage);
+        logger.info({
+          name: 'TELEGRAM_NOTIFICATION_SENT',
+          data: {
+            formId: form.id,
+            telegramChatId: form.telegramChatId,
+          },
+        });
+      } catch (telegramError) {
+        logger.error({
+          name: 'TELEGRAM_SEND_ERROR',
+          data: {
+            formId: form.id,
+            telegramChatId: form.telegramChatId,
+            error: telegramError.message,
+          },
+        });
+      }
+    } else {
+      logger.info({
+        name: 'TELEGRAM_NOTIFICATION_SKIPPED',
+        data: {
+          formId: form.id,
+          telegramNotification: form.telegramNotification,
+          isSpam: formSubmissionObj.isSpam,
+          hasBotToken: !!form.telegramBotToken,
+          hasChatId: !!form.telegramChatId,
+        },
+      });
     }
 
-    return true;
+    return { id: submission.id, submittedAt: submission.submittedAt };
   } catch (error) {
     logger.error({
       name: 'CREATE_SUBMISSION_FAILED',

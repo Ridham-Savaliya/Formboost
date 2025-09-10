@@ -20,9 +20,10 @@ const User = sequelize.define('Users', {
       isEmail: true,
     },
   },
-  firebase_UID: {
+  firebaseUid: {
     type: DataTypes.STRING,
     allowNull: false,
+    field: 'firebaseUid',
   },
 });
 

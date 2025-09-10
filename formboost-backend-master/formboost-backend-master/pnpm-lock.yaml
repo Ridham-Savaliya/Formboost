@@ -65,6 +65,9 @@ importers:
       nodemailer:
         specifier: ^6.9.15
         version: 6.10.1
+      resend:
+        specifier: ^6.0.3
+        version: 6.0.3
       sequelize:
         specifier: ^6.21.6
         version: 6.37.7(mysql2@3.14.4)
@@ -1760,6 +1763,15 @@ packages:
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
+
+  resend@6.0.3:
+    resolution: {integrity: sha512-Yb7o2n52v91LjkUjq5vIZQbJrGiaPoMo2VPAyS0QTKA73tmvHMUQ7P1M56J1ux/Cw9Lf68PeaKidTl6GuS8DTA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@react-email/render': ^1.1.0
+    peerDependenciesMeta:
+      '@react-email/render':
+        optional: true
 
   resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
@@ -3851,6 +3863,8 @@ snapshots:
 
   require-directory@2.1.1:
     optional: true
+
+  resend@6.0.3: {}
 
   resolve-from@4.0.0: {}
 

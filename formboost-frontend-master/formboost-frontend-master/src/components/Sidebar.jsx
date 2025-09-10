@@ -34,7 +34,7 @@ export const Sidebar = ({
     const getFormDetails = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/user/${userId}/forms`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/${userId}/forms`,
           {
             headers: {
               Authorization: localStorage.getItem("token"),
@@ -51,7 +51,7 @@ export const Sidebar = ({
     const fetchCurrentPlan = async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/userplan/plan`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/userplan/plan`,
           {
             headers: { Authorization: localStorage.getItem("token") },
           }

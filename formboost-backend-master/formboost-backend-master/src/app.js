@@ -24,6 +24,9 @@ app.use(cookieParser());
 app.use(rateLimitMiddleware);
 app.use('/api', requestLogger);
 
+// Serve static files from public directory
+app.use(express.static('src/public'));
+
 // 🔗 Route registration
 app.use('/', indexRouter);
 

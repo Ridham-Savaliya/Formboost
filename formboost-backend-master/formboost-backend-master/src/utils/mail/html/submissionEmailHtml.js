@@ -214,7 +214,7 @@ export default (formData, ipAddress, form) => {
       </ul>
       <p>IP Address: ${ipAddress}</p>
       <h3>Check All Submissions Here: 
-        <a href="https://app.dev.formboost.site/form/${form.id}">CLICK</a>
+        <a href="https://app.formboost.site/form/${form.id}">CLICK</a>
       </h3>
                               </div>
 

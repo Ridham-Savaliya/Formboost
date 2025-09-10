@@ -128,7 +128,7 @@ export const ManageSubscription = ({ userId }) => {
     const fetchPlans = async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/plan`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/plan`,
           {
             headers: { Authorization: localStorage.getItem("token") },
           }
@@ -156,7 +156,7 @@ export const ManageSubscription = ({ userId }) => {
     const fetchCurrentPlan = async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/userplan/plan`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/userplan/plan`,
           {
             headers: { Authorization: localStorage.getItem("token") },
           }
@@ -195,7 +195,7 @@ export const ManageSubscription = ({ userId }) => {
         .replace(/-/g, "/");
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/userplan`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/userplan`,
         {
           planId: plan.id,
           startDate,

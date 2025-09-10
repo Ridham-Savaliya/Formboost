@@ -44,12 +44,26 @@ const LoginForm = () => {
         formData.email,
         formData.password
       );
-      const success = await authenticateWithBackend(firebaseUser, setAuth);
+      const backendResponse = await authenticateWithBackend(firebaseUser, setAuth);
 
-      if (success) {
+      if (backendResponse) {
+        if (backendResponse.userRegistered === false) {
+          // Redirect to signup with pre-filled data
+          navigate("/signup", {
+            state: {
+              fromGoogle: false,
+              email: firebaseUser.email,
+              name: firebaseUser.displayName || "",
+            },
+          });
+          return;
+        }
+        // User is registered, proceed to dashboard
         navigate("/");
       } else {
-        setError("Failed to authenticate with the backend.");
+        setError(
+          "Failed to authenticate with the backend. Please try again or contact support."
+        );
       }
     } catch (error) {
       setError(error.message);
@@ -68,14 +82,26 @@ const LoginForm = () => {
         setAuth
       );
 
-      if (backendResponse && backendResponse.userRegistered === false) {
-        setError("User is not registered. Please sign up first.");
-        return;
+      if (backendResponse) {
+        if (backendResponse.userRegistered === false) {
+          // Redirect to signup with pre-filled data
+          navigate("/signup", { 
+            state: { 
+              fromGoogle: true,
+              email: firebaseUser.email,
+              name: firebaseUser.displayName || ""
+            } 
+          });
+          return;
+        }
+        // User is registered, proceed to dashboard
+        navigate("/");
+      } else {
+        setError("Failed to authenticate with the backend. Please try again.");
       }
-
-      navigate("/");
     } catch (error) {
-      setError("Failed to login with Google. Please try again.");
+      console.error("Google login error:", error);
+      setError(error.message || "Failed to login with Google. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -84,20 +110,27 @@ const LoginForm = () => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     if (!resetEmail) {
-      setModalError("Please enter your email address.");
+      setModalError("Please enter your email address");
       return;
     }
-
+    
     setLoading(true);
-    setModalError(null);
     try {
       await sendPasswordResetEmail(resetEmail);
-      setSuccessMessage("Password reset email sent. Please check your inbox.");
-      setModalError(null);
-      setIsModalOpen(false);
-      setResetEmail("");
+      handleModalClose();
+      setSuccessMessage(
+        `Password reset email sent to ${resetEmail}. Please check your inbox.`
+      );
+      setTimeout(() => setSuccessMessage(null), 5000);
     } catch (error) {
-      setModalError("Failed to send password reset email. Please try again.");
+      console.error("Password reset error:", error);
+      if (error.code === 'auth/user-not-found') {
+        setModalError("No account found with this email address");
+      } else if (error.code === 'auth/invalid-email') {
+        setModalError("Please enter a valid email address");
+      } else {
+        setModalError(error.message || "Failed to send reset email. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -116,7 +149,10 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    // Update the background div
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+      {/* Background overlay with animated gradient */}
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-600/30 animate-gradient-slow" />
       {/* Background overlay - always visible */}
 
       <div className="fixed inset-0 bg-black/30" />
@@ -130,7 +166,7 @@ const LoginForm = () => {
         }`}
       >
         <div className="bg-white p-8 rounded-lg shadow-lg w-96 max-w-md">
-          <h2 className="text-2xl font-bold text-center mb-4 text-blue-900">
+          <h2 className="text-2xl font-bold text-center mb-4 text-[#0080FF]">
             Login to Your Account
           </h2>
 
@@ -148,7 +184,7 @@ const LoginForm = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
               />
             </div>
 
@@ -165,7 +201,7 @@ const LoginForm = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
               />
               <button
                 type="button"
@@ -212,7 +248,7 @@ const LoginForm = () => {
 
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-[#0080FF] text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={loading}
             >
               {loading ? (
@@ -326,7 +362,7 @@ const LoginForm = () => {
                           setResetEmail(e.target.value);
                           setModalError(null);
                         }}
-                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
                         placeholder="Enter your email"
                       />
                     </div>
@@ -356,13 +392,13 @@ const LoginForm = () => {
                       </button>
                       <button
                         type="submit"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-[#0080FF] hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled={loading}
                       >
                         {loading ? (
                           <span className="flex items-center">
                             <svg
-                              className="animate-spin -ml-1 mr-2 h-4 w-4 text-blue-900"
+                              className="animate-spin -ml-1 mr-2 h-4 w-4 text-[#0080FF]"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"

@@ -42,7 +42,7 @@ export const authenticateWithBackend = async (firebaseUser, setAuth) => {
     const idToken = await firebaseUser.getIdToken();
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/user/verify`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/verify`,
       {
         headers: {
           Authorization: `Bearer ${idToken}`,
@@ -62,34 +62,33 @@ export const authenticateWithBackend = async (firebaseUser, setAuth) => {
       throw new Error("Authentication failed");
     }
   } catch (error) {
-    console.error("Authentication error:", error.message);
+    console.error("Authentication error:", error.response?.data?.message || error.message);
     return null;
   }
 };
 
 // Function to create a user in the backend
+// Uses backend JWT attached by axios interceptor
 export const createUser = async ({ name, email }) => {
   try {
-    const response = await api.post("/user/create", {
-      name,
-      email,
-    });
+    const response = await api.post("/api/v1/user/create", { name, email });
 
-    // Destructure status and data from the response
     const { success, data } = response.data;
-
-    // Check if the creation was successful
     if (success) {
-      // Log the successful creation
       console.log("User created successfully:", data);
-      // Return the data object which includes the token
-      return data; // Return the data object to be used in the caller
+      return data;
     } else {
       throw new Error("User creation failed");
     }
   } catch (error) {
-    console.error("Error creating user:", error.message);
-    throw error;
+    const backendMessage = error.response?.data?.message;
+    const status = error.response?.status;
+    console.error("Error creating user:", backendMessage || error.message);
+    if (status === 409) {
+      // Email already exists
+      throw new Error("This email is already registered. Please log in instead.");
+    }
+    throw new Error(backendMessage || error.message || "Failed to create account. Please try again.");
   }
 };
 

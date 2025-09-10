@@ -92,3 +92,16 @@ export const updateUserPassword = async (req, res, next) => {
     handleControllerError('UPDATE_USER_PASSWORD', error, next);
   }
 };
+
+export const getNotificationLimits = async (req, res, next) => {
+  try {
+    const data = await userService.getNotificationLimits(req.params.id);
+    return sendSuccessResponse({
+      res,
+      message: 'Notification limits retrieved successfully',
+      data,
+    });
+  } catch (error) {
+    handleControllerError('GET_NOTIFICATION_LIMITS', error, next);
+  }
+};

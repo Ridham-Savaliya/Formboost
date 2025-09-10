@@ -25,7 +25,7 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/form`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/form`,
         {
           formName,
           formDescription,
@@ -63,13 +63,13 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
     <div className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-800 bg-opacity-50">
       <div className="relative p-4 w-full max-w-md bg-white rounded-lg shadow-md">
         <div className="flex items-center justify-between p-4 border-b">
-          <h3 className="text-lg font-extrabold text-gray-900">
+          <h3 className="text-lg font-extrabold text-[#0080FF]">
             Create New Form
           </h3>
           <button
             type="button"
             onClick={toggleModal}
-            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex justify-center items-center"
+            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-[#0080FF] rounded-lg text-sm w-8 h-8 flex justify-center items-center"
           >
             <svg
               className="w-3 h-3"
@@ -95,7 +95,7 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
             <div className="col-span-2">
               <label
                 htmlFor="name"
-                className="block mb-2 text-sm font-bold text-gray-900"
+                className="block mb-2 text-sm font-bold text-[#0080FF]"
               >
                 Form Name:
               </label>
@@ -104,7 +104,7 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
                 name="name"
                 id="name"
                 value={formName}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-50 border border-gray-300 text-[#0080FF] text-sm rounded-lg focus:ring-[#0080FF] focus:border-[#0080FF] block w-full p-2.5"
                 placeholder="My Form 1"
                 autoFocus
                 onChange={(e) => setFormName(e.target.value)}
@@ -114,7 +114,7 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
             <div className="col-span-2">
               <label
                 htmlFor="description"
-                className="block mb-2 text-sm font-bold text-gray-900"
+                className="block mb-2 text-sm font-bold text-[#0080FF]"
               >
                 Form Description
               </label>
@@ -122,7 +122,7 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
                 id="description"
                 rows="4"
                 value={formDescription}
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                className="block p-2.5 w-full text-sm text-[#0080FF] bg-gray-50 rounded-lg border border-gray-300 focus:ring-[#0080FF] focus:border-[#0080FF]"
                 placeholder="Write form description here"
                 onChange={(e) => setFormDescription(e.target.value)}
               />
@@ -131,7 +131,7 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
             <div className="col-span-2">
               <label
                 htmlFor="email"
-                className="block mb-2 text-sm font-bold text-gray-900"
+                className="block mb-2 text-sm font-bold text-[#0080FF]"
               >
                 Send Email to:
               </label>
@@ -140,7 +140,7 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
                 name="email"
                 id="email"
                 value={formSendEmail}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-50 border border-gray-300 text-[#0080FF] text-sm rounded-lg focus:ring-[#0080FF] focus:border-[#0080FF] block w-full p-2.5"
                 placeholder="Send email to"
                 onChange={(e) => setFormSendEmail(e.target.value)}
               />
@@ -159,7 +159,7 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`text-white items-center bg-[#0080FF] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center w-full ${
+            className={`text-white items-center bg-[#0080FF] hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center w-full ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >

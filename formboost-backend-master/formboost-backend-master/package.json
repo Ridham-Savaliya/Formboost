@@ -50,6 +50,7 @@
     "mysql2": "^3.14.1",
     "nanoid": "^5.1.5",
     "nodemailer": "^6.9.15",
+    "resend": "^6.0.3",
     "sequelize": "^6.21.6",
     "winston": "^3.13.0",
     "winston-loki": "^6.1.3",

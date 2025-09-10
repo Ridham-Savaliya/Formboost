@@ -26,7 +26,7 @@ const FormStatsCard = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/user/dashboard`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/dashboard`,
           {
             headers: {
               Authorization: localStorage.getItem("token"),

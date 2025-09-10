@@ -468,6 +468,7 @@ router.get('/plan/csv', authMiddleware, async (req, res) => {
   }
 });
 
+// Public submission endpoint - must come BEFORE /api mounts to keep path simple
 router.post('/:alias', checkSubmissionLimit, formSubmissionController.submitFormData);
 router.use('/api/v1', v1Router);
 

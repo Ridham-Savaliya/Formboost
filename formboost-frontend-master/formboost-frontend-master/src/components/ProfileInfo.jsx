@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { decodeTokenUserId } from "../utils/constants";
+import { auth } from "../firebase/firebase";
+import { EmailAuthProvider, linkWithCredential, updatePassword } from "firebase/auth";
 
 export const ProfileInfo = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +31,7 @@ export const ProfileInfo = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/user`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/user`,
           {
             headers: { Authorization: token },
           }
@@ -66,18 +68,52 @@ export const ProfileInfo = () => {
       if (!token || !userId) {
         throw new Error("Authentication failed");
       }
+      // 1) If user entered a new password, set it on Firebase Auth (client-side)
+      if (formData.newPassword) {
+        if (!auth || !auth.currentUser) {
+          throw new Error("Can't set password: not signed in.");
+        }
+
+        const currentUser = auth.currentUser;
+        const providers = (currentUser.providerData || []).map(p => p.providerId);
+
+        // If the account doesn't have password auth linked yet, link it using the provided email + newPassword
+        if (!providers.includes("password")) {
+          try {
+            const credential = EmailAuthProvider.credential(formData.email, formData.newPassword);
+            await linkWithCredential(currentUser, credential);
+          } catch (err) {
+            // If already linked or other known issues, surface a helpful message
+            if (err.code === "auth/credential-already-in-use") {
+              throw new Error("This email already has a password. Try logging in with email and password.");
+            } else if (err.code === "auth/requires-recent-login") {
+              throw new Error("Please re-login and try again to set your password.");
+            } else if (err.code === "auth/email-already-in-use") {
+              throw new Error("Email already in use by another account.");
+            }
+            throw err;
+          }
+        } else {
+          // If password provider already linked, update password
+          try {
+            await updatePassword(currentUser, formData.newPassword);
+          } catch (err) {
+            if (err.code === "auth/requires-recent-login") {
+              throw new Error("Please re-login and try again to change your password.");
+            }
+            throw err;
+          }
+        }
+      }
+
+      // 2) Update name/email in our backend profile
       const userData = {
         name: formData.name,
         email: formData.email,
-        password: formData.password,
       };
 
-      if (formData.newPassword) {
-        userData.password = formData.newPassword;
-      }
-
       await axios.patch(
-        `${import.meta.env.VITE_BACKEND_URL}/user/${userId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/${userId}`,
         userData,
         {
           headers: { Authorization: token },
@@ -91,7 +127,7 @@ export const ProfileInfo = () => {
         confirmPassword: "",
       }));
     } catch (err) {
-      setError("Failed to update profile");
+      setError(err.message || "Failed to update profile");
     } finally {
       setLoading(false);
     }

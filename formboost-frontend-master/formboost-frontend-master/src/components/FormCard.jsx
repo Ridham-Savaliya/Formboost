@@ -23,7 +23,7 @@ export const FormCard = ({
     const fetchTotalCount = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/formsubmission/${formId}/form`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/formsubmission/${formId}/form`,
           {
             headers: {
               Authorization: localStorage.getItem("token"),
@@ -65,10 +65,10 @@ export const FormCard = ({
   };
 
   return (
-    <div className="p-6 shadow-lg rounded-lg transition-transform transform bg-white">
-      <div className="flex justify-between items-center">
+    <div className="p-6 shadow-lg rounded-lg transition-transform transform bg-white h-full flex flex-col">
+      <div className="flex justify-between items-center gap-3">
         <Link to={`/form/${formId}`}>
-          <h2 className="text-2xl font-bold mb-2 text-[#0080FF]">{title}</h2>
+          <h2 className="text-xl md:text-2xl font-bold mb-2 text-[#0080FF] leading-snug line-clamp-2">{title}</h2>
         </Link>
         <button
           onClick={() => setShowPopover(true)}
@@ -78,29 +78,29 @@ export const FormCard = ({
         </button>
       </div>
 
-      <p className="text-gray-500">
+      <p className="text-gray-500 text-sm md:text-base">
         <b>Description:</b>{" "}
         {formDescription.length > 100
           ? `${formDescription.substring(0, 64)}...`
           : formDescription}
       </p>
 
-      <p className="text-gray-500">
+      <p className="text-gray-500 text-sm md:text-base">
         <b>Created:</b> {new Date(createdDate).toLocaleString().split(",")[0]}
       </p>
       <div className="mt-4 border-t py-4">
         <p className="">SUBMISSIONS</p>
-        <div className="flex space-x-4 mt-1 py-2">
+        <div className="flex space-x-4 mt-1 py-2 items-end">
           <div>
-            <p className="text-lg font-bold">{totalCount}</p>
-            <p className="text-sm text-gray-500">Total</p>
+            <p className="text-base md:text-lg font-bold">{totalCount}</p>
+            <p className="text-xs md:text-sm text-gray-500">Total</p>
           </div>
         </div>
       </div>
 
       <button
         onClick={() => onView(formId)}
-        className="bg-[#0080FF] text-white px-4 py-2 rounded-lg shadow-md hover:bg-[#006fdd] w-full"
+        className="mt-auto bg-[#0080FF] text-white px-4 py-2 rounded-lg shadow-md hover:bg-[#006fdd] w-full"
       >
         View Form
       </button>

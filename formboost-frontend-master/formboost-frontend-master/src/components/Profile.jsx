@@ -25,7 +25,7 @@ const Profile = () => {
 
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/user`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/user`,
         {
           headers: { Authorization: token },
         }

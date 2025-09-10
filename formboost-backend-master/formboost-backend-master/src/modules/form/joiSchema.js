@@ -7,6 +7,8 @@ const joiSchema = {
     filterSpam: Joi.boolean().default(true),
     emailNotification: Joi.boolean().default(true),
     targetEmail: Joi.string().required(),
+    isPrebuilt: Joi.boolean().optional(),
+    prebuiltTemplate: Joi.string().optional(),
   }),
   update: Joi.object().keys({
     formName: Joi.string(),
@@ -14,6 +16,8 @@ const joiSchema = {
     filterSpam: Joi.boolean().default(true),
     emailNotification: Joi.boolean().default(true),
     targetEmail: Joi.string(),
+    isPrebuilt: Joi.boolean().optional(),
+    prebuiltTemplate: Joi.string().optional(),
   }),
 };
 

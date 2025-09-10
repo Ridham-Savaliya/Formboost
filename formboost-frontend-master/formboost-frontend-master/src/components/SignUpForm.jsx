@@ -1,8 +1,10 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { authState, createUser } from "../recoil/auth";
 import { signUpWithEmailAndPassword, signInWithGoogle } from "../firebase/auth";
+import { auth } from "../firebase/firebase";
+import { EmailAuthProvider, linkWithCredential } from "firebase/auth";
 import { authenticateWithBackend } from "../recoil/auth";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
@@ -10,6 +12,7 @@ import { FcGoogle } from "react-icons/fc";
 const SignUpForm = () => {
   const setAuth = useSetRecoilState(authState);
   const navigate = useNavigate();
+  const location = useLocation();
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -22,6 +25,17 @@ const SignUpForm = () => {
     agreeTerms: false,
   });
   const [loading, setLoading] = useState(false);
+  
+  // Handle pre-filled data from previous step (Google or Email login)
+  useEffect(() => {
+    if (location.state?.email || location.state?.name) {
+      setFormData(prev => ({
+        ...prev,
+        name: location.state.name || prev.name,
+        email: location.state.email || prev.email,
+      }));
+    }
+  }, [location.state]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -46,30 +60,70 @@ const SignUpForm = () => {
 
     try {
       setLoading(true);
-      const firebaseUser = await signUpWithEmailAndPassword(
-        formData.email,
-        formData.password
-      );
-      const success = await authenticateWithBackend(firebaseUser, setAuth);
-      if (success) {
-        // Call the backend API to create the user
-        const userCreationResponse = await createUser({
-          name: formData.name,
-          email: formData.email,
-        });
 
-        // Here you could handle the new token if necessary
-        if (userCreationResponse.token) {
-          localStorage.setItem("token", `Bearer ${userCreationResponse.token}`);
+      let firebaseUser = null;
+
+      // If the user arrived from Google (already signed in) or auth has a currentUser,
+      // link the email/password credential to that existing account instead of creating a new one.
+      const arrivedFromGoogle = Boolean(location.state?.fromGoogle);
+      const currentUser = auth?.currentUser || null;
+      const providers = (currentUser?.providerData || []).map((p) => p.providerId);
+
+      if (arrivedFromGoogle || (currentUser && providers.includes("google.com"))) {
+        if (!currentUser) {
+          setError("Please sign in with Google again, then set your password.");
+          return;
         }
 
-        console.log("Backend user creation response:", userCreationResponse);
+        // Link email/password to existing Google account
+        const credential = EmailAuthProvider.credential(
+          formData.email,
+          formData.password
+        );
+        try {
+          await linkWithCredential(currentUser, credential);
+        } catch (err) {
+          if (err.code === "auth/credential-already-in-use" || err.code === "auth/email-already-in-use") {
+            setError("This email already has a password. Please log in instead.");
+            return;
+          }
+          if (err.code === "auth/requires-recent-login") {
+            setError("Please re-login and try again to link your password.");
+            return;
+          }
+          throw err;
+        }
+
+        firebaseUser = currentUser; // remain signed in
+      } else {
+        // Regular email+password signup flow (no Google session)
+        firebaseUser = await signUpWithEmailAndPassword(
+          formData.email,
+          formData.password
+        );
+      }
+
+      const verify = await authenticateWithBackend(firebaseUser, setAuth);
+      if (verify) {
+        if (!verify.userRegistered) {
+          // Create the backend user profile
+          const userCreationResponse = await createUser({
+            name: formData.name,
+            email: formData.email,
+          });
+
+          if (userCreationResponse.token) {
+            const bearer = `Bearer ${userCreationResponse.token}`;
+            localStorage.setItem("token", bearer);
+            setAuth({ token: bearer, user: firebaseUser });
+          }
+        }
         navigate("/");
       } else {
         setError("Failed to authenticate with the backend.");
       }
     } catch (error) {
-      console.error("Signup error:", error.message);
+      console.error("Signup error:", error);
       setError(error.message || "An error occurred during signup");
     } finally {
       setLoading(false);
@@ -85,11 +139,10 @@ const SignUpForm = () => {
 
       if (success) {
         if (success.userRegistered) {
-          localStorage.setItem("token", `Bearer ${success.token}`);
           navigate("/");
         } else {
           const userCreationResponse = await createUser({
-            name: firebaseUser.displayName,
+            name: firebaseUser.displayName || "Google User",
             email: firebaseUser.email,
           });
 
@@ -98,6 +151,7 @@ const SignUpForm = () => {
               "token",
               `Bearer ${userCreationResponse.token}`
             );
+            setAuth({ token: `Bearer ${userCreationResponse.token}`, user: firebaseUser });
           }
 
           console.log("Backend user creation response:", userCreationResponse);
@@ -123,12 +177,14 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 ">
-
+    // Update the background div
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+      {/* Background overlay with animated gradient */}
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-600/30 animate-gradient-slow" />
       <div className="absolute bg-black opacity-30 w-full h-full"></div>
       <div className="absolute z-10 w-full h-full flex items-center justify-center">
         <div className="bg-white p-6 rounded-lg shadow-lg w-96 max-w-md">
-          <h2 className="text-2xl font-bold text-center mb-2 text-blue-900">
+          <h2 className="text-2xl font-bold text-center mb-2 text-[#0080FF]">
             Create an Account
           </h2>
 
@@ -140,7 +196,7 @@ const SignUpForm = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
                 placeholder=""
               />
             </div>
@@ -151,7 +207,7 @@ const SignUpForm = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
                 placeholder=""
               />
             </div>
@@ -162,7 +218,7 @@ const SignUpForm = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
                 placeholder=""
               />
               <div
@@ -179,7 +235,7 @@ const SignUpForm = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
                 placeholder=""
               />
               <div
@@ -215,7 +271,7 @@ const SignUpForm = () => {
 
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+              className="w-full bg-[#0080FF] text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
               disabled={loading}
             >
               {loading ? "Creating Account..." : "Create Account"}

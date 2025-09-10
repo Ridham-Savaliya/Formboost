@@ -11,7 +11,10 @@ import transactionRouter from '#modules/transaction/index.js';
 
 const router = express.Router();
 
+// Auth routes (no middleware required)
 router.use('/', authRouter);
+
+// Protected routes (require authentication)
 router.use(authMiddleware);
 router.use('/user', userRouter);
 router.use('/admin', adminRouter);

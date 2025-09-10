@@ -30,7 +30,7 @@ const SubmissionTab = ({ formId }) => {
       const response = await axios.get(
         `${
           import.meta.env.VITE_BACKEND_URL
-        }/formsubmission/${formId}/submissions`,
+        }/api/v1/formsubmission/${formId}/submissions`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -78,7 +78,7 @@ const SubmissionTab = ({ formId }) => {
 
   const downloadData = () => {
     const response = axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/formsubmission/${formId}/csv`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/v1/formsubmission/${formId}/csv`,
       {
         headers: {
           Authorization: localStorage.getItem("token"),
@@ -242,7 +242,7 @@ const SubmissionItem = ({ submission, topKeys, isSelected, onSelect }) => (
             e.stopPropagation();
             onSelect(submission);
           }}
-          className="text-blue-500 hover:text-blue-700"
+          className="text-[#0080FF] hover:bg-blue-600"
         >
           View
         </button>
@@ -283,7 +283,7 @@ ${submission.formSubmissionData
         </h3>
         <button
           onClick={copySubmissionDetails}
-          className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600 transition-colors duration-200 flex items-center"
+          className="bg-[#0080FF] text-white px-3 py-1 rounded-lg hover:bg-blue-600 transition-colors duration-200 flex items-center"
         >
           <MdOutlineContentCopy size={16} className="mr-2" />
           Copy Details
@@ -313,7 +313,7 @@ ${submission.formSubmissionData
           {submission.formSubmissionData.map((field, index) => (
             <div
               key={index}
-              className={`px-4 py-2 border border-blue-200 ${
+              className={`px-4 py-2 border border-[#0080FF] ${
                 index % 2 === 0 ? "bg-gray-100" : "bg-white"
               }`}
             >
@@ -349,7 +349,7 @@ const PaginationControls = ({
         ))}
       </select>
       <button
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="bg-[#0080FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={() => onPaginate("prev")}
         disabled={currentPage === 1}
       >
@@ -359,7 +359,7 @@ const PaginationControls = ({
         Page {currentPage} of {totalPages}
       </p>
       <button
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="bg-[#0080FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={() => onPaginate("next")}
         disabled={currentPage === totalPages}
       >

@@ -18,7 +18,7 @@ const Charts = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/formsubmission/User`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/formsubmission/User`,
           {
             headers: {
               Authorization: localStorage.getItem("token"),

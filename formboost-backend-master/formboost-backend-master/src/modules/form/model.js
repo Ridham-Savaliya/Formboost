@@ -17,6 +17,7 @@ const Form = sequelize.define('Form', {
   formName: {
     type: DataTypes.STRING,
     allowNull: false,
+    field: 'name',
   },
   formDescription: {
     type: DataTypes.STRING,
@@ -36,6 +37,26 @@ const Form = sequelize.define('Form', {
     validate: {
       isEmail: true,
     },
+  },
+  telegramNotification: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  telegramChatId: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  telegramBotToken: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  isPrebuilt: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  prebuiltTemplate: {
+    type: DataTypes.TEXT('long'),
+    allowNull: true,
   },
 });
 

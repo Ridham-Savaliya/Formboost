@@ -18,7 +18,7 @@ export const AccountSettings = ({ userId }) => {
       try {
         // Fetch user details
         const userResponse = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/user/${userId}`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/${userId}`,
           {
             headers: { Authorization: localStorage.getItem("token") },
           }
@@ -34,7 +34,7 @@ export const AccountSettings = ({ userId }) => {
 
         // Fetch quota information
         const quotaResponse = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/formsubmission/Quota`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/formsubmission/Quota`,
           {
             headers: { Authorization: localStorage.getItem("token") },
           }

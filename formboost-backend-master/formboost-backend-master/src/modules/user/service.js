@@ -31,7 +31,7 @@ export const updateUser = async (userId, payload) => {
     const user = await fetchUserById(userId);
 
     if (payload.password) {
-      if (!user.firebase_UID) {
+      if (!user.firebaseUid) {
         throwAppError({
           name: 'FIREBASE_UID_MISSING',
           message: 'Firebase UID is missing for the user',
@@ -39,7 +39,15 @@ export const updateUser = async (userId, payload) => {
         });
       }
 
-      await admin.auth().updateUser(user.firebase_UID, {
+      if (!admin || typeof admin.auth !== 'function') {
+        throwAppError({
+          name: 'FIREBASE_NOT_CONFIGURED',
+          message: 'Cannot update password because Firebase Admin is not configured',
+          status: 503,
+        });
+      }
+
+      await admin.auth().updateUser(user.firebaseUid, {
         password: payload.password,
       });
     }
@@ -127,7 +135,7 @@ export const updateUserPassword = async (userId, newPassword) => {
 
     const user = await fetchUserById(userId);
 
-    if (!user.firebase_UID) {
+    if (!user.firebaseUid) {
       throwAppError({
         name: 'FIREBASE_UID_MISSING',
         message: 'Firebase UID is missing',
@@ -135,12 +143,56 @@ export const updateUserPassword = async (userId, newPassword) => {
       });
     }
 
-    await admin.auth().updateUser(user.firebase_UID, {
+    if (!admin || typeof admin.auth !== 'function') {
+      throwAppError({
+        name: 'FIREBASE_NOT_CONFIGURED',
+        message: 'Cannot update password because Firebase Admin is not configured',
+        status: 503,
+      });
+    }
+
+    await admin.auth().updateUser(user.firebaseUid, {
       password: newPassword,
     });
 
     return { success: true };
   } catch (error) {
     handleError('UPDATE_USER_PASSWORD_FAILED', error);
+  }
+};
+
+export const getNotificationLimits = async (userId) => {
+  try {
+    // Get current month's email notification count
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+
+    // Count email notifications sent this month (using a simple count for now)
+    // Since we don't have emailSent column, we'll count all submissions and estimate
+    const totalSubmissions = await FormSubmission.count({
+      include: [{
+        model: Form,
+        where: { userId },
+        attributes: []
+      }],
+      where: {
+        createdAt: {
+          [Op.between]: [startOfMonth, endOfMonth]
+        }
+      }
+    });
+
+    // For now, assume 80% of submissions trigger email notifications
+    const emailCount = Math.floor(totalSubmissions * 0.8);
+
+    return {
+      emailUsed: emailCount,
+      emailLimit: 50,
+      telegramUsed: 'unlimited',
+      telegramLimit: 'unlimited'
+    };
+  } catch (error) {
+    handleError('GET_NOTIFICATION_LIMITS_FAILED', error);
   }
 };
