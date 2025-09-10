@@ -29,6 +29,10 @@ const Admin = sequelize.define(
     },
   },
   {
+    sequelize,
+    modelName: 'Admin',
+    tableName: 'admins', // Explicitly define the table name as lowercase
+    freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
     hooks: {
       beforeCreate: async (user) => {
         // Temporarily disabled bcrypt hashing - use plain text for development
@@ -45,13 +49,7 @@ const Admin = sequelize.define(
         }
       },
     },
-  }, {
-  // Important: Tell Sequelize to use the lowercase 'users' table name
-  sequelize,
-  modelName: 'Admin',
-  tableName: 'admins', // Explicitly define the table name as lowercase
-  freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
-}
+  }
 );
 
 Admin.prototype.validPassword = async function (password) {
