@@ -28,7 +28,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "mysql2": "^3.14.1"
   },
   "dependencies": {
     "@google/genai": "^1.8.0",
@@ -47,7 +48,7 @@
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.14.1",
+  
     "nanoid": "^5.1.5",
     "nodemailer": "^6.9.15",
     "resend": "^6.0.3",
