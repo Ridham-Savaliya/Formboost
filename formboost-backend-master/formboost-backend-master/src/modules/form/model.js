@@ -58,6 +58,12 @@ const Form = sequelize.define('Form', {
     type: DataTypes.TEXT('long'),
     allowNull: true,
   },
+},  {
+  // Important: Tell Sequelize to use the lowercase 'users' table name
+  sequelize,
+  modelName: 'Forms',
+  tableName: 'forms', // Explicitly define the table name as lowercase
+  freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
 });
 
 User.hasMany(Form, { foreignKey: 'userId', onDelete: 'CASCADE' });

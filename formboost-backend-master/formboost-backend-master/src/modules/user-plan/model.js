@@ -22,6 +22,12 @@ const UserPlan = sequelize.define('UserPlan', {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+}, {
+  // Important: Tell Sequelize to use the lowercase 'users' table name
+  sequelize,
+  modelName: 'UserPlans',
+  tableName: 'userplans', // Explicitly define the table name as lowercase
+  freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
 });
 
 User.hasMany(UserPlan, { foreignKey: 'userId', onDelete: 'CASCADE' });

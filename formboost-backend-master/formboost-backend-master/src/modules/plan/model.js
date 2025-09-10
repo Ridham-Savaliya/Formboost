@@ -29,6 +29,12 @@ const Plan = sequelize.define('Plan', {
     allowNull: false,
     defaultValue: false,
   },
+}, {
+  // Important: Tell Sequelize to use the lowercase 'users' table name
+  sequelize,
+  modelName: 'Plans',
+  tableName: 'plans', // Explicitly define the table name as lowercase
+  freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
 });
 
 export default Plan;

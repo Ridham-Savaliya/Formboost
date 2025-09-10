@@ -51,6 +51,12 @@ const FormSubmissionData = sequelize.define('FormSubmissionData', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+} ,{
+  // Important: Tell Sequelize to use the lowercase 'users' table name
+  sequelize,
+  modelName: 'FormSubmissions',
+  tableName: 'formSubmissions', // Explicitly define the table name as lowercase
+  freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
 });
 
 // --- Associations ---

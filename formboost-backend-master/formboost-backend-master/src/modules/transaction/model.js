@@ -29,6 +29,11 @@ const Transaction = sequelize.define('Transaction', {
     type: DataTypes.DATE,
     allowNull: false,
   },
+}, {
+  sequelize,
+  modelName: 'Transactions',
+  tableName: 'transactions',
+  freezeTableName: true,
 });
 
 UserPlan.hasMany(Transaction, { foreignKey: 'userPlanId' });

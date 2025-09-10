@@ -25,6 +25,12 @@ const User = sequelize.define('Users', {
     allowNull: false,
     field: 'firebaseUid',
   },
+},  {
+  // Important: Tell Sequelize to use the lowercase 'users' table name
+  sequelize,
+  modelName: 'Users',
+  tableName: 'users', // Explicitly define the table name as lowercase
+  freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
 });
 
 export default User;
