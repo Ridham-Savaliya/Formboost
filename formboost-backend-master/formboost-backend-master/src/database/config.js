@@ -17,5 +17,5 @@ const sequelize = new Sequelize(config.db.database, config.db.username, config.d
   },
   logging: config.db.logging ? console.log : false,
 });
-
+// dvsdvsds
 export default sequelize;
