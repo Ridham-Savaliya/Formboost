@@ -1,4 +1,4 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '#database/config.js';
 import Form from '#modules/form/model.js';
 
@@ -33,6 +33,11 @@ const FormSubmission = sequelize.define('FormSubmission', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+}, {
+  sequelize,
+  modelName: 'FormSubmission',
+  tableName: 'formsubmissions', // Explicitly define the table name for FormSubmission
+  freezeTableName: true,
 });
 
 // --- FormSubmissionData Model ---
@@ -51,12 +56,11 @@ const FormSubmissionData = sequelize.define('FormSubmissionData', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-} ,{
-  // Important: Tell Sequelize to use the lowercase 'users' table name
+}, {
   sequelize,
-  modelName: 'FormSubmission',
-  tableName: 'formsubmissions', // Explicitly define the table name as lowercase
-  freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
+  modelName: 'FormSubmissionData', // Correct model name
+  tableName: 'formsubmissiondata', // Explicitly define the table name for FormSubmissionData
+  freezeTableName: true,
 });
 
 // --- Associations ---
