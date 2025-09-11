@@ -18,5 +18,5 @@
     "moduleResolution": "node",
     "target": "esnext"
   },
-  "include": ["src"]
+  "include": ["src", "public"]
 }
