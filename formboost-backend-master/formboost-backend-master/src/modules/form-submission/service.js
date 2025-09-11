@@ -12,6 +12,9 @@ import logger from '#utils/logger.js';
 import { sendSubmissionMail } from '#utils/mail/index.js';
 import { isSpamWithOpenAIasync } from '#service/gemini.js';
 import { sendTelegramMessage, formatTelegramSubmissionMessage } from '#service/telegram.js';
+import { sendWebhook, formatWebhookPayload } from '#service/webhook.js';
+import { sendSlackMessage } from '#service/slack.js';
+import { addToGoogleSheet } from '#service/googlesheets.js';
 
 // Email notification limit tracking
 const emailNotificationCounts = new Map(); // userId -> { count, resetDate }
@@ -264,6 +267,157 @@ export const submitFormData = async (alias, formData, ip) => {
           isSpam: formSubmissionObj.isSpam,
           hasTargetEmail: !!form.targetEmail,
         },
+      });
+    }
+    
+    // Send webhook notification (unlimited, async)
+    if (form.webhookEnabled && !formSubmissionObj.isSpam && form.webhookUrl) {
+      logger.info({
+        name: 'SENDING_WEBHOOK_NOTIFICATION',
+        data: {
+          formId: form.id,
+          webhookUrl: form.webhookUrl.replace(/\/\/.*@/, '//***@'), // Mask credentials
+          formData,
+        },
+      });
+      
+      // Send webhook asynchronously to avoid blocking the response
+      setImmediate(async () => {
+        try {
+          const webhookPayload = formatWebhookPayload(form, formData, ip, submission);
+          const result = await sendWebhook(form.webhookUrl, webhookPayload);
+          
+          if (result.success) {
+            logger.info({
+              name: 'WEBHOOK_NOTIFICATION_SENT',
+              data: {
+                formId: form.id,
+                statusCode: result.statusCode,
+                attempts: result.attempts,
+              },
+            });
+          } else {
+            logger.error({
+              name: 'WEBHOOK_NOTIFICATION_FAILED',
+              data: {
+                formId: form.id,
+                statusCode: result.statusCode,
+                error: result.error,
+                attempts: result.attempts,
+              },
+            });
+          }
+        } catch (webhookError) {
+          logger.error({
+            name: 'WEBHOOK_SEND_ERROR',
+            data: {
+              formId: form.id,
+              error: webhookError.message,
+            },
+          });
+        }
+      });
+    } else {
+      logger.info({
+        name: 'WEBHOOK_NOTIFICATION_SKIPPED',
+        data: {
+          formId: form.id,
+          webhookEnabled: form.webhookEnabled,
+          isSpam: formSubmissionObj.isSpam,
+          hasWebhookUrl: !!form.webhookUrl,
+        },
+      });
+    }
+    
+    // Send Slack notification (unlimited, async)
+    if (form.slackEnabled && !formSubmissionObj.isSpam && form.slackWebhookUrl) {
+      logger.info({
+        name: 'SENDING_SLACK_NOTIFICATION',
+        data: {
+          formId: form.id,
+          slackWebhookUrl: form.slackWebhookUrl.replace(/\/\/.*@/, '//***@'), // Mask credentials
+          formData,
+        },
+      });
+      
+      // Send Slack message asynchronously to avoid blocking the response
+      setImmediate(async () => {
+        try {
+          const result = await sendSlackMessage(form.slackWebhookUrl, form, formData, ip);
+          
+          if (result.success) {
+            logger.info({
+              name: 'SLACK_NOTIFICATION_SENT',
+              data: {
+                formId: form.id,
+                statusCode: result.statusCode,
+              },
+            });
+          } else {
+            logger.error({
+              name: 'SLACK_NOTIFICATION_FAILED',
+              data: {
+                formId: form.id,
+                statusCode: result.statusCode,
+                error: result.error,
+              },
+            });
+          }
+        } catch (slackError) {
+          logger.error({
+            name: 'SLACK_SEND_ERROR',
+            data: {
+              formId: form.id,
+              error: slackError.message,
+            },
+          });
+        }
+      });
+    }
+
+    // Send Google Sheets notification (unlimited, async)
+    if (form.googleSheetsEnabled && !formSubmissionObj.isSpam && form.googleSheetsId) {
+      logger.info({
+        name: 'SENDING_GOOGLE_SHEETS_NOTIFICATION',
+        data: {
+          formId: form.id,
+          googleSheetsId: form.googleSheetsId,
+          formData,
+        },
+      });
+      
+      // Send to Google Sheets asynchronously to avoid blocking the response
+      setImmediate(async () => {
+        try {
+          const result = await addToGoogleSheet(form.googleSheetsId, 'FormBoost Submissions', form, formData, ip);
+          
+          if (result.success) {
+            logger.info({
+              name: 'GOOGLE_SHEETS_NOTIFICATION_SENT',
+              data: {
+                formId: form.id,
+                updatedRows: result.updatedRows,
+                spreadsheetId: result.spreadsheetId,
+              },
+            });
+          } else {
+            logger.error({
+              name: 'GOOGLE_SHEETS_NOTIFICATION_FAILED',
+              data: {
+                formId: form.id,
+                error: result.error,
+              },
+            });
+          }
+        } catch (sheetsError) {
+          logger.error({
+            name: 'GOOGLE_SHEETS_SEND_ERROR',
+            data: {
+              formId: form.id,
+              error: sheetsError.message,
+            },
+          });
+        }
       });
     }
     

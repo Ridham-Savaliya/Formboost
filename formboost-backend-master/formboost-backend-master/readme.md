@@ -21,6 +21,10 @@ Formboost Backend is a robust Node.js/Express REST API for managing forms, submi
 
 ---
 
+
+## migration command
+ - npx sequelize-cli db:migrate --config config/config.cjs
+
 ## Project Structure
 
 ```

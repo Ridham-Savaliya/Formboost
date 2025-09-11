@@ -105,3 +105,24 @@ export const getLatestChatId = async (botToken) => {
     return null;
   }
 };
+
+/**
+ * Validate a Telegram bot token by calling getMe
+ * @param {string} botToken
+ * @returns {Promise<object|null>} minimal bot info (id, is_bot, first_name, username) or null
+ */
+export const getBotInfo = async (botToken) => {
+  try {
+    if (!botToken) return null;
+    const url = `https://api.telegram.org/bot${botToken}/getMe`;
+    const response = await axios.get(url, { timeout: 10000 });
+    if (response.data?.ok && response.data?.result) {
+      const { id, is_bot, first_name, username } = response.data.result;
+      return { id, is_bot, first_name, username };
+    }
+    return null;
+  } catch (error) {
+    logger.warn({ name: 'TELEGRAM_GET_ME_FAILED', data: { error: error.message, response: error.response?.data } });
+    return null;
+  }
+};

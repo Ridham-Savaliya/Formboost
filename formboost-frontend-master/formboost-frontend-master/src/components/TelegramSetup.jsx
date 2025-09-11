@@ -31,6 +31,13 @@ const TelegramSetup = ({
     }
   }, [telegramBotToken, telegramChatId, step]);
 
+  // Re-validate when bot token changes
+  useEffect(() => {
+    if (telegramBotToken && telegramBotToken.length > 10) {
+      validateBotToken();
+    }
+  }, [telegramBotToken]);
+
   const validateBotToken = async () => {
     if (!telegramBotToken) return;
     

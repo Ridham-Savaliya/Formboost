@@ -58,6 +58,36 @@ const Form = sequelize.define('Form', {
     type: DataTypes.TEXT('long'),
     allowNull: true,
   },
+  webhookUrl: {
+    type: DataTypes.STRING(2048),
+    allowNull: true,
+    validate: {
+      isUrl: true,
+    },
+  },
+  webhookEnabled: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  slackWebhookUrl: {
+    type: DataTypes.STRING(2048),
+    allowNull: true,
+    validate: {
+      isUrl: true,
+    },
+  },
+  slackEnabled: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  googleSheetsId: {
+    type: DataTypes.STRING(255),
+    allowNull: true,
+  },
+  googleSheetsEnabled: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 },  {
   // Important: Tell Sequelize to use the lowercase 'users' table name
   sequelize,

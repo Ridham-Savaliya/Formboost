@@ -4,7 +4,10 @@ import { throwAppError, handleError } from '#utils/exception.js';
 import { sqquery } from '#utils/query.js';
 import { sendToDiscord } from '#service/discord.js';
 import { sendSubmissionMail } from '#utils/mail/index.js';
-import { sendTelegramMessage, formatTelegramSubmissionMessage, getLatestChatId } from '#service/telegram.js';
+import { sendTelegramMessage, formatTelegramSubmissionMessage, getLatestChatId, getBotInfo } from '#service/telegram.js';
+import { sendWebhook, formatWebhookPayload, testWebhook } from '#service/webhook.js';
+import { sendSlackMessage, testSlackWebhook } from '#service/slack.js';
+import { addToGoogleSheet, testGoogleSheetsIntegration } from '#service/googlesheets.js';
 
 export const findOne = async (formId) => {
   try {
@@ -218,5 +221,159 @@ export const resolveTelegramChatId = async (botToken) => {
     return { chatId };
   } catch (error) {
     handleError('SERVICE_RESOLVE_TELEGRAM_CHAT_ID_ERROR', error);
+  }
+};
+
+export const validateTelegramBot = async (botToken) => {
+  try {
+    const info = await getBotInfo(botToken);
+    if (!info) {
+      throwAppError({
+        name: 'INVALID_TELEGRAM_BOT',
+        message: 'Invalid Telegram bot token.',
+        status: 400,
+      });
+    }
+    return info;
+  } catch (error) {
+    handleError('SERVICE_VALIDATE_TELEGRAM_BOT_ERROR', error);
+  }
+};
+
+export const updateWebhookSettings = async (formId, webhookUrl, webhookEnabled) => {
+  try {
+    const updateData = { webhookEnabled };
+    
+    if (webhookUrl !== undefined) {
+      updateData.webhookUrl = webhookUrl;
+    }
+    
+    const [affectedRows] = await Form.update(
+      updateData,
+      {
+        where: { id: formId },
+      }
+    );
+    return { isUpdated: Boolean(affectedRows) };
+  } catch (error) {
+    handleError('SERVICE_UPDATE_WEBHOOK_SETTINGS_ERROR', error);
+  }
+};
+
+export const updateSlackSettings = async (formId, slackWebhookUrl, slackEnabled) => {
+  try {
+    const updateData = { slackEnabled };
+    
+    if (slackWebhookUrl !== undefined) {
+      updateData.slackWebhookUrl = slackWebhookUrl;
+    }
+    
+    const [affectedRows] = await Form.update(
+      updateData,
+      {
+        where: { id: formId },
+      }
+    );
+    return { isUpdated: Boolean(affectedRows) };
+  } catch (error) {
+    handleError('SERVICE_UPDATE_SLACK_SETTINGS_ERROR', error);
+  }
+};
+
+export const updateGoogleSheetsSettings = async (formId, googleSheetsId, googleSheetsEnabled) => {
+  try {
+    const updateData = { googleSheetsEnabled };
+    
+    if (googleSheetsId !== undefined) {
+      updateData.googleSheetsId = googleSheetsId;
+    }
+    
+    const [affectedRows] = await Form.update(
+      updateData,
+      {
+        where: { id: formId },
+      }
+    );
+    return { isUpdated: Boolean(affectedRows) };
+  } catch (error) {
+    handleError('SERVICE_UPDATE_GOOGLE_SHEETS_SETTINGS_ERROR', error);
+  }
+};
+
+export const testFormWebhook = async (formId) => {
+  try {
+    const form = await Form.findOne({ where: { id: formId } });
+    if (!form) {
+      throwAppError({
+        name: 'FORM_NOT_FOUND',
+        message: 'Form not found.',
+        status: 404,
+      });
+    }
+
+    if (!form.webhookUrl) {
+      throwAppError({
+        name: 'WEBHOOK_URL_REQUIRED',
+        message: 'Webhook URL is required.',
+        status: 400,
+      });
+    }
+
+    const result = await testWebhook(form.webhookUrl, form);
+    return result;
+  } catch (error) {
+    handleError('SERVICE_TEST_WEBHOOK_ERROR', error);
+  }
+};
+
+export const testFormSlack = async (formId) => {
+  try {
+    const form = await Form.findOne({ where: { id: formId } });
+    if (!form) {
+      throwAppError({
+        name: 'FORM_NOT_FOUND',
+        message: 'Form not found.',
+        status: 404,
+      });
+    }
+
+    if (!form.slackWebhookUrl) {
+      throwAppError({
+        name: 'SLACK_WEBHOOK_URL_REQUIRED',
+        message: 'Slack webhook URL is required.',
+        status: 400,
+      });
+    }
+
+    const result = await testSlackWebhook(form.slackWebhookUrl, form);
+    return result;
+  } catch (error) {
+    handleError('SERVICE_TEST_SLACK_ERROR', error);
+  }
+};
+
+export const testFormGoogleSheets = async (formId) => {
+  try {
+    const form = await Form.findOne({ where: { id: formId } });
+    if (!form) {
+      throwAppError({
+        name: 'FORM_NOT_FOUND',
+        message: 'Form not found.',
+        status: 404,
+      });
+    }
+
+    if (!form.googleSheetsId) {
+      throwAppError({
+        name: 'GOOGLE_SHEETS_ID_REQUIRED',
+        message: 'Google Sheets ID is required.',
+        status: 400,
+      });
+    }
+
+    const result = await testGoogleSheetsIntegration(form.googleSheetsId, form);
+    return result;
+  } catch (error) {
+    handleError('SERVICE_TEST_GOOGLE_SHEETS_ERROR', error);
   }
 };

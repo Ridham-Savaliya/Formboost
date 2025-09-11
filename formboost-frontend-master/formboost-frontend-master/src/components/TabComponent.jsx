@@ -113,7 +113,7 @@ const TabComponent = ({ alias, formId, formName, template }) => {
 
             {tab.title === "Analytics" && <AnalyticsTab formId={formId} />}
 
-            {tab.title === "Workflow" && <WorkflowTab />}
+            {tab.title === "Workflow" && <WorkflowTab formId={formId} />}
 
             {tab.title === "Settings" && (
               <FormSettingsTab
