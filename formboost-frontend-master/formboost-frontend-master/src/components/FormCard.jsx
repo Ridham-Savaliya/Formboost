@@ -88,7 +88,7 @@ export const FormCard = ({
       <p className="text-gray-500 text-xs sm:text-sm md:text-base mb-3">
         <b>Created:</b> {new Date(createdDate).toLocaleString().split(",")[0]}
       </p>
-      <div className="mt-3 sm:mt-4 border-t py-3 sm:py-4">
+      <div className=" border-t py-3 sm:py-4">
         <p className="text-sm font-medium text-gray-700">SUBMISSIONS</p>
         <div className="flex space-x-4 mt-1 py-2 items-end">
           <div>

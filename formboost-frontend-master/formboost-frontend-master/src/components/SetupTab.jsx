@@ -330,8 +330,8 @@ ${options}
                       customStyle={{ 
                         margin: 0, 
                         borderRadius: 0, 
-                        fontSize: window.innerWidth < 640 ? '12px' : '14px',
-                        padding: window.innerWidth < 640 ? '1rem' : '1.5rem'
+                        fontSize: '14px',
+                        padding: '1rem'
                       }}
                     >
                       {formCode}

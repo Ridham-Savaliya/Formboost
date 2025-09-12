@@ -56,7 +56,7 @@ const AnalyticsTab = ({ formId }) => {
 
       <div className="flex justify-center mb-4 sm:mb-6 w-full overflow-x-auto">
         {/* Chart rendering */}
-        <div className="min-w-[300px] w-full">
+        <div className="min-w-[280px] w-full max-w-full">
           <LineChart
             xAxis={[
               { scaleType: "band", data: submissionData.map((d) => d.date) },
@@ -67,8 +67,8 @@ const AnalyticsTab = ({ formId }) => {
                 color: "#0080FF",
               },
             ]}
-            height={250}
-            margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
+            height={220}
+            margin={{ left: 20, right: 20, top: 20, bottom: 20 }}
           />
         </div>
       </div>

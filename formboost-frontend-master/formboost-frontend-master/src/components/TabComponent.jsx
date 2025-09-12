@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import SubmissionTab from "./SubmissionTab";
 import SetupTab from "./SetupTab";
 import AnalyticsTab from "./AnalyticsTab";
@@ -51,16 +52,16 @@ const TabComponent = ({ alias, formId, formName, template }) => {
   return (
     <div className="flex flex-col h-full">
       {/* Tab navigation */}
-      <div className="mb-3 sm:mb-4">
-        <div className="bg-white shadow-md border border-gray-200 sticky top-14 z-20 rounded-xl">
+      <div className="mb-2 sm:mb-4">
+        <div className="bg-white shadow-md border border-gray-200 sticky top-14 sm:top-16 z-0 rounded-xl">
           <ul
-            className="flex overflow-x-auto no-scrollbar px-1 sm:px-2 lg:px-4"
+            className="flex overflow-x-auto no-scrollbar px-2 py-1.5 sm:px-4 sm:py-2"
             role="tablist"
           >
             {tabs.map((tab) => (
               <li key={tab.id} role="presentation" className="flex-shrink-0">
                 <button
-                  className={`flex items-center gap-1 sm:gap-2 px-2 py-2 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary ${
+                  className={`flex items-center gap-1 sm:gap-2 px-2 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary ${
                     activeTab === tab.id
                       ? "bg-primary text-white shadow-md"
                       : "text-gray-600 hover:bg-gray-50"
@@ -72,7 +73,7 @@ const TabComponent = ({ alias, formId, formName, template }) => {
                   aria-selected={activeTab === tab.id}
                 >
                   <span className="text-sm sm:text-lg">{tab.icon}</span>
-                  <span className="whitespace-nowrap text-xs sm:text-sm">{tab.title}</span>
+                  <span className="whitespace-nowrap text-[11px] sm:text-sm">{tab.title}</span>
                 </button>
               </li>
             ))}
@@ -81,7 +82,7 @@ const TabComponent = ({ alias, formId, formName, template }) => {
       </div>
 
       {/* Tab panels */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto no-scrollbar">
         {tabs.map((tab) => (
           <div
             key={tab.id}
@@ -125,3 +126,10 @@ const TabComponent = ({ alias, formId, formName, template }) => {
 };
 
 export default TabComponent;
+
+TabComponent.propTypes = {
+  alias: PropTypes.string,
+  formId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  formName: PropTypes.string,
+  template: PropTypes.object,
+};

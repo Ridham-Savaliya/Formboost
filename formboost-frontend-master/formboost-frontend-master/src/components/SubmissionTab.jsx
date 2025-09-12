@@ -171,7 +171,7 @@ const SubmissionTab = ({ formId }) => {
           {/* Tab Switcher */}
           <div className="flex bg-gray-100 rounded-lg p-0.5 sm:p-1">
             <button
-              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all ${
+              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-[11px] sm:text-sm font-medium transition-all ${
                 activeTab === "inbox"
                   ? "bg-white text-primary shadow-sm"
                   : "text-gray-600 hover:text-gray-900"
@@ -182,7 +182,7 @@ const SubmissionTab = ({ formId }) => {
               <span>Inbox</span>
             </button>
             <button
-              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all ${
+              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-[11px] sm:text-sm font-medium transition-all ${
                 activeTab === "spam"
                   ? "bg-white text-red-500 shadow-sm"
                   : "text-gray-600 hover:text-gray-900"
