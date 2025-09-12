@@ -15,6 +15,12 @@ export const AccountSettings = ({ userId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // Don't fetch if userId is null or undefined
+      if (!userId) {
+        console.log("No userId provided, skipping data fetch");
+        return;
+      }
+
       try {
         // Fetch user details
         const userResponse = await axios.get(
@@ -34,7 +40,7 @@ export const AccountSettings = ({ userId }) => {
 
         // Fetch quota information
         const quotaResponse = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/v1/formsubmission/Quota`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/formsubmission/quota`,
           {
             headers: { Authorization: localStorage.getItem("token") },
           }

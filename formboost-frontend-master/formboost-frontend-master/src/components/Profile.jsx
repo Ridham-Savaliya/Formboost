@@ -87,10 +87,10 @@ const Profile = () => {
             className="py-2 text-sm text-gray-700"
             aria-labelledby="avatarButton"
           >
-            <DropdownItem to="/profile" icon={FaUser} text="Profile" />
-            <DropdownItem to="/settings" icon={IoMdSettings} text="Usage" />
+            <DropdownItem to="/dashboard/profile" icon={FaUser} text="Profile" />
+            <DropdownItem to="/dashboard/settings" icon={IoMdSettings} text="Usage" />
             <DropdownItem
-              to="/subscriptions"
+              to="/dashboard/subscriptions"
               icon={MdSubscriptions}
               text="Manage Subscription"
             />

@@ -10,18 +10,20 @@ const UserSettings = ({ userId }) => {
   const navigate = useNavigate();
 
   // Extract the tab ID from the URL, default to 'profile'
-  const initialTab = pathname.split("/")[1] || "profile";
+  const pathParts = pathname.split("/");
+  const initialTab = pathParts[pathParts.length - 1] || "profile";
   const [activeTab, setActiveTab] = useState(initialTab);
 
   useEffect(() => {
     // Update the active tab based on the URL
-    const tabFromPath = pathname.split("/")[1] || "profile";
+    const pathParts = pathname.split("/");
+    const tabFromPath = pathParts[pathParts.length - 1] || "profile";
     setActiveTab(tabFromPath);
   }, [pathname]);
 
   const handleTabClick = (tabId) => {
     // Navigate to the selected tab and update the active tab state
-    navigate(`/${tabId}`);
+    navigate(`/dashboard/${tabId}`);
     setActiveTab(tabId);
   };
 
@@ -32,7 +34,7 @@ const UserSettings = ({ userId }) => {
   ];
 
   return (
-    <div className="mt-20 bg-white p-5 shadow rounded-lg">
+    <div className="mt-20 bg-white p-2 sm:p-5 shadow rounded-lg">
       <div className="mb-4 border-b">
         <ul
           className="flex flex-wrap -mb-px text-sm font-medium text-center"
@@ -41,7 +43,7 @@ const UserSettings = ({ userId }) => {
           {tabs.map((tab) => (
             <li key={tab.id} className="me-2" role="presentation">
               <button
-                className={`inline-block p-4 border-b-2 rounded-t-lg ${
+                className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg ${
                   activeTab === tab.id
                     ? "border-[#0080FF] text-[#0080FF] font-bold"
                     : "hover:text-[#0080FF]"
@@ -64,7 +66,7 @@ const UserSettings = ({ userId }) => {
             id="profile"
             role="tabpanel"
             aria-labelledby="profile-tab"
-            className="p-4 rounded-lg"
+            className="p-2 sm:p-4 rounded-lg"
           >
             <ProfileInfo />
           </div>
@@ -74,7 +76,7 @@ const UserSettings = ({ userId }) => {
             id="settings"
             role="tabpanel"
             aria-labelledby="settings-tab"
-            className="p-4 rounded-lg"
+            className="p-2 sm:p-4 rounded-lg"
           >
             <AccountSettings userId={userId} />
           </div>
@@ -84,7 +86,7 @@ const UserSettings = ({ userId }) => {
             id="subscriptions"
             role="tabpanel"
             aria-labelledby="subscriptions-tab"
-            className="p-4 rounded-lg"
+            className="p-2 sm:p-4 rounded-lg"
           >
             <ManageSubscription userId={userId} />
           </div>

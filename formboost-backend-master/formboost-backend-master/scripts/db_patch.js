@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import sequelize from '../src/database/config.js';
 
 async function ensureColumn(queryInterface, table, column, spec, alterIfDifferent = false) {
@@ -13,9 +12,13 @@ async function ensureColumn(queryInterface, table, column, spec, alterIfDifferen
       if (alterIfDifferent) {
         const current = desc[column];
         const currentType = (current.type || '').toUpperCase();
-        const desiredType = (spec.type && spec.type.toString ? spec.type.toString() : String(spec.type)).toUpperCase();
+        const desiredType = (
+          spec.type && spec.type.toString ? spec.type.toString() : String(spec.type)
+        ).toUpperCase();
         if (desiredType && !currentType.includes(desiredType)) {
-          console.log(`[DB] Altering column ${column} on ${table} from ${currentType} to ${desiredType} ...`);
+          console.log(
+            `[DB] Altering column ${column} on ${table} from ${currentType} to ${desiredType} ...`
+          );
           await queryInterface.changeColumn(table, column, spec);
           console.log(`[DB] Altered column ${column} on ${table}`);
         }
@@ -36,7 +39,6 @@ async function ensureTable(queryInterface, table, spec) {
     // If the error indicates the table doesn't exist, create it.
     // Different DBs return different error messages for this.
     if (err && /exist|Unknown table|No description found/i.test(err.message)) {
-
       console.log(`[DB] Table ${table} does not exist. Creating...`);
       try {
         await queryInterface.createTable(table, spec);
@@ -59,25 +61,124 @@ async function run() {
 
   // Ensure Forms table has required columns (using correct case from your DB)
   await ensureColumn(qi, 'forms', 'formDescription', { type: Sequelize.STRING, allowNull: true });
-  await ensureColumn(qi, 'forms', 'emailNotification', { type: Sequelize.TINYINT(1), allowNull: false, defaultValue: 1 });
+  await ensureColumn(qi, 'forms', 'emailNotification', {
+    type: Sequelize.TINYINT(1),
+    allowNull: false,
+    defaultValue: 1,
+  });
   await ensureColumn(qi, 'forms', 'targetEmail', { type: Sequelize.STRING, allowNull: true });
   // Telegram-related columns
-  await ensureColumn(qi, 'forms', 'telegramNotification', { type: Sequelize.TINYINT(1), allowNull: false, defaultValue: 0 });
+  await ensureColumn(qi, 'forms', 'telegramNotification', {
+    type: Sequelize.TINYINT(1),
+    allowNull: false,
+    defaultValue: 0,
+  });
   await ensureColumn(qi, 'forms', 'telegramChatId', { type: Sequelize.STRING, allowNull: true });
   await ensureColumn(qi, 'forms', 'telegramBotToken', { type: Sequelize.STRING, allowNull: true });
   // Template persistence columns (lowercase variants)
-  await ensureColumn(qi, 'forms', 'isPrebuilt', { type: Sequelize.TINYINT(1), allowNull: false, defaultValue: 0 });
+  await ensureColumn(qi, 'forms', 'isPrebuilt', {
+    type: Sequelize.TINYINT(1),
+    allowNull: false,
+    defaultValue: 0,
+  });
   // Ensure prebuiltTemplate exists and is TEXT (alter if necessary)
-  await ensureColumn(qi, 'forms', 'prebuiltTemplate', { type: Sequelize.TEXT('long'), allowNull: true }, true);
+  await ensureColumn(
+    qi,
+    'forms',
+    'prebuiltTemplate',
+    { type: Sequelize.TEXT('long'), allowNull: true },
+    true
+  );
+
+  // Webhook / Slack / Google Sheets integration columns (lowercase)
+  await ensureColumn(qi, 'forms', 'webhookUrl', { type: Sequelize.STRING(2048), allowNull: true });
+  await ensureColumn(qi, 'forms', 'webhookEnabled', {
+    type: Sequelize.TINYINT(1),
+    allowNull: false,
+    defaultValue: 0,
+  });
+  await ensureColumn(qi, 'forms', 'slackWebhookUrl', {
+    type: Sequelize.STRING(2048),
+    allowNull: true,
+  });
+  await ensureColumn(qi, 'forms', 'slackEnabled', {
+    type: Sequelize.TINYINT(1),
+    allowNull: false,
+    defaultValue: 0,
+  });
+  await ensureColumn(qi, 'forms', 'googleSheetsId', {
+    type: Sequelize.STRING(255),
+    allowNull: true,
+  });
+  await ensureColumn(qi, 'forms', 'googleSheetsEnabled', {
+    type: Sequelize.TINYINT(1),
+    allowNull: false,
+    defaultValue: 0,
+  });
 
   // Also ensure on capitalized table names for environments with case-sensitive table names
-  await ensureColumn(qi, 'Forms', 'isPrebuilt', { type: Sequelize.TINYINT(1), allowNull: false, defaultValue: 0 });
-  await ensureColumn(qi, 'Forms', 'prebuiltTemplate', { type: Sequelize.TEXT('long'), allowNull: true }, true);
+  try {
+    await qi.describeTable('Forms');
+    await ensureColumn(qi, 'Forms', 'isPrebuilt', {
+      type: Sequelize.TINYINT(1),
+      allowNull: false,
+      defaultValue: 0,
+    });
+    await ensureColumn(
+      qi,
+      'Forms',
+      'prebuiltTemplate',
+      { type: Sequelize.TEXT('long'), allowNull: true },
+      true
+    );
+    await ensureColumn(qi, 'Forms', 'webhookUrl', {
+      type: Sequelize.STRING(2048),
+      allowNull: true,
+    });
+    await ensureColumn(qi, 'Forms', 'webhookEnabled', {
+      type: Sequelize.TINYINT(1),
+      allowNull: false,
+      defaultValue: 0,
+    });
+    await ensureColumn(qi, 'Forms', 'slackWebhookUrl', {
+      type: Sequelize.STRING(2048),
+      allowNull: true,
+    });
+    await ensureColumn(qi, 'Forms', 'slackEnabled', {
+      type: Sequelize.TINYINT(1),
+      allowNull: false,
+      defaultValue: 0,
+    });
+    await ensureColumn(qi, 'Forms', 'googleSheetsId', {
+      type: Sequelize.STRING(255),
+      allowNull: true,
+    });
+    await ensureColumn(qi, 'Forms', 'googleSheetsEnabled', {
+      type: Sequelize.TINYINT(1),
+      allowNull: false,
+      defaultValue: 0,
+    });
+  } catch (err) {
+    console.log(
+      '[DB] Skipping capitalized "Forms" table adjustments: table not found or inaccessible'
+    );
+  }
 
   // Ensure FormSubmissions table (lowercase to match your DB's case sensitivity)
   await ensureTable(qi, 'formsubmissions', {
-    id: { type: Sequelize.UUID, defaultValue: Sequelize.UUIDV4, allowNull: false, primaryKey: true },
-    formId: { type: Sequelize.UUID, allowNull: false, references: { model: 'forms', key: 'id' }, onUpdate: 'CASCADE', onDelete: 'CASCADE' },
+    id: {
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
+    formId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      references: { model: 'forms', key: 'id' },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
     ip: { type: Sequelize.STRING, allowNull: false },
     submittedAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.NOW },
     isSpam: { type: Sequelize.TINYINT(1), allowNull: false, defaultValue: 0 },
@@ -89,8 +190,19 @@ async function run() {
 
   // Ensure FormSubmissionData table (lowercase to match your DB's case sensitivity)
   await ensureTable(qi, 'formsubmissiondata', {
-    id: { type: Sequelize.UUID, defaultValue: Sequelize.UUIDV4, allowNull: false, primaryKey: true },
-    responseId: { type: Sequelize.UUID, allowNull: false, references: { model: 'formsubmissions', key: 'id' }, onUpdate: 'CASCADE', onDelete: 'CASCADE' },
+    id: {
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
+    responseId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      references: { model: 'formsubmissions', key: 'id' },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
     key: { type: Sequelize.STRING, allowNull: false },
     value: { type: Sequelize.STRING, allowNull: false },
     createdAt: { allowNull: false, type: Sequelize.DATE, defaultValue: Sequelize.NOW },

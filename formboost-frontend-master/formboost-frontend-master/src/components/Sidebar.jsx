@@ -57,16 +57,25 @@ export const Sidebar = ({
           }
         );
 
-        console.log(data.data.Plan.name);
-        if (data.data.Plan.name === "Basic") {
-          setHasPlan(false);
+        if (data.success && data.data) {
+          console.log(data.data.Plan.name);
+          if (data.data.Plan.name === "Basic") {
+            setHasPlan(false);
+          } else {
+            setHasPlan(true);
+          }
         } else {
-          setHasPlan(true);
+          // User has no active subscription - default to no plan
+          setHasPlan(false);
         }
 
         console.log(hasPlan);
       } catch (error) {
         console.error("Failed to fetch current plan:", error);
+        // If error is due to no active subscription, default to no plan
+        if (error.response?.data?.message?.includes("no active subscription")) {
+          setHasPlan(false);
+        }
       }
     };
 
@@ -121,23 +130,23 @@ export const Sidebar = ({
             </div>
             <div className="space-y-4 mt-8">
               <Link
-                to={"/"}
+                to={"/dashboard"}
                 className={`flex items-center justify-between p-3 rounded-md shadow-sm transition-colors duration-200 ${
-                  location.pathname === "/"
-                    ? "bg-blue-500 text-white"
-                    : "bg-white hover:bg-blue-100"
+                  location.pathname === "/dashboard"
+                    ? "bg-primary text-white"
+                    : "bg-white hover:bg-primary/10"
                 }`}
                 onClick={() => handleItemClick()}
               >
                 <span>Dashboard</span>
                 <MdOutlineSpaceDashboard
                   className={
-                    location.pathname === "/" ? "bg-blue-500 text-white" : ""
+                    location.pathname === "/dashboard" ? "text-white" : ""
                   }
                 />
               </Link>
               <button
-                className="flex items-center justify-between bg-white p-3 rounded-md shadow-sm w-full hover:bg-blue-100"
+                className="flex items-center justify-between bg-white p-3 rounded-md shadow-sm w-full hover:bg-primary/10"
                 onClick={() => handleItemClick(toggleCreateFormModal)}
               >
                 <span>Create Form</span>
@@ -148,19 +157,19 @@ export const Sidebar = ({
               {forms.map((form) => (
                 <Link
                   key={form.id}
-                  to={`/form/${form.id}`}
+                  to={`/dashboard/form/${form.id}`}
                   className={`flex items-center justify-between p-3 rounded-md shadow-sm transition-colors duration-200 ${
-                    location.pathname === `/form/${form.id}`
-                      ? "bg-blue-500 text-white"
-                      : "bg-white hover:bg-blue-100"
+                    location.pathname === `/dashboard/form/${form.id}`
+                      ? "bg-primary text-white"
+                      : "bg-white hover:bg-primary/10"
                   }`}
                   onClick={() => handleItemClick()}
                 >
                   <span>{form.formName}</span>
                   <MdOutlineFormatAlignCenter
                     className={
-                      location.pathname === `/form/${form.id}`
-                        ? "bg-blue-500 text-white"
+                      location.pathname === `/dashboard/form/${form.id}`
+                        ? "text-white"
                         : ""
                     }
                   />

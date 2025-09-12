@@ -7,7 +7,7 @@ export const sendSubmissionMail = async (form, formData, ip) => {
     const emailSubject = `New Submission for Your Form: ${form.formName}`;
     const emailText = `You have received a new submission on your form "${form.formName}".`;
     const emailHtml = submissionEmailHtml(formData, ip, form);
-    
+
     logger.info({
       name: 'ATTEMPTING_EMAIL_SEND',
       data: {
@@ -16,9 +16,9 @@ export const sendSubmissionMail = async (form, formData, ip) => {
         formData,
       },
     });
-    
+
     const result = await sendMail(form.targetEmail, emailSubject, emailText, emailHtml);
-    
+
     logger.info({
       name: 'EMAIL_SEND_SUCCESS',
       data: {

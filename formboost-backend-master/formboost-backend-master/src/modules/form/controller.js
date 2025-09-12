@@ -96,9 +96,9 @@ export const updateTelegramSettings = async (req, res, next) => {
   try {
     const { telegramNotification, telegramChatId, telegramBotToken } = req.body;
     const data = await service.updateTelegramSettings(
-      req.params.id, 
-      telegramNotification, 
-      telegramChatId, 
+      req.params.id,
+      telegramNotification,
+      telegramChatId,
       telegramBotToken
     );
 
@@ -161,11 +161,7 @@ export const validateTelegramBot = async (req, res, next) => {
 export const updateWebhookSettings = async (req, res, next) => {
   try {
     const { webhookUrl, webhookEnabled } = req.body;
-    const data = await service.updateWebhookSettings(
-      req.params.id, 
-      webhookUrl, 
-      webhookEnabled
-    );
+    const data = await service.updateWebhookSettings(req.params.id, webhookUrl, webhookEnabled);
 
     return sendSuccessResponse({
       res,
@@ -195,11 +191,7 @@ export const testWebhook = async (req, res, next) => {
 export const updateSlackSettings = async (req, res, next) => {
   try {
     const { slackWebhookUrl, slackEnabled } = req.body;
-    const data = await service.updateSlackSettings(
-      req.params.id, 
-      slackWebhookUrl, 
-      slackEnabled
-    );
+    const data = await service.updateSlackSettings(req.params.id, slackWebhookUrl, slackEnabled);
 
     return sendSuccessResponse({
       res,
@@ -230,8 +222,8 @@ export const updateGoogleSheetsSettings = async (req, res, next) => {
   try {
     const { googleSheetsId, googleSheetsEnabled } = req.body;
     const data = await service.updateGoogleSheetsSettings(
-      req.params.id, 
-      googleSheetsId, 
+      req.params.id,
+      googleSheetsId,
       googleSheetsEnabled
     );
 

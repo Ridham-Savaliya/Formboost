@@ -18,14 +18,11 @@ export const sendTelegramMessage = async (botToken, chatId, message) => {
       return false;
     }
 
-    const response = await axios.post(
-      `https://api.telegram.org/bot${botToken}/sendMessage`,
-      {
-        chat_id: chatId,
-        text: message,
-        parse_mode: 'HTML',
-      }
-    );
+    const response = await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      chat_id: chatId,
+      text: message,
+      parse_mode: 'HTML',
+    });
 
     if (response.data && response.data.ok) {
       logger.info({
@@ -63,9 +60,9 @@ export const formatTelegramSubmissionMessage = (form, formData, ipAddress) => {
   let message = `<b>New Form Submission</b>\n\n`;
   message += `<b>Form:</b> ${form.formName}\n`;
   message += `<b>Description:</b> ${form.formDescription}\n\n`;
-  
+
   message += `<b>Submission Details:</b>\n`;
-  
+
   // Add all form fields
   Object.entries(formData).forEach(([key, value]) => {
     // Escape HTML special characters
@@ -73,12 +70,12 @@ export const formatTelegramSubmissionMessage = (form, formData, ipAddress) => {
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
-      
+
     message += `<b>${key}:</b> ${safeValue}\n`;
   });
-  
+
   message += `\n<b>IP Address:</b> ${ipAddress}`;
-  
+
   return message;
 };
 
@@ -96,7 +93,8 @@ export const getLatestChatId = async (botToken) => {
     const updates = response.data?.result || [];
     for (let i = updates.length - 1; i >= 0; i -= 1) {
       const upd = updates[i];
-      const chatId = upd?.message?.chat?.id || upd?.channel_post?.chat?.id || upd?.edited_message?.chat?.id;
+      const chatId =
+        upd?.message?.chat?.id || upd?.channel_post?.chat?.id || upd?.edited_message?.chat?.id;
       if (chatId) return String(chatId);
     }
     return null;
@@ -122,7 +120,10 @@ export const getBotInfo = async (botToken) => {
     }
     return null;
   } catch (error) {
-    logger.warn({ name: 'TELEGRAM_GET_ME_FAILED', data: { error: error.message, response: error.response?.data } });
+    logger.warn({
+      name: 'TELEGRAM_GET_ME_FAILED',
+      data: { error: error.message, response: error.response?.data },
+    });
     return null;
   }
 };

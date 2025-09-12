@@ -20,7 +20,7 @@ export const sendWebhook = async (webhookUrl, payload, maxRetries = 3) => {
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     deliveryResult.attempts = attempt;
-    
+
     try {
       const response = await axios.post(webhookUrl, payload, {
         timeout: 10000, // 10 second timeout
@@ -83,7 +83,7 @@ export const sendWebhook = async (webhookUrl, payload, maxRetries = 3) => {
       if (shouldRetry) {
         // Exponential backoff: 1s, 2s, 4s
         const delay = Math.pow(2, attempt - 1) * 1000;
-        await new Promise(resolve => setTimeout(resolve, delay));
+        await new Promise((resolve) => setTimeout(resolve, delay));
       } else {
         break;
       }
@@ -174,7 +174,7 @@ const isRetryableError = (error) => {
   if (error.code === 'ECONNREFUSED' || error.code === 'ETIMEDOUT' || error.code === 'ENOTFOUND') {
     return true;
   }
-  
+
   const status = error.response?.status;
   return status >= 500 || status === 429; // Server errors or rate limiting
 };

@@ -2,99 +2,103 @@ import { DataTypes } from 'sequelize';
 import sequelize from '#database/config.js';
 import User from '#modules/user/model.js';
 
-const Form = sequelize.define('Form', {
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false,
-    primaryKey: true,
-  },
-  alias: {
-    type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
-  },
-  formName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    field: 'name',
-  },
-  formDescription: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  filterSpam: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-  },
-  emailNotification: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-  },
-  targetEmail: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      isEmail: true,
+const Form = sequelize.define(
+  'Form',
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
+    alias: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+    },
+    formName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      field: 'name',
+    },
+    formDescription: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    filterSpam: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    emailNotification: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    targetEmail: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+      },
+    },
+    telegramNotification: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    telegramChatId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    telegramBotToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    isPrebuilt: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    prebuiltTemplate: {
+      type: DataTypes.TEXT('long'),
+      allowNull: true,
+    },
+    webhookUrl: {
+      type: DataTypes.STRING(2048),
+      allowNull: true,
+      validate: {
+        isUrl: true,
+      },
+    },
+    webhookEnabled: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    slackWebhookUrl: {
+      type: DataTypes.STRING(2048),
+      allowNull: true,
+      validate: {
+        isUrl: true,
+      },
+    },
+    slackEnabled: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    googleSheetsId: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    googleSheetsEnabled: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
-  telegramNotification: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-  telegramChatId: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  telegramBotToken: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  isPrebuilt: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-  prebuiltTemplate: {
-    type: DataTypes.TEXT('long'),
-    allowNull: true,
-  },
-  webhookUrl: {
-    type: DataTypes.STRING(2048),
-    allowNull: true,
-    validate: {
-      isUrl: true,
-    },
-  },
-  webhookEnabled: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-  slackWebhookUrl: {
-    type: DataTypes.STRING(2048),
-    allowNull: true,
-    validate: {
-      isUrl: true,
-    },
-  },
-  slackEnabled: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-  googleSheetsId: {
-    type: DataTypes.STRING(255),
-    allowNull: true,
-  },
-  googleSheetsEnabled: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-},  {
-  // Important: Tell Sequelize to use the lowercase 'users' table name
-  sequelize,
-  modelName: 'Form',
-  tableName: 'forms', // Explicitly define the table name as lowercase
-  freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
-});
+  {
+    // Important: Tell Sequelize to use the lowercase 'users' table name
+    sequelize,
+    modelName: 'Form',
+    tableName: 'forms', // Explicitly define the table name as lowercase
+    freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
+  }
+);
 
 User.hasMany(Form, { foreignKey: 'userId', onDelete: 'CASCADE' });
 Form.belongsTo(User, { foreignKey: 'userId' });

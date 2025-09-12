@@ -14,7 +14,7 @@ export const protectRoute = (roles) => async (req, res, next) => {
         status: 401,
       });
     }
-    
+
     if (!roles.includes(req.requestor.role)) {
       throwAppError({
         name: 'UNAUTHORIZED_ERROR',

@@ -23,7 +23,16 @@ module.exports = {
     logging: false
   },
   production: {
-    use_env_variable: "DATABASE_URL",
+    // Prefer DATABASE_URL if provided; otherwise fall back to DB_* vars
+    ...(process.env.DATABASE_URL
+      ? { use_env_variable: "DATABASE_URL" }
+      : {
+          username: process.env.DB_USERNAME || "root",
+          password: process.env.DB_PASSWORD || null,
+          database: process.env.DB_DATABASE || "formboost_db",
+          host: process.env.DB_HOST || "localhost",
+          port: process.env.DB_PORT || 3306,
+        }),
     dialect: "mysql",
     logging: false
   }

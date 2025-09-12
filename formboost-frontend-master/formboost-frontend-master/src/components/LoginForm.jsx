@@ -1,7 +1,7 @@
 import { useState, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { Eye, EyeOff, Mail, Lock, Shield, ArrowRight } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import {
   signInWithEmail,
@@ -32,7 +32,7 @@ const LoginForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setError(null); // Clear main form error when user types
+    setError(null);
   };
 
   const handleSubmit = async (e) => {
@@ -48,7 +48,6 @@ const LoginForm = () => {
 
       if (backendResponse) {
         if (backendResponse.userRegistered === false) {
-          // Redirect to signup with pre-filled data
           navigate("/signup", {
             state: {
               fromGoogle: false,
@@ -58,8 +57,7 @@ const LoginForm = () => {
           });
           return;
         }
-        // User is registered, proceed to dashboard
-        navigate("/");
+        navigate("/dashboard");
       } else {
         setError(
           "Failed to authenticate with the backend. Please try again or contact support."
@@ -84,7 +82,6 @@ const LoginForm = () => {
 
       if (backendResponse) {
         if (backendResponse.userRegistered === false) {
-          // Redirect to signup with pre-filled data
           navigate("/signup", { 
             state: { 
               fromGoogle: true,
@@ -94,8 +91,7 @@ const LoginForm = () => {
           });
           return;
         }
-        // User is registered, proceed to dashboard
-        navigate("/");
+        navigate("/dashboard");
       } else {
         setError("Failed to authenticate with the backend. Please try again.");
       }
@@ -149,175 +145,216 @@ const LoginForm = () => {
   };
 
   return (
-    // Update the background div
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Background overlay with animated gradient */}
-      <div className="fixed inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-600/30 animate-gradient-slow" />
-      {/* Background overlay - always visible */}
-
-      <div className="fixed inset-0 bg-black/30" />
-
-      {/* Main login form - hidden when modal is open */}
-      <div
-        className={`relative z-10 w-full flex items-center justify-center transition-all duration-300 ${
-          isModalOpen
-            ? "opacity-0 pointer-events-none scale-95"
-            : "opacity-100 scale-100"
-        }`}
-      >
-        <div className="bg-white p-8 rounded-lg shadow-lg w-96 max-w-md">
-          <h2 className="text-2xl font-bold text-center mb-4 text-[#0080FF]">
-            Login to Your Account
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-primary-50 to-primary-50 flex flex-col justify-center py-6 px-4 sm:px-6 lg:px-8">
+      {/* Background soft tint */}
+      <div className="absolute inset-0 bg-primary/5"></div>
+      
+      <div className="relative z-10 w-full max-w-md mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="mx-auto h-16 w-16 bg-gradient-to-br from-[#0080FF] to-blue-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+            <Shield className="h-8 w-8 text-white" />
+          </div>
+          <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
+            Welcome back
           </h2>
+          <p className="mt-2 text-sm text-gray-600">
+            Sign in to your account to continue
+          </p>
+        </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="email"
-              >
-                Email
+        {/* Login Card */}
+        <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl ring-1 ring-black/5 p-4 sm:p-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Email Input */}
+            <div className="space-y-2">
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
+                Email address
               </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
-              />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Mail className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="block w-full pl-12 pr-4 py-3.5 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0080FF]/20 focus:border-[#0080FF] transition-all duration-200 bg-gray-50/50 backdrop-blur-sm"
+                  placeholder="Enter your email"
+                />
+              </div>
             </div>
 
-            <div className="relative">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="password"
-              >
+            {/* Password Input */}
+            <div className="space-y-2">
+              <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
                 Password
               </label>
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
-              />
-              <button
-                type="button"
-                className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-700"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <IoMdEye size={20} />
-                ) : (
-                  <IoMdEyeOff size={20} />
-                )}
-              </button>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="block w-full pl-12 pr-12 py-3.5 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0080FF]/20 focus:border-[#0080FF] transition-all duration-200 bg-gray-50/50 backdrop-blur-sm"
+                  placeholder="Enter your password"
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors" />
+                  ) : (
+                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors" />
+                  )}
+                </button>
+              </div>
             </div>
 
-            {/* Error message with slide-down animation */}
+            {/* Error Messages */}
             <Transition
               show={!!error}
               enter="transition-all duration-300 ease-out"
-              enterFrom="transform -translate-y-2 opacity-0"
-              enterTo="transform translate-y-0 opacity-100"
+              enterFrom="transform -translate-y-2 opacity-0 scale-95"
+              enterTo="transform translate-y-0 opacity-100 scale-100"
               leave="transition-all duration-200 ease-in"
-              leaveFrom="transform translate-y-0 opacity-100"
-              leaveTo="transform -translate-y-2 opacity-0"
+              leaveFrom="transform translate-y-0 opacity-100 scale-100"
+              leaveTo="transform -translate-y-2 opacity-0 scale-95"
             >
-              <div className="text-red-500 text-sm font-medium bg-red-50 border border-red-100 rounded-md p-3">
-                {error}
+              <div className="rounded-xl bg-red-50 border border-red-200 p-4">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-red-800">
+                      {error}
+                    </h3>
+                  </div>
+                </div>
               </div>
             </Transition>
 
-            {/* Success message with slide-down animation */}
+            {/* Success Messages */}
             <Transition
               show={!!successMessage}
               enter="transition-all duration-300 ease-out"
-              enterFrom="transform -translate-y-2 opacity-0"
-              enterTo="transform translate-y-0 opacity-100"
+              enterFrom="transform -translate-y-2 opacity-0 scale-95"
+              enterTo="transform translate-y-0 opacity-100 scale-100"
               leave="transition-all duration-200 ease-in"
-              leaveFrom="transform translate-y-0 opacity-100"
-              leaveTo="transform -translate-y-2 opacity-0"
+              leaveFrom="transform translate-y-0 opacity-100 scale-100"
+              leaveTo="transform -translate-y-2 opacity-0 scale-95"
             >
-              <div className="text-green-500 text-sm font-medium bg-green-50 border border-green-100 rounded-md p-3">
-                {successMessage}
+              <div className="rounded-xl bg-green-50 border border-green-200 p-4">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-green-800">
+                      {successMessage}
+                    </h3>
+                  </div>
+                </div>
               </div>
             </Transition>
 
-            <button
-              type="submit"
-              className="w-full bg-[#0080FF] text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={loading}
-            >
-              {loading ? (
-                <span className="flex items-center justify-center">
-                  <svg
-                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Loading...
-                </span>
-              ) : (
-                "Login"
-              )}
-            </button>
-
-            <div className="text-center">
+            {/* Forgot Password Link */}
+            <div className="text-right">
               <button
                 type="button"
                 onClick={handleModalOpen}
-                className="text-blue-500 hover:underline text-sm"
+                className="text-sm font-medium text-[#0080FF] hover:text-blue-700 transition-colors"
               >
-                Forgot Password?
+                Forgot your password?
               </button>
             </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="group relative w-full flex justify-center py-3.5 px-4 border border-transparent text-sm font-semibold rounded-xl text-white bg-gradient-to-r from-[#0080FF] to-blue-600 hover:from-[#0070E0] hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0080FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg"
+            >
+              {loading ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Signing in...
+                </>
+              ) : (
+                <>
+                  Sign in
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </>
+              )}
+            </button>
+
+            {/* Divider */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 bg-white/80 text-gray-500 font-medium">Or continue with</span>
+              </div>
+            </div>
+
+            {/* Google Sign In */}
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              disabled={loading}
+              className="w-full flex justify-center items-center px-4 py-3.5 border border-gray-200 rounded-xl text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0080FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-md hover:border-gray-300"
+            >
+              <FcGoogle className="h-5 w-5 mr-3" />
+              Continue with Google
+            </button>
           </form>
 
-          <div className="mt-4 flex items-center justify-between">
-            <hr className="w-full" />
-            <span className="px-2 text-gray-500">or</span>
-            <hr className="w-full" />
+          {/* Sign Up Link */}
+          <div className="mt-8 text-center">
+            <p className="text-sm text-gray-600">
+              Don't have an account?{" "}
+              <Link
+                to="/signup"
+                className="font-semibold text-[#0080FF] hover:text-blue-700 transition-colors"
+              >
+                Create account
+              </Link>
+            </p>
           </div>
+        </div>
 
-          <button
-            onClick={handleGoogleLogin}
-            className="w-full mt-4 bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={loading}
-          >
-            <FcGoogle className="mr-2" size={20} />
-            Login with Google
-          </button>
-
-          <p className="text-center text-gray-600 mt-4 text-sm">
-            Don't have an account?{" "}
-            <Link to="/signup" className="text-blue-500 hover:underline">
-              Create an account
-            </Link>
+        {/* Footer */}
+        <div className="mt-8 text-center">
+          <p className="text-xs text-gray-500">
+            By signing in, you agree to our Terms of Service and Privacy Policy
           </p>
         </div>
       </div>
 
       {/* Forgot Password Modal */}
       <Transition appear show={isModalOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-20" onClose={handleModalClose}>
+        <Dialog as="div" className="relative z-50" onClose={handleModalClose}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -327,7 +364,7 @@ const LoginForm = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black/50" />
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -341,20 +378,23 @@ const LoginForm = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white/90 backdrop-blur-xl p-6 text-left align-middle shadow-2xl transition-all border border-white/20">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-lg font-semibold leading-6 text-gray-900 mb-4"
                   >
-                    Reset Password
+                    Reset your password
                   </Dialog.Title>
-                  <form onSubmit={handleForgotPassword} className="mt-4">
-                    <p className="text-sm text-gray-500">
-                      Enter your email address and we'll send you a link to
-                      reset your password.
+
+                  <form onSubmit={handleForgotPassword} className="space-y-4">
+                    <p className="text-sm text-gray-600 mb-4">
+                      Enter your email address and we'll send you a link to reset your password.
                     </p>
 
-                    <div className="mt-4">
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Mail className="h-5 w-5 text-gray-400" />
+                      </div>
                       <input
                         type="email"
                         value={resetEmail}
@@ -362,12 +402,13 @@ const LoginForm = () => {
                           setResetEmail(e.target.value);
                           setModalError(null);
                         }}
-                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0080FF]"
-                        placeholder="Enter your email"
+                        className="block w-full pl-12 pr-4 py-3.5 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0080FF]/20 focus:border-[#0080FF] transition-all duration-200 bg-gray-50/50"
+                        placeholder="Enter your email address"
+                        required
                       />
                     </div>
 
-                    {/* Modal error message with animation */}
+                    {/* Modal Error */}
                     <Transition
                       show={!!modalError}
                       enter="transition-all duration-300 ease-out"
@@ -377,50 +418,34 @@ const LoginForm = () => {
                       leaveFrom="transform translate-y-0 opacity-100"
                       leaveTo="transform -translate-y-2 opacity-0"
                     >
-                      <div className="mt-2 text-red-500 text-sm font-medium bg-red-50 border border-red-100 rounded-md p-3">
-                        {modalError}
+                      <div className="rounded-xl bg-red-50 border border-red-200 p-3">
+                        <p className="text-sm text-red-800">{modalError}</p>
                       </div>
                     </Transition>
 
-                    <div className="mt-4 flex justify-between">
+                    <div className="flex space-x-3 pt-4">
                       <button
                         type="button"
-                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
+                        className="flex-1 inline-flex justify-center rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0080FF] transition-colors"
                         onClick={handleModalClose}
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-[#0080FF] hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled={loading}
+                        className="flex-1 inline-flex justify-center rounded-xl border border-transparent bg-gradient-to-r from-[#0080FF] to-blue-600 px-4 py-3 text-sm font-semibold text-white hover:from-[#0070E0] hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0080FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                       >
                         {loading ? (
-                          <span className="flex items-center">
-                            <svg
-                              className="animate-spin -ml-1 mr-2 h-4 w-4 text-[#0080FF]"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                              ></circle>
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                              ></path>
+                          <>
+                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
                             Sending...
-                          </span>
+                          </>
                         ) : (
-                          "Send Reset Link"
+                          "Send reset link"
                         )}
                       </button>
                     </div>

@@ -22,24 +22,24 @@ const emailNotificationCounts = new Map(); // userId -> { count, resetDate }
 const checkEmailNotificationLimit = async (userId) => {
   const now = new Date();
   const currentMonth = `${now.getFullYear()}-${now.getMonth()}`;
-  
+
   const userCount = emailNotificationCounts.get(userId);
-  
+
   if (!userCount || userCount.resetDate !== currentMonth) {
     // Reset for new month
     emailNotificationCounts.set(userId, { count: 0, resetDate: currentMonth });
     return false;
   }
-  
+
   return userCount.count >= 50; // 50 email limit per month
 };
 
 const incrementEmailNotificationCount = async (userId) => {
   const now = new Date();
   const currentMonth = `${now.getFullYear()}-${now.getMonth()}`;
-  
+
   const userCount = emailNotificationCounts.get(userId);
-  
+
   if (!userCount || userCount.resetDate !== currentMonth) {
     emailNotificationCounts.set(userId, { count: 1, resetDate: currentMonth });
   } else {
@@ -166,7 +166,10 @@ export const submitFormData = async (alias, formData, ip) => {
 
     if (form.filterSpam) {
       try {
-        const { isSpam, score, reason } = await isSpamWithOpenAIasync(formData, form.formDescription);
+        const { isSpam, score, reason } = await isSpamWithOpenAIasync(
+          formData,
+          form.formDescription
+        );
 
         logger.info({
           name: 'SPAM_CHECK',
@@ -269,7 +272,7 @@ export const submitFormData = async (alias, formData, ip) => {
         },
       });
     }
-    
+
     // Send webhook notification (unlimited, async)
     if (form.webhookEnabled && !formSubmissionObj.isSpam && form.webhookUrl) {
       logger.info({
@@ -280,13 +283,13 @@ export const submitFormData = async (alias, formData, ip) => {
           formData,
         },
       });
-      
+
       // Send webhook asynchronously to avoid blocking the response
       setImmediate(async () => {
         try {
           const webhookPayload = formatWebhookPayload(form, formData, ip, submission);
           const result = await sendWebhook(form.webhookUrl, webhookPayload);
-          
+
           if (result.success) {
             logger.info({
               name: 'WEBHOOK_NOTIFICATION_SENT',
@@ -328,7 +331,7 @@ export const submitFormData = async (alias, formData, ip) => {
         },
       });
     }
-    
+
     // Send Slack notification (unlimited, async)
     if (form.slackEnabled && !formSubmissionObj.isSpam && form.slackWebhookUrl) {
       logger.info({
@@ -339,12 +342,12 @@ export const submitFormData = async (alias, formData, ip) => {
           formData,
         },
       });
-      
+
       // Send Slack message asynchronously to avoid blocking the response
       setImmediate(async () => {
         try {
           const result = await sendSlackMessage(form.slackWebhookUrl, form, formData, ip);
-          
+
           if (result.success) {
             logger.info({
               name: 'SLACK_NOTIFICATION_SENT',
@@ -385,12 +388,18 @@ export const submitFormData = async (alias, formData, ip) => {
           formData,
         },
       });
-      
+
       // Send to Google Sheets asynchronously to avoid blocking the response
       setImmediate(async () => {
         try {
-          const result = await addToGoogleSheet(form.googleSheetsId, 'FormBoost Submissions', form, formData, ip);
-          
+          const result = await addToGoogleSheet(
+            form.googleSheetsId,
+            'FormBoost Submissions',
+            form,
+            formData,
+            ip
+          );
+
           if (result.success) {
             logger.info({
               name: 'GOOGLE_SHEETS_NOTIFICATION_SENT',
@@ -420,9 +429,14 @@ export const submitFormData = async (alias, formData, ip) => {
         }
       });
     }
-    
+
     // send telegram notification (unlimited)
-    if (form.telegramNotification && !formSubmissionObj.isSpam && form.telegramBotToken && form.telegramChatId) {
+    if (
+      form.telegramNotification &&
+      !formSubmissionObj.isSpam &&
+      form.telegramBotToken &&
+      form.telegramChatId
+    ) {
       logger.info({
         name: 'SENDING_TELEGRAM_NOTIFICATION',
         data: {
@@ -609,16 +623,34 @@ export const submissionQuota = async (userId) => {
       include: [{ model: Plan }],
     });
 
-    if (!userPlan || !userPlan.Plan) {
-      throwAppError({
-        name: 'NO_ACTIVE_PLAN',
-        message: 'User has no active subscription plan.',
-        status: 400,
-      });
+    let effectivePlan = userPlan?.Plan;
+    let planStartDate = userPlan?.startDate || new Date();
+
+    if (!effectivePlan) {
+      // Fallback: try to use a default free/basic plan if user has no active plan
+      const defaultPlan = await Plan.findOne({ where: { isFree: true } });
+      if (defaultPlan) {
+        effectivePlan = defaultPlan;
+      } else {
+        const basicByName = await Plan.findOne({ where: { name: 'Basic' } });
+        if (basicByName) {
+          effectivePlan = basicByName;
+        }
+      }
     }
 
-    const { submissionLimit, formLimit } = userPlan.Plan;
-    const planStartDate = userPlan.startDate;
+    if (!effectivePlan) {
+      // As a last resort, return safe defaults instead of erroring out
+      return {
+        totalForms: 0,
+        createdForms: await Form.count({ where: { userId } }),
+        monthlySubmissionLimit: 0,
+        usedSubmissions: 0,
+        quotaUsedPercentage: '0.00',
+      };
+    }
+
+    const { submissionLimit, formLimit } = effectivePlan;
 
     if (!submissionLimit || !formLimit) {
       throwAppError({
@@ -644,7 +676,7 @@ export const submissionQuota = async (userId) => {
       },
     });
 
-    const percentageUsed = (submissionCount / submissionLimit) * 100;
+    const percentageUsed = submissionLimit > 0 ? (submissionCount / submissionLimit) * 100 : 0;
 
     return {
       totalForms: formLimit,

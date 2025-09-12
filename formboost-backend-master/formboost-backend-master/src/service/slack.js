@@ -12,7 +12,7 @@ import logger from '#utils/logger.js';
 export const sendSlackMessage = async (webhookUrl, form, formData, ipAddress) => {
   try {
     const message = formatSlackMessage(form, formData, ipAddress);
-    
+
     const response = await axios.post(webhookUrl, message, {
       timeout: 10000,
       headers: {

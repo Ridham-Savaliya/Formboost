@@ -109,6 +109,39 @@ export const fetchActiveUserPlan = async (userId) => {
     });
 
     if (!activePlan) {
+      // Fallback: try to return a default free/basic plan so frontend can render gracefully
+      const defaultPlan = await Plan.findOne({
+        where: {
+          // Prefer isFree=true if column exists; otherwise fall back to name 'Basic'
+          // Using OR via sqquery is overkill here; do two attempts for robustness
+          isFree: true,
+        },
+      });
+
+      if (defaultPlan) {
+        // Construct a lightweight UserPlan-like object
+        return {
+          userId,
+          isActive: false,
+          startDate: new Date(),
+          endDate: null,
+          Plan: defaultPlan,
+        };
+      }
+
+      // If still nothing found, try by name as a final fallback
+      const basicByName = await Plan.findOne({ where: { name: 'Basic' } });
+      if (basicByName) {
+        return {
+          userId,
+          isActive: false,
+          startDate: new Date(),
+          endDate: null,
+          Plan: basicByName,
+        };
+      }
+
+      // No plan available in DB; surface a clear error
       throwAppError({
         name: 'ACTIVE_PLAN_NOT_FOUND',
         message: 'Active plan not found',

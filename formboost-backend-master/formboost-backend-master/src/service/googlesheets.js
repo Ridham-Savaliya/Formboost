@@ -47,19 +47,19 @@ const createSheetsClient = () => {
  * @param {string} ipAddress - Submitter IP
  * @returns {Promise<object>} - Result of the operation
  */
-export const addToGoogleSheet = async (spreadsheetId, sheetName = 'FormBoost Submissions', form, formData, ipAddress) => {
+export const addToGoogleSheet = async (
+  spreadsheetId,
+  sheetName = 'FormBoost Submissions',
+  form,
+  formData,
+  ipAddress
+) => {
   try {
     const sheets = createSheetsClient();
-    
+
     // Prepare the row data
     const timestamp = new Date().toISOString();
-    const rowData = [
-      timestamp,
-      form.formName,
-      form.id,
-      ipAddress,
-      ...Object.values(formData),
-    ];
+    const rowData = [timestamp, form.formName, form.id, ipAddress, ...Object.values(formData)];
 
     // Check if sheet exists, create if not
     await ensureSheetExists(sheets, spreadsheetId, sheetName, Object.keys(formData));
@@ -118,7 +118,7 @@ const ensureSheetExists = async (sheets, spreadsheetId, sheetName, formFields) =
     // Check if sheet exists
     const spreadsheet = await sheets.spreadsheets.get({ spreadsheetId });
     const sheetExists = spreadsheet.data.sheets.some(
-      sheet => sheet.properties.title === sheetName
+      (sheet) => sheet.properties.title === sheetName
     );
 
     if (!sheetExists) {

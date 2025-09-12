@@ -1,8 +1,7 @@
 import { useState } from "react";
+import { Copy, Check, Eye, Code2, Link, FileText, Monitor, Smartphone } from "lucide-react";
 import DemoFormPreview from "./DemoFormPreview";
-
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-
 import SyntaxHighlighter from "react-syntax-highlighter";
 
 const SetupTab = ({ alias, template }) => {
@@ -112,12 +111,12 @@ ${options}
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #0080FF;
+  box-shadow: 0 0 0 3px rgba(0, 128, 255, 0.1);
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #0080FF, #0066CC);
   color: white;
   padding: 0.75rem 2rem;
   border: none;
@@ -129,145 +128,263 @@ ${options}
 
 .submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 128, 255, 0.3);
 }
 </style>`;
 
-
   return (
-    <div className="space-y-8">
-      {/* Form Endpoint Section */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100">
-        <div className="flex items-center mb-3">
-          <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-3">
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-            </svg>
-          </div>
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">Your Form Endpoint</h2>
-            <p className="text-sm text-gray-600">
-              This is your unique API URL for form submissions
-            </p>
-          </div>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
+        {/* Header Section */}
+        <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3">
+            Setup Your Form
+          </h1>
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto px-2">
+            Copy the code and integrate your form, or test it with our interactive preview
+          </p>
         </div>
-        <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-          <div className="flex items-center justify-between">
-            <code className="text-sm text-blue-600 font-mono bg-blue-50 px-3 py-2 rounded-lg flex-1 mr-3 overflow-hidden">
-              {formEndpoint}
-            </code>
-            <button
-              onClick={() => handleCopy(formEndpoint)}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg flex items-center space-x-2"
-            >
-              {isCopied ? (
-                <>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Copied!</span>
-                </>
-              ) : (
-                <>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                  </svg>
-                  <span>Copy</span>
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
 
-      {/* Demo Form Section */}
-      <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-        <div className="flex items-center mb-4">
-          <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center mr-3">
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          </div>
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">Interactive Demo</h2>
-            <p className="text-sm text-gray-600">
-              Test your form and copy the code to use on your website
-            </p>
-          </div>
-        </div>
-        
-        <div className="flex space-x-2 mb-6">
-          <button
-            onClick={() => setActiveTab("preview")}
-            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
-              activeTab === "preview"
-                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform -translate-y-0.5"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            <div className="flex items-center space-x-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              <span>Preview</span>
+        {/* Form Endpoint Section */}
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 p-3 sm:p-4 lg:p-6 mb-4 sm:mb-6 lg:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4 lg:mb-6">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 bg-gradient-to-br from-[#0080FF] to-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
+                <Link className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">
+                  Form Endpoint
+                </h2>
+                <p className="text-xs sm:text-sm lg:text-base text-gray-600">
+                  Your unique API URL for form submissions
+                </p>
+              </div>
             </div>
-          </button>
-          <button
-            onClick={() => setActiveTab("code")}
-            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
-              activeTab === "code" 
-                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform -translate-y-0.5" 
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            <div className="flex items-center space-x-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-              <span>Code</span>
-            </div>
-          </button>
-        </div>
-        {activeTab === "preview" && <DemoFormPreview alias={alias} template={template} />}
-
-        {activeTab === "code" && (
-          <div className="relative rounded-xl overflow-hidden border border-gray-200">
-            <div className="bg-gray-800 px-4 py-3 flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <div className="flex space-x-1">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 border border-gray-200">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-2 sm:gap-3 lg:gap-4">
+              <div className="flex-1 min-w-0">
+                <label className="block text-xs font-medium text-gray-700 mb-1 sm:mb-2">
+                  Endpoint URL
+                </label>
+                <div className="bg-white rounded-md sm:rounded-lg border border-gray-300 p-2 sm:p-3 lg:p-4 shadow-sm">
+                  <code className="text-xs sm:text-sm text-[#0080FF] font-mono break-all">
+                    {formEndpoint}
+                  </code>
                 </div>
-                <span className="text-gray-300 text-sm font-medium ml-3">form.html</span>
               </div>
               <button
-                onClick={() => handleCopy(formCode)}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg flex items-center space-x-2"
+                onClick={() => handleCopy(formEndpoint)}
+                className="flex items-center justify-center gap-1 sm:gap-2 bg-gradient-to-r from-[#0080FF] to-blue-600 hover:from-[#0070E0] hover:to-blue-700 text-white font-semibold py-2 px-3 sm:py-3 sm:px-4 lg:px-6 rounded-lg sm:rounded-xl transition-all duration-200 text-xs sm:text-sm min-w-0 sm:min-w-[120px]"
               >
                 {isCopied ? (
                   <>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Copied!</span>
+                    <Check className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="hidden sm:inline">Copied!</span>
                   </>
                 ) : (
                   <>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    <span>Copy Code</span>
+                    <Copy className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="hidden sm:inline">Copy URL</span>
                   </>
                 )}
               </button>
             </div>
-            <SyntaxHighlighter language="htmlbars" style={atomOneDark} customStyle={{ margin: 0, borderRadius: 0 }}>
-              {formCode}
-            </SyntaxHighlighter>
           </div>
-        )}
+        </div>
+
+        {/* Demo Section */}
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 overflow-hidden">
+          {/* Section Header */}
+          <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-3 sm:p-4 lg:p-6 border-b border-gray-200">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 bg-gradient-to-br from-[#0080FF] to-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
+                  <FileText className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">
+                    Interactive Demo
+                  </h2>
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-600">
+                    Test your form and get the production-ready code
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tab Navigation */}
+          <div className="border-b border-gray-200 bg-gray-50">
+            <div className="flex">
+              <button
+                onClick={() => setActiveTab("preview")}
+                className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 font-semibold transition-all duration-200 border-b-2 ${
+                  activeTab === "preview"
+                    ? "bg-white text-[#0080FF] border-[#0080FF] shadow-sm"
+                    : "text-gray-600 border-transparent hover:text-gray-900 hover:bg-gray-100"
+                }`}
+              >
+                <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="text-xs sm:text-sm">Preview</span>
+                <Monitor className="h-3 w-3 opacity-60 hidden sm:block" />
+              </button>
+              <button
+                onClick={() => setActiveTab("code")}
+                className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 font-semibold transition-all duration-200 border-b-2 ${
+                  activeTab === "code" 
+                    ? "bg-white text-[#0080FF] border-[#0080FF] shadow-sm" 
+                    : "text-gray-600 border-transparent hover:text-gray-900 hover:bg-gray-100"
+                }`}
+              >
+                <Code2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="text-xs sm:text-sm">Get Code</span>
+                <Smartphone className="h-3 w-3 opacity-60 hidden sm:block" />
+              </button>
+            </div>
+          </div>
+
+          {/* Tab Content */}
+          <div className="">
+            {activeTab === "preview" && (
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
+                  {/* Preview Container */}
+                  <div className="flex-1">
+                    <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-gray-200">
+                      <DemoFormPreview alias={alias} template={template} />
+                    </div>
+                  </div>
+                  
+                  {/* Info Panel */}
+                  <div className="lg:w-80">
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-blue-200">
+                      <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">
+                        Form Features
+                      </h3>
+                      <div className="space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-gray-700">Mobile-first responsive design</span>
+                        </div>
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-gray-700">Real-time form validation</span>
+                        </div>
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-gray-700">Anti-spam protection</span>
+                        </div>
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-gray-700">Production-ready styling</span>
+                        </div>
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-gray-700">Cross-browser compatible</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "code" && (
+              <div className="space-y-4 sm:space-y-6">
+                {/* Code Editor */}
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
+                  <div className="bg-gray-800 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="flex gap-1">
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
+                      </div>
+                      <span className="text-gray-300 text-xs sm:text-sm font-mono">form.html</span>
+                    </div>
+                    <div className="flex-1"></div>
+                    <button
+                      onClick={() => handleCopy(formCode)}
+                      className="flex items-center gap-1 sm:gap-2 bg-[#0080FF] hover:bg-blue-600 text-white font-semibold py-1.5 px-3 sm:py-2 sm:px-4 rounded-md sm:rounded-lg transition-all duration-200 text-xs sm:text-sm"
+                    >
+                      {isCopied ? (
+                        <>
+                          <Check className="h-4 w-4" />
+                          <span className="hidden sm:inline">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-4 w-4" />
+                          <span className="sm:inline">Copy Code</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <SyntaxHighlighter 
+                      language="htmlbars" 
+                      style={atomOneDark} 
+                      customStyle={{ 
+                        margin: 0, 
+                        borderRadius: 0, 
+                        fontSize: window.innerWidth < 640 ? '12px' : '14px',
+                        padding: window.innerWidth < 640 ? '1rem' : '1.5rem'
+                      }}
+                    >
+                      {formCode}
+                    </SyntaxHighlighter>
+                  </div>
+                </div>
+
+                {/* Integration Instructions */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-green-200">
+                    <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">
+                      Quick Integration
+                    </h3>
+                    <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-700">
+                      <div className="flex gap-2 sm:gap-3">
+                        <span className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-green-600 text-white text-xs rounded-full flex items-center justify-center font-bold">1</span>
+                        <span>Copy the HTML code above</span>
+                      </div>
+                      <div className="flex gap-2 sm:gap-3">
+                        <span className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-green-600 text-white text-xs rounded-full flex items-center justify-center font-bold">2</span>
+                        <span>Paste it into your website</span>
+                      </div>
+                      <div className="flex gap-2 sm:gap-3">
+                        <span className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-green-600 text-white text-xs rounded-full flex items-center justify-center font-bold">3</span>
+                        <span>Start receiving form submissions!</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-blue-200">
+                    <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">
+                      Customization Tips
+                    </h3>
+                    <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-700">
+                      <div className="flex gap-2 sm:gap-3">
+                        <span className="text-[#0080FF]">•</span>
+                        <span>Modify CSS styles to match your brand</span>
+                      </div>
+                      <div className="flex gap-2 sm:gap-3">
+                        <span className="text-[#0080FF]">•</span>
+                        <span>Add or remove form fields as needed</span>
+                      </div>
+                      <div className="flex gap-2 sm:gap-3">
+                        <span className="text-[#0080FF]">•</span>
+                        <span>The form works with any HTML framework</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

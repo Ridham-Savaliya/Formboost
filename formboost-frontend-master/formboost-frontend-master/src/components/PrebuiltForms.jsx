@@ -23,7 +23,7 @@ const PrebuiltForms = ({ onFormCreated }) => {
         { name: 'subject', label: 'Subject', type: 'text', required: true },
         { name: 'message', label: 'Message', type: 'textarea', required: true }
       ],
-      color: 'bg-blue-500'
+      color: 'bg-primary'
     },
     {
       id: 'inquiry',
@@ -90,7 +90,7 @@ const PrebuiltForms = ({ onFormCreated }) => {
         { name: 'dietary_requirements', label: 'Dietary Requirements', type: 'textarea', required: false },
         { name: 'special_requests', label: 'Special Requests', type: 'textarea', required: false }
       ],
-      color: 'bg-indigo-500'
+      color: 'bg-primary'
     },
     {
       id: 'survey',
@@ -206,10 +206,10 @@ const PrebuiltForms = ({ onFormCreated }) => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 p-8">
-      <div className="mb-8">
+    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 p-2 sm:p-4 lg:p-6">
+      <div className="mb-2 sm:mb-4 lg:mb-6">
         <div className="flex items-center mb-4">
-          <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mr-4">
+          <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center mr-4">
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>
@@ -258,7 +258,7 @@ const PrebuiltForms = ({ onFormCreated }) => {
             
             <div className="mb-6">
               <h5 className="text-sm font-semibold text-gray-800 mb-3 flex items-center">
-                <svg className="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                 </svg>
                 Included Fields:
@@ -267,7 +267,7 @@ const PrebuiltForms = ({ onFormCreated }) => {
                 {template.fields.slice(0, 4).map((field, index) => (
                   <span
                     key={index}
-                    className="inline-flex items-center bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700 text-xs px-3 py-1.5 rounded-full border border-blue-200 font-medium"
+                    className="inline-flex items-center bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full border border-primary/30 font-medium"
                   >
                     {field.label}
                   </span>
@@ -283,7 +283,7 @@ const PrebuiltForms = ({ onFormCreated }) => {
             <button
               onClick={() => createPrebuiltForm(template)}
               disabled={isCreating === template.id}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-6 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
+              className="w-full bg-primary hover:bg-primary-700 text-white py-3 px-6 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
             >
               {isCreating === template.id ? (
                 <>
@@ -319,7 +319,7 @@ const PrebuiltForms = ({ onFormCreated }) => {
             <h3 className="text-lg font-bold bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent">💡 Pro Tips</h3>
             <div className="mt-2 text-gray-700 space-y-2">
               <p className="flex items-start">
-                <span className="text-blue-600 mr-2">•</span>
+                <span className="text-primary mr-2">•</span>
                 <span>Customize forms after creation by editing settings, fields, and notifications</span>
               </p>
               <p className="flex items-start">

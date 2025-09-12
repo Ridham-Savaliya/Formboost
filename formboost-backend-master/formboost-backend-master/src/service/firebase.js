@@ -5,14 +5,15 @@ import config from '#config/index.js';
 let firebaseApp = null;
 
 try {
-  if (config.firebase.projectId && 
-      config.firebase.projectId !== 'firebase_project_id_here' &&
-      config.firebase.privateKey && 
-      config.firebase.privateKey !== 'firebase_private_key_here' &&
-      config.firebase.privateKey !== null &&
-      config.firebase.clientEmail &&
-      config.firebase.clientEmail !== 'firebase_client_email_here') {
-    
+  if (
+    config.firebase.projectId &&
+    config.firebase.projectId !== 'firebase_project_id_here' &&
+    config.firebase.privateKey &&
+    config.firebase.privateKey !== 'firebase_private_key_here' &&
+    config.firebase.privateKey !== null &&
+    config.firebase.clientEmail &&
+    config.firebase.clientEmail !== 'firebase_client_email_here'
+  ) {
     firebaseApp = admin.initializeApp({
       credential: admin.credential.cert({
         type: config.firebase.type,

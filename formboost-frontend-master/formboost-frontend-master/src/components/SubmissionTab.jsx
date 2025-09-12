@@ -1,7 +1,19 @@
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import axios from "axios";
-import { MdOutlineDownload, MdOutlineContentCopy } from "react-icons/md";
+import { 
+  MdOutlineDownload, 
+  MdOutlineContentCopy, 
+  MdInbox, 
+  MdReportProblem,
+  MdSearch,
+  MdKeyboardArrowDown,
+  MdKeyboardArrowUp,
+  MdExpandMore,
+  MdExpandLess
+} from "react-icons/md";
+import { HiEye, HiFilter } from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
 
 const SubmissionTab = ({ formId }) => {
@@ -18,7 +30,9 @@ const SubmissionTab = ({ formId }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [topKeys, setTopKeys] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
-  const [activeTab, setActiveTab] = useState("inbox"); // inbox | spam
+  const [activeTab, setActiveTab] = useState("inbox");
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [expandedCards, setExpandedCards] = useState(new Set());
 
   useEffect(() => {
     fetchSubmissions();
@@ -28,9 +42,7 @@ const SubmissionTab = ({ formId }) => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/v1/formsubmission/${formId}/submissions`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/formsubmission/${formId}/submissions`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -44,8 +56,6 @@ const SubmissionTab = ({ formId }) => {
         }
       );
       setSubmissions(response.data.data.combinedResults);
-      console.log(response.data.data);
-
       setTopKeys(Object.keys(response.data.data.keyCounts).slice(0, 3));
       setTotalPages(
         Math.ceil(response.data.data.pagination.total / resultsPerPage)
@@ -58,7 +68,21 @@ const SubmissionTab = ({ formId }) => {
   };
 
   const handleSelectSubmission = (submission) => {
-    setSelectedSubmission((prev) => (prev === submission ? null : submission));
+    setSelectedSubmission(submission);
+  };
+
+  const handleCloseSubmission = () => {
+    setSelectedSubmission(null);
+  };
+
+  const toggleCardExpansion = (submissionId) => {
+    const newExpanded = new Set(expandedCards);
+    if (newExpanded.has(submissionId)) {
+      newExpanded.delete(submissionId);
+    } else {
+      newExpanded.add(submissionId);
+    }
+    setExpandedCards(newExpanded);
   };
 
   const handleSort = (key) => {
@@ -69,11 +93,6 @@ const SubmissionTab = ({ formId }) => {
           ? "descending"
           : "ascending",
     }));
-  };
-
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-    setCurrentPage(1);
   };
 
   const downloadData = () => {
@@ -98,166 +117,326 @@ const SubmissionTab = ({ formId }) => {
         link.click();
         document.body.removeChild(link);
       }
-    });
-
-    response.catch((err) => {
+    }).catch((err) => {
       console.error("Failed to download CSV:", err);
       toast.error("Failed to download CSV. Please try again later.");
     });
   };
 
-  if (loading)
-    return <div className="text-center py-4">Loading submissions...</div>;
-  if (error)
-    return <div className="text-center py-4 text-red-500">{error}</div>;
+  const filteredSubmissions = submissions.filter((submission) =>
+    activeTab === "inbox" ? !submission.isSpam : submission.isSpam
+  );
+
+  if (loading) {
+    return (
+      <div className="space-y-3 p-4">
+        <div className="flex justify-between items-center">
+          <div className="h-8 w-32 bg-gray-200 rounded animate-pulse" />
+          <div className="h-8 w-24 bg-gray-200 rounded animate-pulse" />
+        </div>
+        <div className="space-y-3">
+          {Array.from({ length: 6 }).map((_, idx) => (
+            <div key={idx} className="h-20 w-full bg-gray-100 rounded-lg animate-pulse" />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-8 px-4">
+        <div className="text-red-500 text-sm">{error}</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-white mt-2">
-      <ActionBar
-        resultsPerPage={resultsPerPage}
-        setResultsPerPage={setResultsPerPage}
-        onSearch={handleSearch}
-        onDownloadCSV={downloadData}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
+    <div className="bg-white">
+      {/* Mobile-First Action Bar */}
+      <div className="sticky top-0 z-10 bg-white border-b border-gray-200 p-2 sm:p-4">
+        <div className="flex flex-col space-y-2 sm:space-y-3">
+          {/* Top Row - Title and Download */}
+          <div className="flex justify-between items-center">
+            <h2 className="text-base sm:text-lg font-semibold text-gray-900">Submissions</h2>
+            <button
+              onClick={downloadData}
+              className="flex items-center space-x-1 sm:space-x-2 bg-green-500 text-white px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg hover:bg-green-600 transition-colors text-xs sm:text-sm"
+            >
+              <MdOutlineDownload size={16} />
+              <span className="hidden sm:inline">CSV</span>
+            </button>
+          </div>
 
-      <div className="mt-6 overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="border-b border-[#0080FF] ">
-            <tr>
-              {[...topKeys, "Created Date", "Action"].map((header) => (
-                <th
-                  key={header}
-                  className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider cursor-pointer"
-                  onClick={() =>
-                    handleSort(header === "Created Date" ? "submittedAt" : "")
-                  }
+          {/* Tab Switcher */}
+          <div className="flex bg-gray-100 rounded-lg p-0.5 sm:p-1">
+            <button
+              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all ${
+                activeTab === "inbox"
+                  ? "bg-white text-primary shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+              onClick={() => setActiveTab("inbox")}
+            >
+              <MdInbox size={18} />
+              <span>Inbox</span>
+            </button>
+            <button
+              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all ${
+                activeTab === "spam"
+                  ? "bg-white text-red-500 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+              onClick={() => setActiveTab("spam")}
+            >
+              <MdReportProblem size={18} />
+              <span>Spam</span>
+            </button>
+          </div>
+
+          {/* Search and Filters */}
+          <div className="flex space-x-1 sm:space-x-2">
+            <div className="flex-1 relative">
+              <MdSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                type="text"
+                placeholder="Search submissions..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-1.5 sm:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-xs sm:text-sm"
+              />
+            </div>
+            <button
+              onClick={() => setShowMobileFilters(!showMobileFilters)}
+              className="flex items-center space-x-1 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-xs sm:text-sm"
+            >
+              <HiFilter size={16} />
+              <span className="hidden sm:inline">Filter</span>
+            </button>
+          </div>
+
+          {/* Mobile Filters Dropdown */}
+          {showMobileFilters && (
+            <div className="bg-gray-50 rounded-lg p-2 sm:p-3 border border-gray-200">
+              <div className="flex flex-wrap gap-2 items-center">
+                <span className="text-xs font-medium text-gray-600">Per page:</span>
+                <select
+                  value={resultsPerPage}
+                  onChange={(e) => setResultsPerPage(Number(e.target.value))}
+                  className="text-xs border border-gray-300 rounded px-2 py-1"
                 >
-                  {header}
-                  {header === "Created Date" &&
-                    sortConfig.key === "submittedAt" &&
-                    (sortConfig.direction === "ascending" ? " ▲" : " ▼")}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {submissions
-              .filter((submission) =>
-                activeTab === "inbox" ? !submission.isSpam : submission.isSpam
-              )
-              .map((submission) => (
-                <SubmissionItem
+                  {[10, 20, 50].map((value) => (
+                    <option key={value} value={value}>{value}</option>
+                  ))}
+                </select>
+                <span className="text-xs font-medium text-gray-600">Sort:</span>
+                <select
+                  value={`${sortConfig.key}-${sortConfig.direction}`}
+                  onChange={(e) => {
+                    const [key, direction] = e.target.value.split('-');
+                    setSortConfig({ key, direction });
+                  }}
+                  className="text-xs border border-gray-300 rounded px-2 py-1"
+                >
+                  <option value="submittedAt-descending">Newest first</option>
+                  <option value="submittedAt-ascending">Oldest first</option>
+                </select>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Submissions List */}
+      <div className="p-2 sm:p-4">
+        {filteredSubmissions.length === 0 ? (
+          <div className="text-center py-8 sm:py-12">
+            <div className="text-gray-400 text-lg mb-2">
+              {activeTab === "inbox" ? <MdInbox size={48} className="mx-auto" /> : <MdReportProblem size={48} className="mx-auto" />}
+            </div>
+            <p className="text-gray-500">
+              {activeTab === "inbox" ? "No submissions yet" : "No spam submissions"}
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {/* Desktop Table View (Hidden on mobile) */}
+            <div className="hidden lg:block overflow-x-auto">
+              <table className="min-w-full">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    {[...topKeys, "Created Date", "Action"].map((header) => (
+                      <th
+                        key={header}
+                        className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700"
+                        onClick={() =>
+                          handleSort(header === "Created Date" ? "submittedAt" : "")
+                        }
+                      >
+                        {header}
+                        {header === "Created Date" && sortConfig.key === "submittedAt" && (
+                          sortConfig.direction === "ascending" ? " ↑" : " ↓"
+                        )}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredSubmissions.map((submission) => (
+                    <tr key={submission.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      {topKeys.map((key) => (
+                        <td key={key} className="px-4 py-3 text-sm text-gray-900">
+                          {submission.formSubmissionData.find((field) => field.key === key)
+                            ?.value || ""}
+                        </td>
+                      ))}
+                      <td className="px-4 py-3 text-sm text-gray-500">
+                        {format(new Date(submission.submittedAt), "dd-MM-yyyy")}
+                      </td>
+                      <td className="px-4 py-3 text-sm">
+                        <button
+                          onClick={() => handleSelectSubmission(submission)}
+                          className="flex items-center space-x-1 text-primary hover:text-primary-700"
+                        >
+                          <HiEye size={16} />
+                          <span>View</span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Card View */}
+            <div className="lg:hidden space-y-3">
+              {filteredSubmissions.map((submission) => (
+                <SubmissionCard
                   key={submission.id}
                   submission={submission}
                   topKeys={topKeys}
-                  isSelected={selectedSubmission === submission}
-                  onSelect={handleSelectSubmission}
+                  isExpanded={expandedCards.has(submission.id)}
+                  onToggleExpand={() => toggleCardExpansion(submission.id)}
+                  onView={() => handleSelectSubmission(submission)}
                 />
               ))}
-          </tbody>
-        </table>
+            </div>
+          </div>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex flex-col sm:flex-row justify-between items-center mt-4 sm:mt-6 space-y-2 sm:space-y-0">
+            <p className="text-xs sm:text-sm text-gray-600">
+              Page {currentPage} of {totalPages}
+            </p>
+            <div className="flex space-x-1 sm:space-x-2">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className="px-3 sm:px-4 py-1.5 sm:py-2 bg-primary text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages}
+                className="px-3 sm:px-4 py-1.5 sm:py-2 bg-primary text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
-      <PaginationControls
-        currentPage={currentPage}
-        totalPages={totalPages}
-        resultsPerPage={resultsPerPage}
-        onPaginate={(direction) =>
-          setCurrentPage((prev) => (direction === "next" ? prev + 1 : prev - 1))
-        }
-        setResultsPerPage={setResultsPerPage}
-      />
+      {/* Mobile Submission Detail Modal */}
+      {selectedSubmission && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-end sm:items-center justify-center">
+          <div className="bg-white w-full sm:max-w-2xl sm:mx-4 rounded-t-2xl sm:rounded-2xl max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center p-4 border-b border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900">Submission Details</h3>
+              <button
+                onClick={handleCloseSubmission}
+                className="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <IoClose size={20} />
+              </button>
+            </div>
+            <div className="overflow-y-auto max-h-[calc(90vh-60px)]">
+              <SubmissionDetails submission={selectedSubmission} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-const ActionBar = ({ onSearch, onDownloadCSV, activeTab, setActiveTab }) => (
-  <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-between sm:items-center">
-    <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
-      {/* Spam Toggle */}
-      <div className="flex border border-gray-300 rounded-lg overflow-hidden">
-        <button
-          className={`px-4 py-2 text-sm font-medium ${
-            activeTab === "inbox"
-              ? "bg-blue-500 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-100"
-          }`}
-          onClick={() => setActiveTab("inbox")}
-        >
-          Inbox
-        </button>
-        <button
-          className={`px-4 py-2 text-sm font-medium ${
-            activeTab === "spam"
-              ? "bg-red-500 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-100"
-          }`}
-          onClick={() => setActiveTab("spam")}
-        >
-          Spam
-        </button>
+// Mobile-optimized submission card component
+const SubmissionCard = ({ submission, topKeys, isExpanded, onToggleExpand, onView }) => (
+  <div className="bg-white border border-gray-200 rounded-lg shadow-sm">
+    <div className="p-3 sm:p-4">
+      <div className="flex justify-between items-start mb-2 sm:mb-3">
+        <div className="flex-1 min-w-0">
+          <div className="text-sm font-medium text-gray-900 truncate">
+            {topKeys.length > 0 && submission.formSubmissionData.find(field => field.key === topKeys[0])?.value}
+          </div>
+          <div className="text-xs text-gray-500 mt-1">
+            {format(new Date(submission.submittedAt), "MMM dd, yyyy 'at' HH:mm")}
+          </div>
+        </div>
+        <div className="flex items-center space-x-1 sm:space-x-2 ml-2 sm:ml-3">
+          <button
+            onClick={onView}
+            className="p-1.5 sm:p-2 text-primary hover:bg-primary/10 rounded-lg"
+          >
+            <HiEye size={16} />
+          </button>
+          <button
+            onClick={onToggleExpand}
+            className="p-1.5 sm:p-2 text-gray-400 hover:bg-gray-100 rounded-lg"
+          >
+            {isExpanded ? <MdExpandLess size={16} /> : <MdExpandMore size={16} />}
+          </button>
+        </div>
       </div>
 
-      <input
-        type="text"
-        placeholder="Search..."
-        onChange={(e) => onSearch(e.target.value)}
-        className="border rounded px-2 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-    </div>
+      {/* Quick preview of key fields */}
+      <div className="space-y-0.5 sm:space-y-1">
+        {topKeys.slice(0, 2).map((key) => {
+          const field = submission.formSubmissionData.find(f => f.key === key);
+          if (!field?.value) return null;
+          return (
+            <div key={key} className="text-xs text-gray-600">
+              <span className="font-medium">{key}:</span> {field.value.slice(0, 50)}{field.value.length > 50 ? '...' : ''}
+            </div>
+          );
+        })}
+      </div>
 
-    <button
-      onClick={onDownloadCSV}
-      className="bg-green-400 text-white px-4 py-1 rounded-lg hover:bg-green-600 transition-colors duration-200 flex items-center"
-    >
-      <MdOutlineDownload size={18} className="mr-2" />
-      Download CSV
-    </button>
+      {/* Expanded view */}
+      {isExpanded && (
+        <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100">
+          <div className="grid grid-cols-1 gap-2 sm:gap-3">
+            {submission.formSubmissionData.map((field, index) => (
+              <div key={index} className="text-xs">
+                <div className="font-medium text-gray-700 mb-1">{field.key}</div>
+                <div className="text-gray-600 bg-gray-50 p-1.5 sm:p-2 rounded text-xs sm:text-sm">{field.value}</div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-100 text-xs text-gray-500">
+            <div>ID: {submission.id}</div>
+            <div>IP: {submission.ip}</div>
+          </div>
+        </div>
+      )}
+    </div>
   </div>
 );
 
-const SubmissionItem = ({ submission, topKeys, isSelected, onSelect }) => (
-  <>
-    <tr
-      className="hover:bg-gray-200 cursor-pointer"
-      onClick={() => onSelect(submission)}
-    >
-      {topKeys.map((key) => (
-        <td
-          key={key}
-          className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
-        >
-          {submission.formSubmissionData.find((field) => field.key === key)
-            ?.value || ""}
-        </td>
-      ))}
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-        {format(new Date(submission.submittedAt), "dd-MM-yyyy")}
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onSelect(submission);
-          }}
-          className="text-[#0080FF] hover:bg-blue-600"
-        >
-          View
-        </button>
-      </td>
-    </tr>
-    {isSelected && (
-      <tr>
-        <td colSpan="5">
-          <SubmissionDetails submission={submission} />
-        </td>
-      </tr>
-    )}
-  </>
-);
-
+// Enhanced submission details component
 const SubmissionDetails = ({ submission }) => {
   const copySubmissionDetails = () => {
     const details = `
@@ -271,54 +450,56 @@ ${submission.formSubmissionData
   .join("\n")}
     `;
     navigator.clipboard.writeText(details.trim());
-
-    toast.success("copied to clipboard");
+    toast.success("Copied to clipboard");
   };
 
   return (
-    <div className="bg-gray-50 p-4 border-t border-gray-200">
-      <div className="flex justify-between items-center mb-2">
-        <h3 className="text-lg font-medium text-[#0080FF]">
-          Submission Details
-        </h3>
+    <div className="p-3 sm:p-4 space-y-3 sm:space-y-4">
+      {/* Header with copy button */}
+      <div className="flex justify-between items-center">
+        <h4 className="font-medium text-gray-900">Submission Information</h4>
         <button
           onClick={copySubmissionDetails}
-          className="bg-[#0080FF] text-white px-3 py-1 rounded-lg hover:bg-blue-600 transition-colors duration-200 flex items-center"
+          className="flex items-center space-x-2 bg-primary text-white px-3 py-2 rounded-lg hover:bg-primary-700 transition-colors text-sm"
         >
-          <MdOutlineContentCopy size={16} className="mr-2" />
-          Copy Details
+          <MdOutlineContentCopy size={16} />
+          <span>Copy</span>
         </button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <p className="text-sm font-medium text-gray-500">ID</p>
-          <p className="mt-1 text-sm text-gray-900">{submission.id}</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-500">IP</p>
-          <p className="mt-1 text-sm text-gray-900">{submission.ip}</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-500">Submitted At</p>
-          <p className="mt-1 text-sm text-gray-900">
-            {format(new Date(submission.submittedAt), "PPpp")}
-          </p>
+
+      {/* Metadata */}
+      <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm">
+          <div>
+            <span className="font-medium text-gray-600">ID:</span>
+            <div className="text-gray-900 font-mono text-xs mt-0.5 sm:mt-1 break-all">{submission.id}</div>
+          </div>
+          <div>
+            <span className="font-medium text-gray-600">IP Address:</span>
+            <div className="text-gray-900 mt-0.5 sm:mt-1">{submission.ip}</div>
+          </div>
+          <div className="sm:col-span-2">
+            <span className="font-medium text-gray-600">Submitted At:</span>
+            <div className="text-gray-900 mt-1">
+              {format(new Date(submission.submittedAt), "EEEE, MMMM dd, yyyy 'at' HH:mm:ss")}
+            </div>
+          </div>
         </div>
       </div>
-      <div className="mt-4">
-        <p className="text-sm font-medium text-gray-500">
-          Form Submission Data
-        </p>
-        <div className="mt-2 bg-white overflow-hidden ">
+
+      {/* Form Data */}
+      <div>
+        <h4 className="font-medium text-gray-900 mb-3">Form Data</h4>
+        <div className="space-y-3">
           {submission.formSubmissionData.map((field, index) => (
             <div
               key={index}
-              className={`px-4 py-2 border border-[#0080FF] ${
-                index % 2 === 0 ? "bg-gray-100" : "bg-white"
-              }`}
+              className="bg-white border border-gray-200 rounded-lg p-2 sm:p-3"
             >
-              <p className="text-sm font-medium text-gray-500">{field.key}</p>
-              <p className="mt-1 text-sm text-gray-900">{field.value}</p>
+              <div className="text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">{field.key}</div>
+              <div className="text-xs sm:text-sm text-gray-900 bg-gray-50 p-2 sm:p-3 rounded-md whitespace-pre-wrap break-words">
+                {field.value}
+              </div>
             </div>
           ))}
         </div>
@@ -326,47 +507,5 @@ ${submission.formSubmissionData
     </div>
   );
 };
-
-const PaginationControls = ({
-  currentPage,
-  totalPages,
-  resultsPerPage,
-  onPaginate,
-  setResultsPerPage,
-}) => (
-  <div className="flex flex-col md:flex-row justify-between items-center mt-6 space-y-2 md:space-y-0">
-    <p className="text-gray-600">Showing {resultsPerPage} results per page</p>
-    <div className="flex items-center space-x-4">
-      <select
-        value={resultsPerPage}
-        onChange={(e) => setResultsPerPage(Number(e.target.value))}
-        className="bg-white text-gray-700 px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto mt-2 sm:mt-0"
-      >
-        {[10, 20, 50].map((value) => (
-          <option key={value} value={value}>
-            {value} per page
-          </option>
-        ))}
-      </select>
-      <button
-        className="bg-[#0080FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-        onClick={() => onPaginate("prev")}
-        disabled={currentPage === 1}
-      >
-        Previous
-      </button>
-      <p className="text-gray-600 text-base md:text-lg">
-        Page {currentPage} of {totalPages}
-      </p>
-      <button
-        className="bg-[#0080FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-        onClick={() => onPaginate("next")}
-        disabled={currentPage === totalPages}
-      >
-        Next
-      </button>
-    </div>
-  </div>
-);
 
 export default SubmissionTab;

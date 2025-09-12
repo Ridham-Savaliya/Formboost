@@ -4,7 +4,12 @@ import { throwAppError, handleError } from '#utils/exception.js';
 import { sqquery } from '#utils/query.js';
 import { sendToDiscord } from '#service/discord.js';
 import { sendSubmissionMail } from '#utils/mail/index.js';
-import { sendTelegramMessage, formatTelegramSubmissionMessage, getLatestChatId, getBotInfo } from '#service/telegram.js';
+import {
+  sendTelegramMessage,
+  formatTelegramSubmissionMessage,
+  getLatestChatId,
+  getBotInfo,
+} from '#service/telegram.js';
 import { sendWebhook, formatWebhookPayload, testWebhook } from '#service/webhook.js';
 import { sendSlackMessage, testSlackWebhook } from '#service/slack.js';
 import { addToGoogleSheet, testGoogleSheetsIntegration } from '#service/googlesheets.js';
@@ -37,14 +42,14 @@ export const findAndCountAll = async (queryParams) => {
 
 export const createForm = async (data, userId) => {
   try {
-    const { 
-      formName, 
-      formDescription, 
-      targetEmail, 
-      filterSpam = true, 
+    const {
+      formName,
+      formDescription,
+      targetEmail,
+      filterSpam = true,
       emailNotification = true,
       isPrebuilt = false,
-      prebuiltTemplate = null
+      prebuiltTemplate = null,
     } = data;
 
     let alias = nanoid(8);
@@ -53,9 +58,12 @@ export const createForm = async (data, userId) => {
     }
 
     // Clamp template size to avoid DB errors on unexpectedly huge payloads
-    const safeTemplate = prebuiltTemplate && typeof prebuiltTemplate === 'string'
-      ? (prebuiltTemplate.length > 500000 ? prebuiltTemplate.slice(0, 500000) : prebuiltTemplate)
-      : prebuiltTemplate;
+    const safeTemplate =
+      prebuiltTemplate && typeof prebuiltTemplate === 'string'
+        ? prebuiltTemplate.length > 500000
+          ? prebuiltTemplate.slice(0, 500000)
+          : prebuiltTemplate
+        : prebuiltTemplate;
 
     const form = await Form.create({
       alias,
@@ -147,25 +155,27 @@ export const updateFormTargetEmail = async (formId, targetEmail) => {
   }
 };
 
-export const updateTelegramSettings = async (formId, telegramNotification, telegramChatId, telegramBotToken) => {
+export const updateTelegramSettings = async (
+  formId,
+  telegramNotification,
+  telegramChatId,
+  telegramBotToken
+) => {
   try {
     const updateData = { telegramNotification };
-    
+
     // Only update these fields if they are provided
     if (telegramChatId !== undefined) {
       updateData.telegramChatId = telegramChatId;
     }
-    
+
     if (telegramBotToken !== undefined) {
       updateData.telegramBotToken = telegramBotToken;
     }
-    
-    const [affectedRows] = await Form.update(
-      updateData,
-      {
-        where: { id: formId },
-      }
-    );
+
+    const [affectedRows] = await Form.update(updateData, {
+      where: { id: formId },
+    });
     return { isUpdated: Boolean(affectedRows) };
   } catch (error) {
     handleError('SERVICE_UPDATE_TELEGRAM_SETTINGS_ERROR', error);
@@ -204,7 +214,11 @@ export const sendTestNotifications = async (formId) => {
     if (form.telegramNotification && form.telegramBotToken && form.telegramChatId) {
       try {
         const telegramMessage = formatTelegramSubmissionMessage(form, sampleFormData, ip);
-        const ok = await sendTelegramMessage(form.telegramBotToken, form.telegramChatId, telegramMessage);
+        const ok = await sendTelegramMessage(
+          form.telegramBotToken,
+          form.telegramChatId,
+          telegramMessage
+        );
         telegramSent = Boolean(ok);
       } catch {}
     }
@@ -243,17 +257,14 @@ export const validateTelegramBot = async (botToken) => {
 export const updateWebhookSettings = async (formId, webhookUrl, webhookEnabled) => {
   try {
     const updateData = { webhookEnabled };
-    
+
     if (webhookUrl !== undefined) {
       updateData.webhookUrl = webhookUrl;
     }
-    
-    const [affectedRows] = await Form.update(
-      updateData,
-      {
-        where: { id: formId },
-      }
-    );
+
+    const [affectedRows] = await Form.update(updateData, {
+      where: { id: formId },
+    });
     return { isUpdated: Boolean(affectedRows) };
   } catch (error) {
     handleError('SERVICE_UPDATE_WEBHOOK_SETTINGS_ERROR', error);
@@ -263,17 +274,14 @@ export const updateWebhookSettings = async (formId, webhookUrl, webhookEnabled) 
 export const updateSlackSettings = async (formId, slackWebhookUrl, slackEnabled) => {
   try {
     const updateData = { slackEnabled };
-    
+
     if (slackWebhookUrl !== undefined) {
       updateData.slackWebhookUrl = slackWebhookUrl;
     }
-    
-    const [affectedRows] = await Form.update(
-      updateData,
-      {
-        where: { id: formId },
-      }
-    );
+
+    const [affectedRows] = await Form.update(updateData, {
+      where: { id: formId },
+    });
     return { isUpdated: Boolean(affectedRows) };
   } catch (error) {
     handleError('SERVICE_UPDATE_SLACK_SETTINGS_ERROR', error);
@@ -283,17 +291,14 @@ export const updateSlackSettings = async (formId, slackWebhookUrl, slackEnabled)
 export const updateGoogleSheetsSettings = async (formId, googleSheetsId, googleSheetsEnabled) => {
   try {
     const updateData = { googleSheetsEnabled };
-    
+
     if (googleSheetsId !== undefined) {
       updateData.googleSheetsId = googleSheetsId;
     }
-    
-    const [affectedRows] = await Form.update(
-      updateData,
-      {
-        where: { id: formId },
-      }
-    );
+
+    const [affectedRows] = await Form.update(updateData, {
+      where: { id: formId },
+    });
     return { isUpdated: Boolean(affectedRows) };
   } catch (error) {
     handleError('SERVICE_UPDATE_GOOGLE_SHEETS_SETTINGS_ERROR', error);

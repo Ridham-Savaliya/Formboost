@@ -33,7 +33,11 @@ export const verifyUser = async (fbToken) => {
         // Fallback to raw token hashing if parsing fails
       }
 
-      const uid = crypto.createHash('sha256').update(String(stableIdSource).toLowerCase()).digest('hex').substring(0, 28);
+      const uid = crypto
+        .createHash('sha256')
+        .update(String(stableIdSource).toLowerCase())
+        .digest('hex')
+        .substring(0, 28);
       let availableUser = await User.findOne({
         where: { firebaseUid: uid },
         attributes: ['id'],
@@ -44,7 +48,10 @@ export const verifyUser = async (fbToken) => {
       } else {
         // Heal existing users created with old unstable UID: match by email and update UID
         if (parsedEmail) {
-          const userByEmail = await User.findOne({ where: { email: parsedEmail }, attributes: ['id', 'firebaseUid'] });
+          const userByEmail = await User.findOne({
+            where: { email: parsedEmail },
+            attributes: ['id', 'firebaseUid'],
+          });
           if (userByEmail) {
             // Update their firebaseUid to the new stable uid
             userByEmail.firebaseUid = uid;
@@ -187,8 +194,10 @@ export const createUserWithPlan = async (token, userData) => {
         ],
       });
     } catch (discordError) {
-      // eslint-disable-next-line no-console
-      console.warn('Discord notification failed for newSignUpChannel:', discordError?.message || discordError);
+      console.warn(
+        'Discord notification failed for newSignUpChannel:',
+        discordError?.message || discordError
+      );
     }
 
     const appToken = getJwtToken({ id: newUser.id, role: Roles.USER });

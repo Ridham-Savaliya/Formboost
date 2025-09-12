@@ -28,23 +28,22 @@ function handleProcessError(type, error) {
   shutdown(`${type}`);
 }
 
-
 // Basic health check route
 app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+  res.json({
+    status: 'OK',
     message: 'FormBoost Backend is running',
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
   });
 });
 
 // Basic API routes placeholder
 app.get('/api', (req, res) => {
-  res.json({ 
+  res.json({
     message: 'FormBoost API Server',
     version: '0.0.1',
-    endpoints: ['/api/health']
+    endpoints: ['/api/health'],
   });
 });
 

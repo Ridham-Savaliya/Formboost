@@ -153,17 +153,17 @@ const FormSettingsTab = ({ formId, onDelete }) => {
   };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-xl font-semibold">Settings</h2>
+    <div className="space-y-4 sm:space-y-6 p-2 sm:p-0">
+      <h2 className="text-lg sm:text-xl font-semibold">Settings</h2>
       {/* Form Name */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center">
-        <label className="w-full sm:w-1/4 font-medium text-gray-700">
+        <label className="w-full sm:w-1/4 font-medium text-gray-700 text-sm sm:text-base mb-1 sm:mb-0">
           Form name
         </label>
-        <div className="w-full sm:w-3/4 mt-2 sm:mt-0">
+        <div className="w-full sm:w-3/4 mt-1 sm:mt-0">
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0080FF] focus:border-[#0080FF]"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 sm:px-4 sm:py-2 focus:outline-none focus:ring-2 focus:ring-[#0080FF] focus:border-[#0080FF] text-sm sm:text-base"
             value={formName}
             onChange={(e) => setFormName(e.target.value)}
           />
@@ -171,23 +171,23 @@ const FormSettingsTab = ({ formId, onDelete }) => {
       </div>
       {/* Form Description */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center">
-        <label className="w-full sm:w-1/4 font-medium text-gray-700">
+        <label className="w-full sm:w-1/4 font-medium text-gray-700 text-sm sm:text-base mb-1 sm:mb-0">
           Description
         </label>
-        <div className="w-full sm:w-3/4 mt-2 sm:mt-0">
+        <div className="w-full sm:w-3/4 mt-1 sm:mt-0">
           <textarea
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0080FF] focus:border-[#0080FF]"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 sm:px-4 sm:py-2 focus:outline-none focus:ring-2 focus:ring-[#0080FF] focus:border-[#0080FF] text-sm sm:text-base min-h-[80px]"
             value={formDescription}
             onChange={(e) => setFormDescription(e.target.value)}
           ></textarea>
         </div>
       </div>
       {/* Filter Spam */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4">
-        <label className="w-full sm:w-1/4 font-medium text-gray-700">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center mb-3 sm:mb-4">
+        <label className="w-full sm:w-1/4 font-medium text-gray-700 text-sm sm:text-base mb-1 sm:mb-0">
           Filter Spam
         </label>
-        <div className="w-full sm:w-3/4 mt-2 sm:mt-0">
+        <div className="w-full sm:w-3/4 mt-1 sm:mt-0">
           <label className="relative inline-flex items-center cursor-pointer">
             <input
               type="checkbox"
@@ -197,7 +197,7 @@ const FormSettingsTab = ({ formId, onDelete }) => {
             />
             <div className="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-[#0080FF] transition-colors duration-300" />
             <div className="absolute left-0.5 top-0.5 w-5 h-5 bg-white border border-gray-300 rounded-full transition-transform duration-300 peer-checked:translate-x-5" />
-            <span className="ml-3 text-sm text-gray-600">
+            <span className="ml-2 sm:ml-3 text-xs sm:text-sm text-gray-600">
               {filterSpam ? "Enabled" : "Disabled"}
             </span>
           </label>
@@ -205,11 +205,11 @@ const FormSettingsTab = ({ formId, onDelete }) => {
       </div>
 
       {/* Email Notification */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4">
-        <label className="w-full sm:w-1/4 font-medium text-gray-700">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center mb-3 sm:mb-4">
+        <label className="w-full sm:w-1/4 font-medium text-gray-700 text-sm sm:text-base mb-1 sm:mb-0">
           Email Notification
         </label>
-        <div className="w-full sm:w-3/4 mt-2 sm:mt-0">
+        <div className="w-full sm:w-3/4 mt-1 sm:mt-0">
           <label className="relative inline-flex items-center cursor-pointer">
             <input
               type="checkbox"
@@ -219,7 +219,7 @@ const FormSettingsTab = ({ formId, onDelete }) => {
             />
             <div className="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-[#0080FF] transition-colors duration-300" />
             <div className="absolute left-0.5 top-0.5 w-5 h-5 bg-white border border-gray-300 rounded-full transition-transform duration-300 peer-checked:translate-x-5" />
-            <span className="ml-3 text-sm text-gray-600">
+            <span className="ml-2 sm:ml-3 text-xs sm:text-sm text-gray-600">
               {emailNotification ? "Enabled" : "Disabled"}
             </span>
           </label>
@@ -228,13 +228,13 @@ const FormSettingsTab = ({ formId, onDelete }) => {
 
       {/* Send Email */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center">
-        <label className="w-full sm:w-1/4 font-medium text-gray-700">
+        <label className="w-full sm:w-1/4 font-medium text-gray-700 text-sm sm:text-base mb-1 sm:mb-0">
           Send Email to
         </label>
-        <div className="w-full sm:w-3/4 mt-2 sm:mt-0">
+        <div className="w-full sm:w-3/4 mt-1 sm:mt-0">
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0080FF] focus:border-[#0080FF]"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 sm:px-4 sm:py-2 focus:outline-none focus:ring-2 focus:ring-[#0080FF] focus:border-[#0080FF] text-sm sm:text-base"
             value={fromSendEmail}
             onChange={(e) => setFormSendEmail(e.target.value)}
           />
@@ -245,7 +245,7 @@ const FormSettingsTab = ({ formId, onDelete }) => {
       </div>
       
       {/* Warning Banner */}
-      <div className="rounded-md bg-yellow-50 border border-yellow-200 p-3 text-yellow-800">
+      <div className="rounded-md bg-yellow-50 border border-yellow-200 p-2 sm:p-3 text-yellow-800 text-xs sm:text-sm">
         Heads up: Due to occasional technical issues, email or Telegram delivery may be delayed or
         fail. Please always check your dashboard for submissions.
       </div>
@@ -263,19 +263,19 @@ const FormSettingsTab = ({ formId, onDelete }) => {
       />
 
       {/* Save and Cancel Buttons */}
-      <div className="flex justify-between items-center mt-8">
-        <div>
+      <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center mt-6 sm:mt-8 space-y-3 sm:space-y-0">
+        <div className="order-2 sm:order-1">
           <button
             onClick={openDeleteConfirm}
-            className="flex items-center space-x-2 px-4 py-2 rounded-md text-white bg-red-600 hover:bg-red-700"
+            className="flex items-center mt-1 justify-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 rounded-md text-white bg-red-600 hover:bg-red-700 text-sm w-full sm:w-auto"
           >
-            <FiTrash2 className="text-lg" />
+            <FiTrash2 className="text-base sm:text-lg" />
             <span>Delete form</span>
           </button>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 order-1 sm:order-2">
           <button
-            className="px-4 py-2 bg-white border border-gray-300 text-gray-800 rounded-md hover:bg-gray-50"
+            className="px-3 py-2 sm:px-4 sm:py-2 bg-white border border-gray-300 text-gray-800 rounded-md hover:bg-gray-50 text-xs sm:text-sm"
             onClick={handleSendTest}
             disabled={isTesting}
             title="Send a sample submission to your Email/Telegram"
@@ -283,7 +283,7 @@ const FormSettingsTab = ({ formId, onDelete }) => {
             {isTesting ? "Sending..." : "Send test notification"}
           </button>
           <button
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+            className="px-3 py-2 sm:px-4 sm:py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 text-xs sm:text-sm"
             onClick={() => {
               setFormName("");
               setFormDescription("");
@@ -292,7 +292,7 @@ const FormSettingsTab = ({ formId, onDelete }) => {
             Cancel
           </button>
           <button
-            className="px-4 py-2 bg-[#0080FF] text-white rounded-md hover:bg-blue-800"
+            className="px-3 py-2 sm:px-4 sm:py-2 bg-[#0080FF] text-white rounded-md hover:bg-blue-800 text-xs sm:text-sm font-medium"
             onClick={handleUpdate}
             disabled={isLoading}
           >
@@ -303,10 +303,10 @@ const FormSettingsTab = ({ formId, onDelete }) => {
 
       {/* Confirm Delete Popover */}
       {isDeleteConfirmOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-md shadow-xl w-full max-w-md">
+        <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center p-4">
+          <div className="bg-white p-4 sm:p-6 rounded-md shadow-xl w-full max-w-sm sm:max-w-md">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-medium text-gray-900">
+              <h3 className="text-base sm:text-lg font-medium text-gray-900">
                 Confirm Delete
               </h3>
               <button
@@ -316,22 +316,22 @@ const FormSettingsTab = ({ formId, onDelete }) => {
                 <FiX className="text-2xl" />
               </button>
             </div>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-xs sm:text-sm text-gray-500 mt-2">
               Are you sure you want to delete this form? This action cannot be
               undone.
             </p>
-            <div className="flex justify-end space-x-4 mt-4">
+            <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4 mt-4">
               <button
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-2 sm:px-4 sm:py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm"
                 onClick={closeDeleteConfirm}
               >
                 Cancel
               </button>
               <button
-                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 flex items-center space-x-2"
+                className="px-3 py-2 sm:px-4 mt-2 sm:py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 flex items-center justify-center space-x-2 text-xs sm:text-sm"
                 onClick={handleDelete}
               >
-                <FiTrash2 className="text-lg" />
+                <FiTrash2 className="text-base sm:text-lg" />
                 <span>Delete</span>
               </button>
             </div>

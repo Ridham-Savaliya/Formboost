@@ -111,24 +111,24 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-      <div className="flex items-center space-x-3 mb-6">
-        <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
-          <LuFileSpreadsheet className="w-6 h-6 text-white" />
+    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-6">
+      <div className="flex items-center space-x-2 sm:space-x-3 mb-4 sm:mb-6">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
+          <LuFileSpreadsheet className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </div>
         <div>
-          <h3 className="text-xl font-semibold text-gray-900">Google Sheets Integration</h3>
-          <p className="text-gray-600">Automatically populate spreadsheet rows with form data</p>
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Google Sheets Integration</h3>
+          <p className="text-sm sm:text-base text-gray-600">Automatically populate spreadsheet rows with form data</p>
         </div>
       </div>
 
       {/* Benefits Section */}
-      <div className="mb-6 p-4 bg-green-50 rounded-xl border border-green-200">
-        <div className="flex items-start space-x-3">
-          <FaInfoCircle className="w-5 h-5 text-green-600 mt-0.5" />
+      <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-50 rounded-xl border border-green-200">
+        <div className="flex items-start space-x-2 sm:space-x-3">
+          <FaInfoCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mt-0.5 flex-shrink-0" />
           <div>
-            <h4 className="font-semibold text-green-900 mb-2">Why use Google Sheets integration?</h4>
-            <ul className="text-sm text-green-800 space-y-1">
+            <h4 className="text-sm sm:text-base font-semibold text-green-900 mb-2">Why use Google Sheets integration?</h4>
+            <ul className="text-xs sm:text-sm text-green-800 space-y-1">
               <li>• <strong>Automatic data entry</strong> - No manual copy-pasting needed</li>
               <li>• <strong>Real-time updates</strong> - New rows added instantly</li>
               <li>• <strong>Easy analysis</strong> - Use charts, filters, and formulas</li>
@@ -141,10 +141,10 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
 
       <div className="space-y-4">
         {/* Enable/Disable Toggle */}
-        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
-          <div className="flex items-center space-x-3">
-            <IoRocket className="w-5 h-5 text-green-600" />
-            <span className="font-medium text-gray-900">Enable Google Sheets</span>
+        <div className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-xl">
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <IoRocket className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
+            <span className="text-sm sm:text-base font-medium text-gray-900">Enable Google Sheets</span>
           </div>
           <label className="relative inline-flex items-center cursor-pointer">
             <input
@@ -159,51 +159,51 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
         </div>
 
         {/* Setup Instructions */}
-        <div className="p-4 bg-blue-50 rounded-xl border border-blue-200">
-          <h4 className="font-semibold text-blue-900 mb-3">📋 Setup Instructions</h4>
-          <div className="text-sm text-blue-800 space-y-2">
+        <div className="p-3 sm:p-4 bg-blue-50 rounded-xl border border-blue-200">
+          <h4 className="text-sm sm:text-base font-semibold text-blue-900 mb-2 sm:mb-3">📋 Setup Instructions</h4>
+          <div className="text-xs sm:text-sm text-blue-800 space-y-2">
             <div className="flex items-start space-x-2">
-              <span className="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">1</span>
+              <span className="bg-blue-600 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
               <div>
-                <p><strong>Create a Google Sheet</strong></p>
+                <p className="font-semibold">Create a Google Sheet</p>
                 <p className="text-blue-700">Go to sheets.google.com and create a new spreadsheet</p>
               </div>
             </div>
             <div className="flex items-start space-x-2">
-              <span className="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">2</span>
+              <span className="bg-blue-600 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
               <div>
-                <p><strong>Make it publicly accessible</strong></p>
+                <p className="font-semibold">Make it publicly accessible</p>
                 <p className="text-blue-700">Share → Anyone with the link can edit</p>
               </div>
             </div>
             <div className="flex items-start space-x-2">
-              <span className="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
+              <span className="bg-blue-600 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
               <div>
-                <p><strong>Copy the Sheet ID</strong></p>
+                <p className="font-semibold">Copy the Sheet ID</p>
                 <p className="text-blue-700">From the URL: /spreadsheets/d/<strong>SHEET_ID</strong>/edit</p>
               </div>
             </div>
             <div className="flex items-start space-x-2">
-              <span className="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">4</span>
+              <span className="bg-blue-600 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-xs font-bold flex-shrink-0">4</span>
               <div>
-                <p><strong>Paste the ID below</strong></p>
+                <p className="font-semibold">Paste the ID below</p>
                 <p className="text-blue-700">FormBoost will auto-create headers and add rows</p>
               </div>
             </div>
           </div>
-          <div className="flex items-center space-x-4 mt-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2 sm:mt-3">
             <a 
               href="https://sheets.google.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium"
+              className="inline-flex items-center space-x-2 text-green-600 hover:text-green-800 font-medium text-sm"
             >
               <span>Open Google Sheets</span>
               <FaExternalLinkAlt className="w-3 h-3" />
             </a>
             <button
               onClick={copyExampleId}
-              className="inline-flex items-center space-x-2 text-green-600 hover:text-green-800 font-medium"
+              className="inline-flex items-center space-x-2 text-green-600 hover:text-green-800 font-medium text-sm"
             >
               <FaCopy className="w-3 h-3" />
               <span>Copy Example ID</span>
@@ -218,7 +218,7 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
           </label>
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors font-mono text-sm"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2.5 sm:px-4 sm:py-3 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors font-mono text-xs sm:text-sm"
             value={googleSheetsId}
             onChange={handleUrlPaste}
             placeholder="1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
@@ -255,11 +255,11 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
         )}
 
         {/* Action Buttons */}
-        <div className="flex space-x-3">
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
           <button
             onClick={testSheets}
             disabled={!googleSheetsId.trim() || isTestingSheets}
-            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+            className="w-full sm:w-auto px-3 py-2.5 sm:px-4 sm:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 text-sm font-medium"
           >
             {isTestingSheets ? (
               <>
@@ -277,7 +277,7 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
           <button
             onClick={saveSheetsSettings}
             disabled={isSaving}
-            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+            className="w-full sm:w-auto px-4 py-2.5 sm:px-6 sm:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 text-sm font-medium"
           >
             {isSaving ? (
               <>
@@ -294,32 +294,32 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
         </div>
 
         {/* Data Format Info */}
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-2">📊 Data Format</h4>
-          <p className="text-sm text-gray-600 mb-3">
+        <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <h4 className="text-sm sm:text-base font-medium text-gray-900 mb-2">📊 Data Format</h4>
+          <p className="text-xs sm:text-sm text-gray-600 mb-3">
             FormBoost will automatically create these columns in your sheet:
           </p>
-          <div className="bg-white border rounded p-3 overflow-x-auto">
+          <div className="bg-white border rounded p-2 sm:p-3 overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left p-1 font-semibold">Timestamp</th>
-                  <th className="text-left p-1 font-semibold">Form Name</th>
-                  <th className="text-left p-1 font-semibold">Form ID</th>
-                  <th className="text-left p-1 font-semibold">IP Address</th>
-                  <th className="text-left p-1 font-semibold">Name</th>
-                  <th className="text-left p-1 font-semibold">Email</th>
-                  <th className="text-left p-1 font-semibold">Message</th>
+                  <th className="text-left p-1 font-semibold whitespace-nowrap">Timestamp</th>
+                  <th className="text-left p-1 font-semibold whitespace-nowrap">Form Name</th>
+                  <th className="text-left p-1 font-semibold whitespace-nowrap">Form ID</th>
+                  <th className="text-left p-1 font-semibold whitespace-nowrap">IP Address</th>
+                  <th className="text-left p-1 font-semibold whitespace-nowrap">Name</th>
+                  <th className="text-left p-1 font-semibold whitespace-nowrap">Email</th>
+                  <th className="text-left p-1 font-semibold whitespace-nowrap">Message</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="text-gray-600">
-                  <td className="p-1">{new Date().toISOString()}</td>
-                  <td className="p-1">Contact Form</td>
-                  <td className="p-1">form-123</td>
-                  <td className="p-1">192.168.1.1</td>
-                  <td className="p-1">John Doe</td>
-                  <td className="p-1">john@example.com</td>
+                  <td className="p-1 whitespace-nowrap">{new Date().toISOString().split('T')[0]}</td>
+                  <td className="p-1 whitespace-nowrap">Contact Form</td>
+                  <td className="p-1 whitespace-nowrap">form-123</td>
+                  <td className="p-1 whitespace-nowrap">192.168.1.1</td>
+                  <td className="p-1 whitespace-nowrap">John Doe</td>
+                  <td className="p-1 whitespace-nowrap">john@example.com</td>
                   <td className="p-1">Hello world!</td>
                 </tr>
               </tbody>

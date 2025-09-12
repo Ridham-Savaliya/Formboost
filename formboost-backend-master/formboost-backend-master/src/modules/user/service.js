@@ -171,16 +171,18 @@ export const getNotificationLimits = async (userId) => {
     // Count email notifications sent this month (using a simple count for now)
     // Since we don't have emailSent column, we'll count all submissions and estimate
     const totalSubmissions = await FormSubmission.count({
-      include: [{
-        model: Form,
-        where: { userId },
-        attributes: []
-      }],
+      include: [
+        {
+          model: Form,
+          where: { userId },
+          attributes: [],
+        },
+      ],
       where: {
         createdAt: {
-          [Op.between]: [startOfMonth, endOfMonth]
-        }
-      }
+          [Op.between]: [startOfMonth, endOfMonth],
+        },
+      },
     });
 
     // For now, assume 80% of submissions trigger email notifications
@@ -190,7 +192,7 @@ export const getNotificationLimits = async (userId) => {
       emailUsed: emailCount,
       emailLimit: 50,
       telegramUsed: 'unlimited',
-      telegramLimit: 'unlimited'
+      telegramLimit: 'unlimited',
     };
   } catch (error) {
     handleError('GET_NOTIFICATION_LIMITS_FAILED', error);

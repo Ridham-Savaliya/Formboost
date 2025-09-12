@@ -11,50 +11,52 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Basic middleware
-app.use(cors({
-  origin: [
-    process.env.WEB_ADMIN_URL || 'http://localhost:5173',
-    process.env.WEB_APP_URL || 'http://localhost:3001'
-  ],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      process.env.WEB_ADMIN_URL || 'http://localhost:5173',
+      process.env.WEB_APP_URL || 'http://localhost:3001',
+    ],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Basic health check route
 app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+  res.json({
+    status: 'OK',
     message: 'FormBoost Backend is running',
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
   });
 });
 
 // Basic API routes placeholder
 app.get('/api', (req, res) => {
-  res.json({ 
+  res.json({
     message: 'FormBoost API Server',
     version: '0.0.1',
-    endpoints: ['/api/health']
+    endpoints: ['/api/health'],
   });
 });
 
 // 404 handler
 app.use('*', (req, res) => {
-  res.status(404).json({ 
+  res.status(404).json({
     error: 'Route not found',
-    path: req.originalUrl 
+    path: req.originalUrl,
   });
 });
 
 // Error handler
 app.use((err, req, res, next) => {
   console.error('Error:', err);
-  res.status(500).json({ 
+  res.status(500).json({
     error: 'Internal server error',
-    message: err.message 
+    message: err.message,
   });
 });
 

@@ -62,7 +62,7 @@ const PlanCard = ({
           : "bg-gradient-to-br from-blue-500 to-blue-600"
       } text-white transition-transform duration-300`}
     >
-      <div className="p-8">
+      <div className="p-2 sm:p-4 lg:p-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">{plan.name}</h2>
           {plan.name === "Premium" && <CrownIcon />}
@@ -170,9 +170,16 @@ export const ManageSubscription = ({ userId }) => {
             startDate: data.data.startDate,
             endDate: data.data.endDate,
           });
+        } else {
+          // User has no active subscription - this is normal for new users
+          setCurrentPlan(null);
         }
       } catch (error) {
         console.error("Failed to fetch current plan:", error);
+        // If error is due to no active subscription, don't treat it as an error
+        if (error.response?.data?.message?.includes("no active subscription")) {
+          setCurrentPlan(null);
+        }
       }
     };
 
@@ -253,7 +260,7 @@ export const ManageSubscription = ({ userId }) => {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-4 sm:mt-6 lg:mt-8">
         {plans.map((plan, index) => (
           <PlanCard
             key={plan.id}

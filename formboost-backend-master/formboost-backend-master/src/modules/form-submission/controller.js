@@ -63,8 +63,9 @@ export const submitFormData = async (req, res, next) => {
       // Serve our custom success page with details via query params
       const url = new URL(`${req.protocol}://${req.get('host')}/success.html`);
       if (result?.id) url.searchParams.set('ref', result.id);
-      if (result?.submittedAt) url.searchParams.set('ts', new Date(result.submittedAt).toISOString());
-      const referrer = (req.body?._fb_back) || req.get('referer') || '';
+      if (result?.submittedAt)
+        url.searchParams.set('ts', new Date(result.submittedAt).toISOString());
+      const referrer = req.body?._fb_back || req.get('referer') || '';
       if (referrer) url.searchParams.set('back', encodeURIComponent(referrer));
       return res.redirect(url.toString());
     }
