@@ -173,7 +173,7 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
               <span className="bg-blue-600 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
               <div>
                 <p className="font-semibold">Make it publicly accessible</p>
-                <p className="text-blue-700">Share → Anyone with the link can edit</p>
+                <p className="text-blue-700">Share → Anyone with the link can edit and the Role should be selected form the dorpdown next to is <span className="font-bold">"Editor"</span></p>
               </div>
             </div>
             <div className="flex items-start space-x-2">

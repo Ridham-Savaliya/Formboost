@@ -98,7 +98,7 @@ export const UserDashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-primary-50 to-primary-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-8 mt-0 sm:mt-8  md:mt-10 lg:mt-10">
           <div className="bg-white rounded-3xl shadow-xl border border-primary/10 p-8">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -154,7 +154,7 @@ export const UserDashboard = () => {
 
    {/* Forms Section */}
 <div className="mb-8">
-  <div className="bg-white rounded-3xl shadow-xl border border-primary/10 p-2 ">
+  <div className="bg-white rounded-3xl shadow-xl border border-primary/10 p-6 ">
     {/* Header */}
     <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
       <div className="flex items-center">
@@ -165,7 +165,7 @@ export const UserDashboard = () => {
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
+            <path 
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
@@ -213,7 +213,7 @@ export const UserDashboard = () => {
         {forms.map((form) => (
           <div
             key={form.id}
-            className="flex flex-col bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="flex  flex-col bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <FormCard
               title={form.formName}

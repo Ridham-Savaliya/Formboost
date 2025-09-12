@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
           }`}
           onClick={closeSidebar}
         >
-          <div className="px-3 sm:px-6 pt-16 sm:pt-20 pb-4 sm:pb-6 no-scrollbar">{children}</div>
+          <div className="px-3 sm:px-6 pt-16 sm:pt-2 pb-4 sm:pb-6 no-scrollbar">{children}</div>
         </main>
       </div>
       <CreateForm showModal={modalOpen} toggleModal={toggleModal} />
