@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen safe-px">
       <Navbar toggleSidebar={toggleSidebar} />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar
@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
           }`}
           onClick={closeSidebar}
         >
-          <div className="p-6">{children}</div>
+          <div className="px-3 sm:px-6 pt-16 sm:pt-20 pb-4 sm:pb-6 no-scrollbar">{children}</div>
         </main>
       </div>
       <CreateForm showModal={modalOpen} toggleModal={toggleModal} />
