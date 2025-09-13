@@ -116,9 +116,10 @@ export const createUserWithPlan = async (token, userData) => {
       // Auto-create a default Free plan in dev/local if missing
       freePlan = await Plan.create(
         {
-          name: 'Free',
-          formLimit: 5,
-          submissionLimit: 100,
+          name: 'Free Plan',
+          description: 'Basic free plan',
+          formLimit: -1,
+          submissionLimit: -1,
           price: 0,
           isFree: true,
         },

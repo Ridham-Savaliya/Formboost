@@ -164,7 +164,31 @@ export const submitFormData = async (alias, formData, ip) => {
       ip,
     };
 
-    if (form.filterSpam) {
+    // Basic spam checks (always-on): honeypot and time-to-submit
+    try {
+      const honeypot = (formData?._fb_hp || '').toString().trim();
+      const tsStr = (formData?._fb_ts || '').toString().trim();
+      const tsNum = tsStr ? parseInt(tsStr, 10) : null;
+      const nowMs = Date.now();
+      const elapsedMs = tsNum && Number.isFinite(tsNum) ? nowMs - tsNum : null;
+
+      if (honeypot) {
+        formSubmissionObj.isSpam = true;
+        formSubmissionObj.spamScore = 1.0;
+        formSubmissionObj.spamReason = 'Honeypot field was filled';
+      }
+
+      // Treat submissions faster than 1.2 seconds as likely bot
+      if (!formSubmissionObj.isSpam && elapsedMs !== null && elapsedMs < 1200) {
+        formSubmissionObj.isSpam = true;
+        formSubmissionObj.spamScore = 0.9;
+        formSubmissionObj.spamReason = `Submitted too quickly (${elapsedMs}ms)`;
+      }
+    } catch (e) {
+      // Continue without failing the request
+    }
+
+    if (form.filterSpam && !formSubmissionObj.isSpam) {
       try {
         const { isSpam, score, reason } = await isSpamWithOpenAIasync(
           formData,
@@ -211,11 +235,13 @@ export const submitFormData = async (alias, formData, ip) => {
     const submission = await FormSubmission.create(formSubmissionObj);
 
     // bulk create submission data
-    const formSubmissionDataEntries = Object.entries(formData).map(([key, value]) => ({
-      responseId: submission.id,
-      key,
-      value,
-    }));
+    const formSubmissionDataEntries = Object.entries(formData)
+      .filter(([key]) => !key.startsWith('_fb_'))
+      .map(([key, value]) => ({
+        responseId: submission.id,
+        key,
+        value,
+      }));
 
     await FormSubmissionData.bulkCreate(formSubmissionDataEntries);
 
@@ -650,15 +676,9 @@ export const submissionQuota = async (userId) => {
       };
     }
 
-    const { submissionLimit, formLimit } = effectivePlan;
-
-    if (!submissionLimit || !formLimit) {
-      throwAppError({
-        name: 'PLAN_LIMITS_NOT_DEFINED',
-        message: 'Submission or form limit not properly defined in the plan.',
-        status: 400,
-      });
-    }
+    // Force unlimited for all plans (temporary override)
+    const submissionLimit = -1;
+    const formLimit = -1;
 
     const currentMonthStart = new Date(planStartDate);
     currentMonthStart.setMonth(new Date().getMonth());
@@ -676,12 +696,17 @@ export const submissionQuota = async (userId) => {
       },
     });
 
-    const percentageUsed = submissionLimit > 0 ? (submissionCount / submissionLimit) * 100 : 0;
+    const unlimitedForms = formLimit === -1 || formLimit === null;
+    const unlimitedSubs = submissionLimit === -1 || submissionLimit === null;
+
+    const percentageUsed = !unlimitedSubs && submissionLimit > 0
+      ? (submissionCount / submissionLimit) * 100
+      : 0;
 
     return {
-      totalForms: formLimit,
+      totalForms: unlimitedForms ? -1 : formLimit,
       createdForms: formCount,
-      monthlySubmissionLimit: submissionLimit,
+      monthlySubmissionLimit: unlimitedSubs ? -1 : submissionLimit,
       usedSubmissions: submissionCount,
       quotaUsedPercentage: percentageUsed.toFixed(2),
     };

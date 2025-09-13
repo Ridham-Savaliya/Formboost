@@ -230,18 +230,18 @@ let plansStorage = [
   {
     id: 1,
     name: 'Basic',
-    formLimit: 5,
-    submissionLimit: 100,
+    formLimit: -1,
+    submissionLimit: -1,
     price: 0,
-    features: ['Basic forms', 'Email notifications'],
+    features: ['Unlimited forms', 'Unlimited submissions', 'Email notifications'],
   },
   {
     id: 2,
     name: 'Premium',
-    formLimit: 50,
-    submissionLimit: 1000,
+    formLimit: -1,
+    submissionLimit: -1,
     price: 29.99,
-    features: ['Advanced forms', 'Analytics', 'Custom branding'],
+    features: ['Unlimited forms', 'Unlimited submissions', 'Analytics', 'Custom branding'],
   },
   {
     id: 3,
@@ -249,7 +249,7 @@ let plansStorage = [
     formLimit: -1,
     submissionLimit: -1,
     price: 99.99,
-    features: ['Unlimited forms', 'Priority support', 'API access'],
+    features: ['Unlimited forms', 'Unlimited submissions', 'Priority support', 'API access'],
   },
 ];
 

@@ -37,22 +37,11 @@ export const checkSubmissionLimit = async (req, res, next) => {
       include: [{ model: Plan }],
     });
 
-    if (!userPlan || !userPlan.Plan) {
-      throwAppError({
-        name: 'NO_ACTIVE_PLAN_ERROR',
-        message: 'User has no active subscription plan',
-        status: 400,
-      });
-    }
-
-    const { submissionLimit } = userPlan.Plan;
-
-    if (!submissionLimit) {
-      throwAppError({
-        name: 'INVALID_SUBMISSION_LIMIT_ERROR',
-        message: 'Submission limit not properly defined for the plan',
-        status: 400,
-      });
+    // If no plan or no limit, treat as unlimited
+    const submissionLimit = userPlan?.Plan?.submissionLimit;
+    const isUnlimitedSubs = submissionLimit === -1 || submissionLimit == null;
+    if (isUnlimitedSubs) {
+      return next();
     }
 
     const planStartDate = new Date(userPlan.startDate);
@@ -72,7 +61,7 @@ export const checkSubmissionLimit = async (req, res, next) => {
       },
     });
 
-    if (submissionCount >= submissionLimit) {
+    if (!isUnlimitedSubs && submissionCount >= submissionLimit) {
       throwAppError({
         name: 'SUBMISSION_LIMIT_REACHED_ERROR',
         message: `You have reached your submission limit.`,
@@ -109,22 +98,10 @@ export const checkFormLimit = async (req, res, next) => {
       include: [{ model: Plan }],
     });
 
-    if (!userPlan || !userPlan.Plan) {
-      throwAppError({
-        name: 'NO_ACTIVE_PLAN_ERROR',
-        message: 'User has no active subscription plan',
-        status: 400,
-      });
-    }
-
-    const { formLimit } = userPlan.Plan;
-
-    if (!formLimit) {
-      throwAppError({
-        name: 'INVALID_FORM_LIMIT_ERROR',
-        message: 'Plan form limit not properly defined',
-        status: 400,
-      });
+    const formLimit = userPlan?.Plan?.formLimit;
+    const isUnlimitedForms = formLimit === -1 || formLimit == null;
+    if (isUnlimitedForms) {
+      return next();
     }
 
     const startDate = userPlan.startDate;
@@ -139,7 +116,7 @@ export const checkFormLimit = async (req, res, next) => {
       },
     });
 
-    if (formCount >= formLimit) {
+    if (!isUnlimitedForms && formCount >= formLimit) {
       throwAppError({
         name: 'FORM_LIMIT_REACHED_ERROR',
         message: `You have reached your form submission limit of ${formLimit} for the ${userPlan.Plan.name} plan. Upgrade your plan to submit more forms.`,

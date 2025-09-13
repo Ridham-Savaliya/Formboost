@@ -64,8 +64,11 @@ export const AccountSettings = ({ userId }) => {
     fetchData();
   }, [userId]);
 
-  const formUsagePercentage =
-    (quotaData.createdForms / quotaData.totalForms) * 100;
+  const isUnlimitedForms = quotaData.totalForms === -1;
+  const isUnlimitedSubs = quotaData.monthlySubmissionLimit === -1;
+  const formUsagePercentage = isUnlimitedForms
+    ? 0
+    : Math.min(100, (quotaData.createdForms / (quotaData.totalForms || 1)) * 100);
 
   return (
     <div className="mx-auto bg-white rounded-lg ">
@@ -81,7 +84,7 @@ export const AccountSettings = ({ userId }) => {
                 {quotaData.createdForms}
               </span>
               <span className="text-gray-500">
-                / {quotaData.totalForms} forms created
+                / {isUnlimitedForms ? 'Unlimited' : quotaData.totalForms} forms created
               </span>
             </div>
             <div className="bg-gray-200 h-2 w-full rounded-full">
@@ -100,13 +103,13 @@ export const AccountSettings = ({ userId }) => {
                 {quotaData.usedSubmissions}
               </span>
               <span className="text-gray-500">
-                / {quotaData.monthlySubmissionLimit} submissions used
+                / {isUnlimitedSubs ? 'Unlimited' : quotaData.monthlySubmissionLimit} submissions used
               </span>
             </div>
             <div className="bg-gray-200 h-2 w-full rounded-full">
               <div
                 className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${quotaData.quotaUsedPercentage}%` }}
+                style={{ width: `${isUnlimitedSubs ? 0 : quotaData.quotaUsedPercentage}%` }}
               ></div>
             </div>
           </div>

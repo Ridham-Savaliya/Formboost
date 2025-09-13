@@ -59,6 +59,8 @@ ${options}
   
   const formCode = `<form action="${formEndpoint}" method="POST" class="formboost-form">
   <input type="hidden" name="_fb_back" id="_fb_back" value="">
+  <input type="text" name="_fb_hp" id="_fb_hp" value="" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <input type="hidden" name="_fb_ts" id="_fb_ts" value="">
   ${currentTemplate.fields.map(generateFieldHTML).join('\n\n')}
 
   <div class="form-group">
@@ -70,7 +72,12 @@ ${options}
   document.addEventListener("DOMContentLoaded", function() {
     const backField = document.getElementById("_fb_back");
     if (backField) {
-      backField.value = encodeURIComponent(window.location.href);
+      backField.value = window.location.href;
+      console.log('FormBoost: Set _fb_back to:', window.location.href);
+    }
+    const tsField = document.getElementById("_fb_ts");
+    if (tsField) {
+      tsField.value = Date.now().toString();
     }
   });
 </script>

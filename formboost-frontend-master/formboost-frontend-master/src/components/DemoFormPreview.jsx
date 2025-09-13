@@ -1,6 +1,20 @@
+import { useEffect, useRef } from 'react';
+
 const DemoFormPreview = ({ alias, template }) => {
   const formEndpoint = `${import.meta.env.VITE_FORM_ENDPOINT || 'http://localhost:3000'}/${alias || 'demo'}`;
+  const backRef = useRef(null);
+  const tsRef = useRef(null);
+  const hpRef = useRef(null);
   
+  useEffect(() => {
+    // Set the exact current URL for back navigation
+    const currentUrl = window.location.href;
+    console.log('Setting _fb_back to:', currentUrl);
+    if (backRef.current) backRef.current.value = currentUrl;
+    if (tsRef.current) tsRef.current.value = Date.now().toString();
+    if (hpRef.current) hpRef.current.value = '';
+  }, []);
+
   const defaultTemplate = {
     fields: [
       { name: 'name', label: 'Full Name', type: 'text', required: true, placeholder: 'Your first and last name' },
@@ -72,7 +86,7 @@ const DemoFormPreview = ({ alias, template }) => {
     <section className="formboost-container w-full max-w-md mx-auto">
       <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 sm:px- py-">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-4 sm:px-6 py-4">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">F</span>
@@ -93,6 +107,9 @@ const DemoFormPreview = ({ alias, template }) => {
           encType="application/x-www-form-urlencoded"
           className="p-4 sm:p-6 space-y-4 sm:space-y-6"
         >
+          <input type="hidden" name="_fb_back" id="_fb_back" ref={backRef} defaultValue="" />
+          <input type="text" name="_fb_hp" id="_fb_hp" ref={hpRef} defaultValue="" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          <input type="hidden" name="_fb_ts" id="_fb_ts" ref={tsRef} defaultValue="" />
           {currentTemplate.fields.map((field, index) => (
             <div key={index} className="formcarry-block">
               <label

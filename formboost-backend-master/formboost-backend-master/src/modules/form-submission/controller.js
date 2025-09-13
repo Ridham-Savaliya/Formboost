@@ -66,7 +66,11 @@ export const submitFormData = async (req, res, next) => {
       if (result?.submittedAt)
         url.searchParams.set('ts', new Date(result.submittedAt).toISOString());
       const referrer = req.body?._fb_back || req.get('referer') || '';
-      if (referrer) url.searchParams.set('back', encodeURIComponent(referrer));
+      console.log('FormBoost Debug - _fb_back:', req.body?._fb_back);
+      console.log('FormBoost Debug - referer header:', req.get('referer'));
+      console.log('FormBoost Debug - final referrer:', referrer);
+      // Do NOT double-encode. URLSearchParams will encode automatically.
+      if (referrer) url.searchParams.set('back', referrer);
       return res.redirect(url.toString());
     }
   } catch (error) {
