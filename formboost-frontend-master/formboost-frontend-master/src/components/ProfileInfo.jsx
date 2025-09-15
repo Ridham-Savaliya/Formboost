@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { decodeTokenUserId } from "../utils/constants";
 import { auth } from "../firebase/firebase";
-import { EmailAuthProvider, linkWithCredential, updatePassword } from "firebase/auth";
+import { EmailAuthProvider, linkWithCredential, updatePassword } from "../firebase/firebase-mock.js";
 
 export const ProfileInfo = () => {
   const [formData, setFormData] = useState({

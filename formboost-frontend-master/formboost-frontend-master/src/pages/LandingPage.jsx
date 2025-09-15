@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
-  HiOutlineSparkles,
-  HiOutlineChartBar,
-  HiOutlineLightningBolt,
-  HiOutlineShieldCheck,
-  HiOutlineCog,
-  HiOutlineGlobe,
-  HiMenuAlt3,
-  HiX,
-  HiPlay,
-  HiCheck,
-  HiCode,
-  HiHeart
-} from "react-icons/hi";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+  CheckIcon,
+  CodeIcon,
+  HeartIcon,
+  MenuIcon,
+  CloseIcon,
+  ZapIcon,
+  SettingsIcon,
+  ExternalLinkIcon
+} from "../components/OptimizedIcons";
+import SEOHead from "../components/SEOHead";
+import { 
+  getOrganizationStructuredData, 
+  getWebsiteStructuredData, 
+  getSoftwareApplicationStructuredData,
+  getFAQStructuredData,
+  getHowToStructuredData
+} from "../utils/structuredData";
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,37 +33,37 @@ const LandingPage = () => {
 
   const features = [
     {
-      icon: HiOutlineSparkles,
+      icon: ZapIcon,
       title: "Drag & Drop Builder",
       desc: "Create beautiful forms in minutes with our intuitive visual builder and pre-made templates.",
       gradient: "from-blue-500 to-blue-600"
     },
     {
-      icon: HiOutlineChartBar,
+      icon: ZapIcon,
       title: "Real-time Analytics",
       desc: "Track form performance, conversion rates, and user behavior with detailed insights.",
       gradient: "from-blue-400 to-blue-500"
     },
     {
-      icon: HiOutlineLightningBolt,
+      icon: ZapIcon,
       title: "Smart Integrations",
       desc: "Connect with Slack, Google Sheets, Zapier, and 50+ tools to automate your workflow.",
       gradient: "from-blue-600 to-blue-700"
     },
     {
-      icon: HiOutlineShieldCheck,
+      icon: CheckIcon,
       title: "Enterprise Security",
       desc: "GDPR compliant with advanced spam protection and role-based access controls.",
       gradient: "from-blue-500 to-blue-600"
     },
     {
-      icon: HiOutlineCog,
+      icon: SettingsIcon,
       title: "Smart Automation",
       desc: "Set up intelligent email responses, conditional logic, and workflow triggers.",
       gradient: "from-blue-400 to-blue-500"
     },
     {
-      icon: HiOutlineGlobe,
+      icon: ExternalLinkIcon,
       title: "Global Performance",
       desc: "Lightning-fast loading worldwide with 99.9% uptime and CDN optimization.",
       gradient: "from-blue-600 to-blue-700"
@@ -149,8 +152,25 @@ const LandingPage = () => {
     }
   ];
 
+  // Combined structured data for the landing page
+  const combinedStructuredData = [
+    getOrganizationStructuredData(),
+    getWebsiteStructuredData(),
+    getSoftwareApplicationStructuredData(),
+    getFAQStructuredData(),
+    getHowToStructuredData()
+  ];
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <SEOHead 
+        title="FormBoost — Build Forms That Convert Like Crazy | #1 Form Builder 2024"
+        description="Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code. Join 10,000+ teams already boosting their conversions. Free forever plan available!"
+        keywords="form builder, online forms, lead generation, form automation, no-code forms, contact forms, survey builder, form analytics, workflow automation, form integrations, drag drop form builder, best form builder 2024"
+        structuredData={combinedStructuredData}
+        type="website"
+      />
+      <div className="min-h-screen bg-white">
       {/* Enhanced Header */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
@@ -210,7 +230,7 @@ const LandingPage = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             >
-              {isMenuOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
+              {isMenuOpen ? <CloseIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -238,8 +258,9 @@ const LandingPage = () => {
         )}
       </header>
 
+      <main>
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-20">
+      <section className="relative overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-20" aria-label="Hero section">
         {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-blue-25 to-blue-50"></div>
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl">
@@ -250,7 +271,7 @@ const LandingPage = () => {
           <div className="text-center space-y-8">
             {/* Badge */}
             <div className="inline-flex items-center space-x-2 bg-blue-100 text-[#0080FF] px-4 py-2 rounded-full text-sm font-medium">
-              <HiOutlineSparkles className="w-4 h-4" />
+              <ZapIcon className="w-4 h-4" />
               <span>New: Form optimization - Saves you data & hassle</span>
             </div>
 
@@ -274,10 +295,10 @@ const LandingPage = () => {
                 className="w-full sm:w-auto px-8 py-4 bg-[#0080FF] text-white font-semibold rounded-xl hover:bg-[#0066CC] transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center space-x-2"
               >
                 <span>Start Building Free</span>
-                <HiOutlineLightningBolt className="w-5 h-5" />
+                <ZapIcon className="w-5 h-5" />
               </Link>
               <button className="w-full sm:w-auto px-8 py-4 border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 flex items-center justify-center space-x-2">
-                <HiPlay className="w-5 h-5" />
+                <ZapIcon className="w-5 h-5" />
                 <span>Watch Demo</span>
               </button>
             </div>
@@ -287,7 +308,7 @@ const LandingPage = () => {
               <div className="flex items-center space-x-2">
                 <div className="flex -space-x-2">
                   {testimonials.slice(0, 3).map((person, i) => (
-                    <img key={i} src={person.avatar} alt="" className="w-8 h-8 rounded-full border-2 border-white" />
+                    <img key={i} src={person.avatar} alt={`${person.name} - ${person.role}`} className="w-8 h-8 rounded-full border-2 border-white" loading="lazy" />
                   ))}
                 </div>
                 <span>Trusted by many teams & individuals</span>
@@ -393,7 +414,7 @@ const LandingPage = () => {
                   <div className="space-y-3">
                     {plan.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center space-x-3">
-                        <HiCheck className="w-5 h-5 text-[#0080FF] flex-shrink-0" />
+                        <CheckIcon className="w-5 h-5 text-[#0080FF] flex-shrink-0" />
                         <span className="text-sm text-gray-700">{feature}</span>
                       </div>
                     ))}
@@ -464,8 +485,9 @@ const LandingPage = () => {
                   <div className="flex items-center space-x-3 pt-4 border-t border-gray-100">
                     <img 
                       src={testimonial.avatar} 
-                      alt={testimonial.name}
+                      alt={`${testimonial.name} - ${testimonial.role} testimonial photo`}
                       className="w-12 h-12 rounded-full object-cover"
+                      loading="lazy"
                     />
                     <div>
                       <div className="font-semibold text-gray-900">{testimonial.name}</div>
@@ -498,7 +520,7 @@ const LandingPage = () => {
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-[#0080FF] rounded-full flex items-center justify-center">
-                        <HiCode className="w-6 h-6 text-white" />
+                        <CodeIcon className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900">Hey, I'm the Developer!</h3>
@@ -514,15 +536,15 @@ const LandingPage = () => {
                     
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
-                        <HiOutlineSparkles className="w-5 h-5 text-[#0080FF]" />
+                        <ZapIcon className="w-5 h-5 text-[#0080FF]" />
                         <span className="text-gray-700">5+ years building web applications</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <HiOutlineLightningBolt className="w-5 h-5 text-[#0080FF]" />
+                        <ZapIcon className="w-5 h-5 text-[#0080FF]" />
                         <span className="text-gray-700">Passionate about clean code and great UX</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <HiHeart className="w-5 h-5 text-red-500" />
+                        <HeartIcon className="w-5 h-5 text-red-500" />
                         <span className="text-gray-700">Built with love for the developer community</span>
                       </div>
                     </div>
@@ -534,24 +556,23 @@ const LandingPage = () => {
                       href="https://github.com/Ridham-Savaliya" 
                       className="flex items-center space-x-2 text-gray-600 hover:text-[#0080FF] transition-colors"
                     >
-                      <FaGithub className="w-5 h-5" />
+                      <ExternalLinkIcon className="w-5 h-5" />
                       <span>GitHub</span>
-
                     </a>
                     <a 
-                     target="_blank" 
-                      href="https://www.linkedin.com/in/ridham-savaliya-8984a1241?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
-                      className="flex items-center space-x-2 text-gray-600 hover:text-[#0080FF] transition-colors"
-                    >
-                      <FaLinkedin className="w-5 h-5" />
-                      <span>LinkedIn</span>
-                    </a>
-                    <a 
-                      href="https://x.com/" 
+                      href="https://www.linkedin.com/in/ridham-savaliya-a6b2b8251/" 
                       target="_blank" 
                       className="flex items-center space-x-2 text-gray-600 hover:text-[#0080FF] transition-colors"
                     >
-                      <FaTwitter className="w-5 h-5" />
+                      <ExternalLinkIcon className="w-5 h-5" />
+                      <span>LinkedIn</span>
+                    </a>
+                    <a 
+                      href="https://twitter.com/ridham_savaliya" 
+                      target="_blank" 
+                      className="flex items-center space-x-2 text-gray-600 hover:text-[#0080FF] transition-colors"
+                    >
+                      <ExternalLinkIcon className="w-5 h-5" />
                       <span>Twitter</span>
                     </a>
                   </div>
@@ -561,7 +582,7 @@ const LandingPage = () => {
                   <div className="aspect-square w-full max-w-sm mx-auto bg-gradient-to-br from-[#0080FF] to-blue-600 rounded-2xl flex items-center justify-center shadow-2xl">
                     <div className="text-center text-white space-y-4">
                       <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto">
-                        <HiCode className="w-10 h-10" />
+                        <CodeIcon className="w-10 h-10" />
                       </div>
                       <div>
                         <div className="text-2xl font-bold">FormBoost</div>
@@ -579,6 +600,115 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 sm:py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-4 mb-16">
+            <div className="inline-block px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
+              ❓ Frequently Asked Questions
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Everything you need to know about FormBoost
+            </h2>
+            <p className="text-lg text-gray-600">
+              Can't find the answer you're looking for? Reach out to our support team.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
+              <summary className="flex items-center justify-between cursor-pointer">
+                <h3 className="text-lg font-semibold text-gray-900">What is FormBoost?</h3>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                FormBoost is a powerful form builder that allows you to create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code. It's designed for businesses of all sizes who want to boost their conversion rates.
+              </p>
+            </details>
+
+            <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
+              <summary className="flex items-center justify-between cursor-pointer">
+                <h3 className="text-lg font-semibold text-gray-900">Is FormBoost free to use?</h3>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                Yes! FormBoost offers a generous free plan that includes up to 5 forms, 100 submissions per month, basic form builder, email notifications, webhook integrations, and community support. No credit card required to get started.
+              </p>
+            </details>
+
+            <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
+              <summary className="flex items-center justify-between cursor-pointer">
+                <h3 className="text-lg font-semibold text-gray-900">What integrations does FormBoost support?</h3>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                FormBoost integrates with Slack, Google Sheets, Zapier, and 50+ other tools to automate your workflow. You can connect your forms to your favorite apps and streamline your data collection process without any technical knowledge.
+              </p>
+            </details>
+
+            <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
+              <summary className="flex items-center justify-between cursor-pointer">
+                <h3 className="text-lg font-semibold text-gray-900">Is FormBoost GDPR compliant?</h3>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                Absolutely! FormBoost is fully GDPR compliant with advanced spam protection and role-based access controls. We take data privacy seriously and ensure your forms and submissions are secure and compliant with international data protection regulations.
+              </p>
+            </details>
+
+            <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
+              <summary className="flex items-center justify-between cursor-pointer">
+                <h3 className="text-lg font-semibold text-gray-900">How fast can I create a form with FormBoost?</h3>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                With FormBoost's intuitive drag-and-drop builder, you can create a professional form in just 2 minutes! Our pre-made templates and smart components make it incredibly fast to build forms that convert. No technical knowledge required.
+              </p>
+            </details>
+
+            <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
+              <summary className="flex items-center justify-between cursor-pointer">
+                <h3 className="text-lg font-semibold text-gray-900">Can I customize the look of my forms?</h3>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                Yes! FormBoost offers extensive customization options including custom branding, colors, fonts, and layouts. Pro and Enterprise plans include advanced customization features and the ability to remove FormBoost branding completely.
+              </p>
+            </details>
+
+            <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
+              <summary className="flex items-center justify-between cursor-pointer">
+                <h3 className="text-lg font-semibold text-gray-900">Do you offer analytics and reporting?</h3>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                Absolutely! FormBoost provides real-time analytics to track form performance, conversion rates, and user behavior. Get detailed insights into your form submissions, completion rates, and optimize for better results.
+              </p>
+            </details>
+
+            <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
+              <summary className="flex items-center justify-between cursor-pointer">
+                <h3 className="text-lg font-semibold text-gray-900">What support options are available?</h3>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                We offer community support for free users, priority support for Pro users, and dedicated support for Enterprise customers. Our team is committed to helping you succeed with FormBoost and achieve your conversion goals.
+              </p>
+            </details>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-600 mb-4">Still have questions?</p>
+            <Link
+              to="/signup"
+              className="inline-flex items-center px-6 py-3 bg-[#0080FF] text-white font-semibold rounded-xl hover:bg-[#0066CC] transition-all duration-200"
+            >
+              Get Started Free
+            </Link>
           </div>
         </div>
       </section>
@@ -625,6 +755,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-300">
@@ -695,6 +826,7 @@ const LandingPage = () => {
         </div>
       </footer>
     </div>
+    </>
   );
 };
 

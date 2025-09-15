@@ -1,4 +1,4 @@
-import { HiMenu } from "react-icons/hi";
+import { MenuIcon } from "./OptimizedIcons";
 import Profile from "./Profile";
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/Logo_PNG.png";

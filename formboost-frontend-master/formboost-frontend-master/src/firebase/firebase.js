@@ -1,10 +1,10 @@
-// COMMENTED OUT - Firebase configuration disabled for API-only functionality
-// Import the functions you need from the SDKs you need
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+// Firebase App (the core Firebase SDK) is always required and must be listed first
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FB_APIKEY,
   authDomain: import.meta.env.VITE_FB_AUTHDOMAIN,
@@ -15,33 +15,50 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FB_MEASUREMENTID,
 };
 
+// Initialize Firebase
+let firebaseApp;
+try {
+  if (!getApps().length) {
+    firebaseApp = initializeApp(firebaseConfig);
+  } else {
+    firebaseApp = getApp();
+  }
+} catch (error) {
+  console.error('Firebase initialization error:', error);
+  throw new Error('Failed to initialize Firebase');
+}
+
+// Initialize Firebase services
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp);
+
 // Basic runtime validation to surface common misconfigurations early
 (() => {
-  const missing = Object.entries({
+  const requiredEnvVars = {
     VITE_FB_APIKEY: firebaseConfig.apiKey,
     VITE_FB_AUTHDOMAIN: firebaseConfig.authDomain,
     VITE_FB_PROJECTID: firebaseConfig.projectId,
-    VITE_FB_STORAGEBUCKET: firebaseConfig.storageBucket,
-    VITE_FB_MESSAGINGSENDERID: firebaseConfig.messagingSenderId,
-    VITE_FB_APPID: firebaseConfig.appId,
-  })
-    .filter(([, v]) => !v)
-    .map(([k]) => k);
+  };
+  
+  const missing = Object.entries(requiredEnvVars)
+    .filter(([_, value]) => !value)
+    .map(([key]) => key);
 
-  if (missing.length) {
-    // eslint-disable-next-line no-console
+  if (missing.length > 0) {
     console.error(
-      "[Firebase] Missing env vars:",
-      missing.join(", "),
-      "— ensure your .env(.local) is placed in the Vite project root and restart dev server."
+      'Missing required Firebase environment variables:\n',
+      missing.join('\n ')
+    );
+    console.warn(
+      'Firebase may not work as expected without these variables.\n' +
+      'Please check your .env file and ensure all required variables are set.'
     );
   }
 
-  if (
-    firebaseConfig.storageBucket &&
-    firebaseConfig.storageBucket.endsWith("firebasestorage.app")
-  ) {
-    // eslint-disable-next-line no-console
+  // Validate storage bucket format if present
+  if (firebaseConfig.storageBucket && 
+      firebaseConfig.storageBucket.endsWith('firebasestorage.app')) {
     console.warn(
       "[Firebase] storageBucket usually ends with '.appspot.com'. Current:",
       firebaseConfig.storageBucket,
@@ -50,25 +67,4 @@ const firebaseConfig = {
   }
 })();
 
-// Initialize Firebase - HMR-safe pattern with additional safeguards
-let app = null;
-let auth = null;
-
-try {
-  if (!getApps().length) {
-    app = initializeApp(firebaseConfig);
-  } else {
-    app = getApp();
-  }
-  
-  // Initialize Auth with safeguards
-  if (app) {
-    auth = getAuth(app);
-  }
-} catch (error) {
-  console.error("Firebase initialization error:", error);
-}
-
-export { app, auth };
-
-// Note: ensure you have Vite env vars configured in your .env file.
+export { firebaseApp, auth, db, storage };

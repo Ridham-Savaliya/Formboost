@@ -163,7 +163,7 @@ const SubmissionTab = ({ formId }) => {
               onClick={downloadData}
               className="flex items-center space-x-1 sm:space-x-2 bg-green-500 text-white px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg hover:bg-green-600 transition-colors text-xs sm:text-sm"
             >
-              <MdOutlineDownload size={16} />
+              <MdOutlineDownload className="w-4 h-4" />
               <span className="hidden sm:inline">CSV</span>
             </button>
           </div>
@@ -178,7 +178,7 @@ const SubmissionTab = ({ formId }) => {
               }`}
               onClick={() => setActiveTab("inbox")}
             >
-              <MdInbox size={18} />
+              <MdInbox className="w-5 h-5" />
               <span>Inbox</span>
             </button>
             <button
@@ -189,7 +189,7 @@ const SubmissionTab = ({ formId }) => {
               }`}
               onClick={() => setActiveTab("spam")}
             >
-              <MdReportProblem size={18} />
+              <MdReportProblem className="w-5 h-5" />
               <span>Spam</span>
             </button>
           </div>
@@ -197,7 +197,7 @@ const SubmissionTab = ({ formId }) => {
           {/* Search and Filters */}
           <div className="flex space-x-1 sm:space-x-2">
             <div className="flex-1 relative">
-              <MdSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+              <MdSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search submissions..."
@@ -210,7 +210,7 @@ const SubmissionTab = ({ formId }) => {
               onClick={() => setShowMobileFilters(!showMobileFilters)}
               className="flex items-center space-x-1 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-xs sm:text-sm"
             >
-              <HiFilter size={16} />
+              <HiFilter className="w-4 h-4" />
               <span className="hidden sm:inline">Filter</span>
             </button>
           </div>
@@ -252,7 +252,7 @@ const SubmissionTab = ({ formId }) => {
         {filteredSubmissions.length === 0 ? (
           <div className="text-center py-8 sm:py-12">
             <div className="text-gray-400 text-lg mb-2">
-              {activeTab === "inbox" ? <MdInbox size={48} className="mx-auto" /> : <MdReportProblem size={48} className="mx-auto" />}
+              {activeTab === "inbox" ? <MdInbox className="w-12 h-12 mx-auto" /> : <MdReportProblem className="w-12 h-12 mx-auto" />}
             </div>
             <p className="text-gray-500">
               {activeTab === "inbox" ? "No submissions yet" : "No spam submissions"}
@@ -298,7 +298,7 @@ const SubmissionTab = ({ formId }) => {
                           onClick={() => handleSelectSubmission(submission)}
                           className="flex items-center space-x-1 text-primary hover:text-primary-700"
                         >
-                          <HiEye size={16} />
+                          <HiEye className="w-4 h-4" />
                           <span>View</span>
                         </button>
                       </td>
@@ -360,7 +360,7 @@ const SubmissionTab = ({ formId }) => {
                 onClick={handleCloseSubmission}
                 className="p-2 hover:bg-gray-100 rounded-lg"
               >
-                <IoClose size={20} />
+                <IoClose className="w-5 h-5" />
               </button>
             </div>
             <div className="overflow-y-auto max-h-[calc(90vh-60px)]">
@@ -391,13 +391,13 @@ const SubmissionCard = ({ submission, topKeys, isExpanded, onToggleExpand, onVie
             onClick={onView}
             className="p-1.5 sm:p-2 text-primary hover:bg-primary/10 rounded-lg"
           >
-            <HiEye size={16} />
+            <HiEye className="w-4 h-4" />
           </button>
           <button
             onClick={onToggleExpand}
             className="p-1.5 sm:p-2 text-gray-400 hover:bg-gray-100 rounded-lg"
           >
-            {isExpanded ? <MdExpandLess size={16} /> : <MdExpandMore size={16} />}
+            {isExpanded ? <MdExpandLess className="w-4 h-4" /> : <MdExpandMore className="w-4 h-4" />}
           </button>
         </div>
       </div>
@@ -462,7 +462,7 @@ ${submission.formSubmissionData
           onClick={copySubmissionDetails}
           className="flex items-center space-x-2 bg-primary text-white px-3 py-2 rounded-lg hover:bg-primary-700 transition-colors text-sm"
         >
-          <MdOutlineContentCopy size={16} />
+          <MdOutlineContentCopy className="w-4 h-4" />
           <span>Copy</span>
         </button>
       </div>

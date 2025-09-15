@@ -11,7 +11,7 @@ import { decodeTokenUserId } from "../utils/constants";
 import { useRecoilState } from "recoil";
 import { formListState } from "../recoil/states";
 import { ToastContainer } from "react-toastify";
-import Charts from "../components/Charts";
+import { LazyCharts } from "../components/LazyLoader";
 import FormStatsCard from "../components/FormStatsCard";
 import NotificationLimits from "../components/NotificationLimits";
 import PrebuiltForms from "../components/PrebuiltForms";
@@ -143,7 +143,7 @@ export const UserDashboard = () => {
         {/* Charts Section */}
         <div className="mb-8">
           <Card>
-            <Charts />
+            <LazyCharts />
           </Card>
         </div>
 
