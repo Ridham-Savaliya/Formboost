@@ -82,10 +82,10 @@ const LandingPage = () => {
       avatar: "https://res.cloudinary.com/dsqpc6sp6/image/upload/v1757609752/WhatsApp_Image_2025-09-11_at_22.25.02_3871f916_jzseqo.jpg"
     },
     {
-      name: "Trisha Parekh",
-      role: "Backend Developer",
-      content: "Best form builder we've used. Clean design, powerful features, amazing support.",
-      avatar: "https://res.cloudinary.com/dsqpc6sp6/image/upload/v1757609908/Screenshot_2025-09-11_222817_hmqxot.png"
+      name: "Arya Shah",
+      role: "Ai Engineer",
+      content: "Best form builder i've used til now. Clean design, powerful features, amazing support.",
+      avatar: "https://res.cloudinary.com/dsqpc6sp6/image/upload/v1757918282/Screenshot_2025-09-15_120750_mvbvsc.png"
     }
   ];
 

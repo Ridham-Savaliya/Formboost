@@ -699,9 +699,8 @@ export const submissionQuota = async (userId) => {
     const unlimitedForms = formLimit === -1 || formLimit === null;
     const unlimitedSubs = submissionLimit === -1 || submissionLimit === null;
 
-    const percentageUsed = !unlimitedSubs && submissionLimit > 0
-      ? (submissionCount / submissionLimit) * 100
-      : 0;
+    const percentageUsed =
+      !unlimitedSubs && submissionLimit > 0 ? (submissionCount / submissionLimit) * 100 : 0;
 
     return {
       totalForms: unlimitedForms ? -1 : formLimit,
