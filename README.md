@@ -33,9 +33,9 @@
 
 ---
 
-<p align="center">
-<img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765025074/Logo_PNG_qhhmqu.png" width=350 />
-</p>
+<div align="center">
+  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765025074/Logo_PNG_qhhmqu.png" width="40%" alt="Formboost Logo"/>
+</div>
 *Your forms, supercharged.*
 
 ---
