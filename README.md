@@ -1,7 +1,10 @@
-You asked for a comprehensive, professional, easy-to-understand, eye-catching, and premium-looking README.md file for your Formboost project that adds value by its unique design and presentation.
+<div align="center">
+  <h1 style="font-weight:800; font-size:42px; margin-bottom:6px;">Formboost</h1>
+  <p style="font-size:18px; font-weight:500; opacity:0.8;">
+    Collect. Organize. Understand — Effortlessly.
+  </p>
+</div>
 
-Below is a carefully crafted README.md that highlights your project’s purpose, tech stack, setup instructions, features, and more, with a clean and modern style in markdown to make it visually appealing and professional.
----
 
 ### 🖼 Preview Highlights
 
