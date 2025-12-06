@@ -33,7 +33,7 @@
 
 ---
 
-![Formboost Banner](https://user-images.githubusercontent.com/yourusername/formboost-banner.png)  
+![Formboost Banner](https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765025074/Logo_PNG_qhhmqu.png)  
 *Your forms, supercharged.*
 
 ---
