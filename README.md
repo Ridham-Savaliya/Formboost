@@ -1,18 +1,27 @@
 <div align="center">
-  <h1 style="font-weight:800; font-size:42px; margin-bottom:6px;">Formboost</h1>
-  <p style="font-size:18px; font-weight:500; opacity:0.8;">
-    Collect. Organize. Understand — Effortlessly.
+  <!-- LOGO -->
+  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024967/formboost-favicon-color_af2opq.png" alt="Formboost Logo" width="120" style="margin-bottom:16px;" />
+
+  <!-- Title -->
+  <h1 style="font-weight:900; font-size:46px; margin-bottom:0;">Formboost</h1>
+
+  <!-- Subtitle -->
+  <p style="font-size:19px; font-weight:500; color:#5e5e5e; margin-top:6px;">
+    Smart Forms, Cleaner Insights.
   </p>
 </div>
+
+
 
 
 ### 🖼 Preview Highlights
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/7_rqqvyh.jpg" width="350" />  
-  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/12_zc9rqv.jpg" width="350" />  
+
   <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/8_dbshoi.jpg" width="350" />  
-  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/11_zlek1t.jpg" width="350" />  
+  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/11_zlek1t.jpg" width="350" /> 
+    <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/7_rqqvyh.jpg" width="350" />  
+  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/12_zc9rqv.jpg" width="350" />  
 </p>
 
 
