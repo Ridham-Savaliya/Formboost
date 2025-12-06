@@ -33,7 +33,9 @@
 
 ---
 
-![Formboost Banner](https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765025074/Logo_PNG_qhhmqu.png)  
+<p align="center">
+<img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765025074/Logo_PNG_qhhmqu.png" width=350 />
+</p>
 *Your forms, supercharged.*
 
 ---
