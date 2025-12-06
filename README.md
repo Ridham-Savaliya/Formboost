@@ -24,8 +24,7 @@
   <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/12_zc9rqv.jpg" width="350" />  
 </p>
 
-
-```markdown
+markdown
 # 🚀 Formboost
 
 > **Formboost** — The Ultimate Next-Gen Form & Data Management Platform  
