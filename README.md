@@ -206,7 +206,7 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ## 📬 Contact
 
 Formboost Team – [contact@formboost.com](mailto:contact@formboost.com)  
-GitHub: [https://github.com/yourusername/formboost](https://github.com/yourusername/formboost)  
+GitHub: [https://github.com/Ridham-Savaliya/formboost](https://github.com/yourusername/formboost)  
 Twitter: [@formboost](https://twitter.com/formboost)  
 
 ---
