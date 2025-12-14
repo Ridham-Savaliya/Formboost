@@ -13,7 +13,7 @@ const Navbar = ({ toggleSidebar }) => {
             onClick={toggleSidebar}
             className="text-gray-600 hover:text-gray-800 -ml-1 sm:ml-0"
           >
-            <HiMenu className="w-6 h-6 mr-3 sm:mr-4" />
+            <MenuIcon className="w-6 h-6 m-3" />
           </button>
 
           <Link to="/" className="block">
@@ -21,7 +21,7 @@ const Navbar = ({ toggleSidebar }) => {
           </Link>
         </div>
       </div>
-      <div className="flex items-center space-x-3 sm:space-x-4">
+      <div className="flex m-4 items-center space-x-3 sm:space-x-4">
         <Profile />
       </div>
     </nav>
