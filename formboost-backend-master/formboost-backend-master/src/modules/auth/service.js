@@ -201,6 +201,17 @@ export const createUserWithPlan = async (token, userData) => {
       );
     }
 
+    // Send welcome email asynchronously (don't block signup if it fails)
+    setImmediate(async () => {
+      try {
+        const { sendWelcomeEmail } = await import('#utils/mail/index.js');
+        await sendWelcomeEmail(newUser.name, newUser.email);
+        console.log(`Welcome email sent to ${newUser.email}`);
+      } catch (emailError) {
+        console.warn('Welcome email failed for new user:', emailError?.message || emailError);
+      }
+    });
+
     const appToken = getJwtToken({ id: newUser.id, role: Roles.USER });
 
     return { token: appToken };

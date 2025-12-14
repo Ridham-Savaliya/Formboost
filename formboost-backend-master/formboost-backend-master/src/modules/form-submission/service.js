@@ -245,7 +245,7 @@ export const submitFormData = async (alias, formData, ip) => {
 
     await FormSubmissionData.bulkCreate(formSubmissionDataEntries);
 
-    // Check email notification limits and send email
+    // Check email notification limits and send email (async to avoid blocking)
     if (form.emailNotification && !formSubmissionObj.isSpam && form.targetEmail) {
       const emailLimitReached = await checkEmailNotificationLimit(form.userId);
       if (!emailLimitReached) {
@@ -257,26 +257,30 @@ export const submitFormData = async (alias, formData, ip) => {
             formData,
           },
         });
-        try {
-          await sendSubmissionMail(form, formData, ip);
-          await incrementEmailNotificationCount(form.userId);
-          logger.info({
-            name: 'EMAIL_NOTIFICATION_SENT',
-            data: {
-              formId: form.id,
-              targetEmail: form.targetEmail,
-            },
-          });
-        } catch (emailError) {
-          logger.error({
-            name: 'EMAIL_SEND_ERROR',
-            data: {
-              formId: form.id,
-              targetEmail: form.targetEmail,
-              error: emailError.message,
-            },
-          });
-        }
+
+        // Send email asynchronously to avoid blocking the response
+        setImmediate(async () => {
+          try {
+            await sendSubmissionMail(form, formData, ip);
+            await incrementEmailNotificationCount(form.userId);
+            logger.info({
+              name: 'EMAIL_NOTIFICATION_SENT',
+              data: {
+                formId: form.id,
+                targetEmail: form.targetEmail,
+              },
+            });
+          } catch (emailError) {
+            logger.error({
+              name: 'EMAIL_SEND_ERROR',
+              data: {
+                formId: form.id,
+                targetEmail: form.targetEmail,
+                error: emailError.message,
+              },
+            });
+          }
+        });
       } else {
         logger.warn({
           name: 'EMAIL_LIMIT_REACHED',

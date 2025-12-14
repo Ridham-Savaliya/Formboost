@@ -1,6 +1,7 @@
 import { sendMail } from '#service/mailservice.js';
 import logger from '#utils/logger.js';
 import submissionEmailHtml from './html/submissionEmailHtml.js';
+import welcomeEmailHtml from './html/welcomeEmailHtml.js';
 
 export const sendSubmissionMail = async (form, formData, ip) => {
   try {
@@ -40,5 +41,46 @@ export const sendSubmissionMail = async (form, formData, ip) => {
       },
     });
     throw error; // Re-throw to be caught by the calling function
+  }
+};
+
+export const sendWelcomeEmail = async (userName, userEmail) => {
+  try {
+    const emailSubject = "🎉 Welcome to FormBoost - Let's Get Started!";
+    const emailText = `Welcome to FormBoost, ${userName}! We're excited to have you on board.`;
+    const emailHtml = welcomeEmailHtml(userName, userEmail);
+
+    logger.info({
+      name: 'ATTEMPTING_WELCOME_EMAIL_SEND',
+      data: {
+        to: userEmail,
+        subject: emailSubject,
+        userName,
+      },
+    });
+
+    const result = await sendMail(userEmail, emailSubject, emailText, emailHtml);
+
+    logger.info({
+      name: 'WELCOME_EMAIL_SEND_SUCCESS',
+      data: {
+        to: userEmail,
+        messageId: result.messageId,
+      },
+    });
+
+    return result;
+  } catch (error) {
+    logger.error({
+      name: 'SEND_WELCOME_EMAIL_FAILED',
+      data: {
+        userEmail,
+        userName,
+        error: error.message,
+        stack: error.stack,
+      },
+    });
+    // Don't throw - we don't want to block user signup if email fails
+    return null;
   }
 };

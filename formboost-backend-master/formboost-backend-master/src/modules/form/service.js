@@ -207,7 +207,9 @@ export const sendTestNotifications = async (formId) => {
       try {
         await sendSubmissionMail(form, sampleFormData, ip);
         emailSent = true;
-      } catch {}
+      } catch {
+        /* Intentionally empty */
+      }
     }
 
     // Telegram test
@@ -220,7 +222,9 @@ export const sendTestNotifications = async (formId) => {
           telegramMessage
         );
         telegramSent = Boolean(ok);
-      } catch {}
+      } catch {
+        /* Intentionally empty */
+      }
     }
 
     return { success: true, emailSent, telegramSent };
