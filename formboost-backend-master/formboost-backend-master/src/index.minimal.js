@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
-    message: 'FormBoost Backend is running',
+    message: 'Formboom Backend is running',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
   });
@@ -37,7 +37,7 @@ app.get('/api/health', (req, res) => {
 // Basic API routes placeholder
 app.get('/api', (req, res) => {
   res.json({
-    message: 'FormBoost API Server',
+    message: 'Formboom API Server',
     version: '0.0.1',
     endpoints: ['/api/health'],
   });
@@ -52,7 +52,7 @@ app.use('*', (req, res) => {
 });
 
 // Error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error('Error:', err);
   res.status(500).json({
     error: 'Internal server error',
@@ -65,7 +65,7 @@ const server = http.createServer(app);
 
 // Start server
 server.listen(port, () => {
-  console.log(`✅ FormBoost Backend running on http://localhost:${port}`);
+  console.log(`✅ Formboom Backend running on http://localhost:${port}`);
   console.log(`📊 Health check: http://localhost:${port}/api/health`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
 });

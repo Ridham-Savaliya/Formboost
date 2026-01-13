@@ -81,7 +81,7 @@ export const checkSubmissionLimit = async (req, res, next) => {
           error,
         },
       });
-      return res.redirect('https://formboost.site/');
+      return res.redirect('https://Formboom.site/');
     }
   }
 };

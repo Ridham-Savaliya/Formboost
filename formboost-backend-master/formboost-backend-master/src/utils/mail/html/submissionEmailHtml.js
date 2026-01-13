@@ -146,7 +146,7 @@ export default (formData, ipAddress, form) => {
                                 <tr>
                                   <td style="padding-right: 0px;padding-left: 0px;" align="center">
 
-                                    <img align="center" border="0" src="https://cdn.formboost.site/public/formboost-high-resolution-logo-white-transparent.png" alt="Formboost" title="Formboost" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 35%;max-width: 203px;" width="203" />
+                                    <img align="center" border="0" src="https://cdn.formboom.site/public/formboom-high-resolution-logo-white-transparent.png" alt="Formboom" title="Formboom" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 35%;max-width: 203px;" width="203" />
 
                                   </td>
                                 </tr>
@@ -214,7 +214,7 @@ export default (formData, ipAddress, form) => {
       </ul>
       <p>IP Address: ${ipAddress}</p>
       <h3>Check All Submissions Here: 
-        <a href="https://app.formboost.site/form/${form.id}">CLICK</a>
+        <a href="https://app.formboom.site/form/${form.id}">CLICK</a>
       </h3>
                               </div>
 
@@ -274,11 +274,11 @@ export default (formData, ipAddress, form) => {
                             <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 20px;font-family:'Cabin',sans-serif;" align="left">
 
                               <div style="font-size: 14px; line-height: 160%; text-align: left; word-wrap: break-word;">
-                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;">Thank you for choosing Formboost.</span></p>
+                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;">Thank you for choosing Formboom.</span></p>
                                 <p style="line-height: 160%;">&nbsp;</p>
-                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;"><strong>The Formboost Team</strong></span></p>
-                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;"><a style="color: #333333;" href="mailto:contact@formboost.site">contact@formboost.site</a></span></p>
-                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;"><a style="color: #333333;" href="#">www.formboost.site</a></span></p>
+                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;"><strong>The Formboom Team</strong></span></p>
+                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;"><a style="color: #333333;" href="mailto:contact@formboom.site">contact@formboom.site</a></span></p>
+                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;"><a style="color: #333333;" href="#">www.formboom.site</a></span></p>
                               </div>
 
                             </td>
@@ -317,7 +317,7 @@ export default (formData, ipAddress, form) => {
                             <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 6px;font-family:'Cabin',sans-serif;" align="left">
 
                               <div style="font-size: 14px; line-height: 140%; text-align: center; word-wrap: break-word;">
-                                <p style="line-height: 140%;" class="p1">© 2024 Formboost. All rights reserved.</p>
+                                <p style="line-height: 140%;" class="p1">© 2024 Formboom. All rights reserved.</p>
                               </div>
 
                             </td>
@@ -365,7 +365,7 @@ export default (formData, ipAddress, form) => {
                                     <tbody>
                                       <tr style="vertical-align: top">
                                         <td align="center" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                          <a href="https://linkedin.com/company/formboost" title="LinkedIn" target="_blank">
+                                          <a href="https://linkedin.com/company/formboom" title="LinkedIn" target="_blank">
                                             <img src="https://cdn.tools.unlayer.com/social/icons/rounded-black/linkedin.png" alt="LinkedIn" title="LinkedIn" width="22" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 22px !important">
                                           </a>
                                         </td>
@@ -379,7 +379,7 @@ export default (formData, ipAddress, form) => {
                                     <tbody>
                                       <tr style="vertical-align: top">
                                         <td align="center" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                          <a href="https://x.com/FormBoost" title="X" target="_blank">
+                                          <a href="https://x.com/FormBoom" title="X" target="_blank">
                                             <img src="https://cdn.tools.unlayer.com/social/icons/rounded-black/x.png" alt="X" title="X" width="22" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 22px !important">
                                           </a>
                                         </td>

@@ -25,7 +25,7 @@ const gmailTransporter = nodemailer.createTransport({
 });
 
 export async function sendMail(to, subject, text, html) {
-  const from = config.email.from || process.env.BREVO_EMAIL || 'FormBoost <noreply@formboom.site>';
+  const from = config.email.from || 'Formboom <no-reply@formboom.site>';
 
   const mailOptions = {
     from,

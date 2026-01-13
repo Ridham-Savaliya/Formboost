@@ -1,23 +1,23 @@
-You asked for a comprehensive, professional, easy-to-understand, eye-catching, and premium-looking README.md file for your Formboost project that adds value by its unique design and presentation.
+You asked for a comprehensive, professional, easy-to-understand, eye-catching, and premium-looking README.md file for your Formboom project that adds value by its unique design and presentation.
 
-Below is a carefully crafted README.md that highlights your project’s purpose, tech stack, setup instructions, features, and more, with a clean and modern style in markdown to make it visually appealing and professional.
+Below is a carefully crafted README.md that highlights your project's purpose, tech stack, setup instructions, features, and more, with a clean and modern style in markdown to make it visually appealing and professional.
 
 ```markdown
-# 🚀 Formboost
+# 🚀 Formboom
 
-> **Formboost** — The Ultimate Next-Gen Form & Data Management Platform  
+> **Formboom** — The Ultimate Next-Gen Form & Data Management Platform  
 > Empower your workflows with powerful, intuitive, and scalable form creation, data visualization, and analytics — all in one seamless experience.
 
 ---
 
-![Formboost Banner](https://user-images.githubusercontent.com/yourusername/formboost-banner.png)  
+![Formboom Banner](https://user-images.githubusercontent.com/yourusername/formboom-banner.png)  
 *Your forms, supercharged.*
 
 ---
 
 ## Table of Contents
 
-- [About Formboost](#about-formboost)  
+- [About Formboom](#about-formboom)  
 - [Features](#features)  
 - [Tech Stack](#tech-stack)  
 - [Getting Started](#getting-started)  
@@ -30,10 +30,10 @@ Below is a carefully crafted README.md that highlights your project’s purpose,
 
 ---
 
-## About Formboost
+## About Formboom
 
-Formboost is a modern, full-stack form builder and data analytics platform designed to simplify data collection and visualization for businesses and developers alike.  
-Built with cutting-edge technologies, Formboost offers a premium user experience with robust backend services and a sleek, responsive frontend.
+Formboom is a modern, full-stack form builder and data analytics platform designed to simplify data collection and visualization for businesses and developers alike.  
+Built with cutting-edge technologies, Formboom offers a premium user experience with robust backend services and a sleek, responsive frontend.
 
 ---
 
@@ -56,7 +56,7 @@ Built with cutting-edge technologies, Formboost offers a premium user experience
 ## 🛠️ Tech Stack
 
 | Frontend                          | Backend                          | Database & Others               |
-|----------------------------------|---------------------------------|--------------------------------|
+|----------------------------------|--------------------------------|--------------------------------|
 | React 18, Vite                   | Node.js, Express                | MySQL (via Sequelize ORM)       |
 | Chakra UI, MUI, TailwindCSS      | JWT, Bcrypt, Helmet, CORS       | Firebase Admin                  |
 | React Router DOM, Recoil         | Joi Validation, Multer           | Winston Logging, Loki           |
@@ -78,8 +78,8 @@ Built with cutting-edge technologies, Formboost offers a premium user experience
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/formboost.git
-cd formboost
+git clone https://github.com/yourusername/formboom.git
+cd formboom
 ```
 
 #### Backend Setup
@@ -109,7 +109,7 @@ Open your browser at `http://localhost:3000` (or the port shown in terminal).
 ## 📁 Project Structure
 
 ```
-formboost/
+formboom/
 ├── backend/                # Express API server
 │   ├── src/
 │   │   ├── app.js          # Express app setup
@@ -151,7 +151,7 @@ formboost/
 ### Frontend
 
 | Command         | Description                          |
-|-----------------|------------------------------------|
+|-----------------|-------------------------------------|
 | `npm run dev`   | Start frontend dev server (Vite)   |
 | `npm run build` | Build production frontend bundle   |
 | `npm run preview`| Preview production build locally  |
@@ -181,14 +181,14 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 ## 📬 Contact
 
-Formboost Team – [contact@formboost.com](mailto:contact@formboost.com)  
-GitHub: [https://github.com/yourusername/formboost](https://github.com/yourusername/formboost)  
-Twitter: [@formboost](https://twitter.com/formboost)  
+Formboom Team – [contact@formboom.site](mailto:contact@formboom.site)  
+GitHub: [https://github.com/yourusername/formboom](https://github.com/yourusername/formboom)  
+Twitter: [@formboom](https://twitter.com/formboom)  
 
 ---
 
 <p align="center">
-  <em>Formboost &mdash; Empowering your data, one form at a time.</em>
+  <em>Formboom &mdash; Empowering your data, one form at a time.</em>
 </p>
 ```
 

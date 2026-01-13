@@ -5,7 +5,7 @@ module.exports = {
   development: {
     username: process.env.DB_USERNAME || "root",
     password: process.env.DB_PASSWORD || null,
-    database: process.env.DB_DATABASE || "formboost_db",
+    database: process.env.DB_DATABASE || "Formboom_db",
     host: process.env.DB_HOST || "localhost",
     port: process.env.DB_PORT || 3306,
     dialect: "mysql",
@@ -16,7 +16,7 @@ module.exports = {
     password: process.env.DB_PASSWORD || null,
     database: process.env.DB_DATABASE
       ? process.env.DB_DATABASE + "_test"
-      : "formboost_test_db",
+      : "Formboom_test_db",
     host: process.env.DB_HOST || "localhost",
     port: process.env.DB_PORT || 3306,
     dialect: "mysql",
@@ -27,12 +27,12 @@ module.exports = {
     ...(process.env.DATABASE_URL
       ? { use_env_variable: "DATABASE_URL" }
       : {
-          username: process.env.DB_USERNAME || "root",
-          password: process.env.DB_PASSWORD || null,
-          database: process.env.DB_DATABASE || "formboost_db",
-          host: process.env.DB_HOST || "localhost",
-          port: process.env.DB_PORT || 3306,
-        }),
+        username: process.env.DB_USERNAME || "root",
+        password: process.env.DB_PASSWORD || null,
+        database: process.env.DB_DATABASE || "Formboom_db",
+        host: process.env.DB_HOST || "localhost",
+        port: process.env.DB_PORT || 3306,
+      }),
     dialect: "mysql",
     logging: false
   }

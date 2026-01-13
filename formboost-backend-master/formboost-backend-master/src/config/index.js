@@ -6,7 +6,7 @@ const config = {
   isDev: process.env.NODE_ENV === 'development',
   isStag: process.env.NODE_ENV === 'staging',
   app: {
-    name: 'Formboost-BE',
+    name: 'Formboom-BE',
     env: process.env.NODE_ENV,
     port: process.env.PORT,
     webAppUrl: process.env.WEB_APP_URL,
@@ -55,7 +55,7 @@ const config = {
     secure: process.env.EMAIL_SECURE === 'true',
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
-    from: process.env.EMAIL_FROM,
+    from: process.env.EMAIL_FROM || 'FormBoom <no-reply@formboom.site>',
   },
   loki: {
     host: process.env.LOKI_HOST,
