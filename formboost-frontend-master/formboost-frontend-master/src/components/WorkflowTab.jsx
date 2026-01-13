@@ -78,44 +78,44 @@ export const WorkflowTab = ({ formId, form }) => {
   };
 
   const apps = [
-    { 
-      name: "Custom Webhook", 
-      icon: Link, 
+    {
+      name: "Custom Webhook",
+      icon: Link,
       description: "Send form data to any URL",
       available: true,
       color: "from-[#0080FF] to-blue-600"
     },
-    { 
-      name: "Slack", 
-      icon: FaSlack, 
+    {
+      name: "Slack",
+      icon: FaSlack,
       description: "Send notifications to Slack channels",
       available: true,
       color: "from-purple-500 to-purple-600"
     },
-    { 
-      name: "Google Sheets", 
-      icon: LuFileSpreadsheet, 
+    {
+      name: "Google Sheets",
+      icon: LuFileSpreadsheet,
       description: "Auto-populate spreadsheet rows",
       available: true,
       color: "from-green-500 to-green-600"
     },
-    { 
-      name: "Zapier", 
-      icon: SiZapier, 
+    {
+      name: "Zapier",
+      icon: SiZapier,
       description: "Use webhook URL in Zapier",
       available: true,
       color: "from-orange-500 to-orange-600"
     },
-    { 
-      name: "Discord", 
-      icon: FaDiscord, 
+    {
+      name: "Discord",
+      icon: FaDiscord,
       description: "Coming soon",
       available: false,
       color: "from-indigo-500 to-indigo-600"
     },
-    { 
-      name: "Mailchimp", 
-      icon: FaMailchimp, 
+    {
+      name: "Mailchimp",
+      icon: FaMailchimp,
       description: "Coming soon",
       available: false,
       color: "from-yellow-500 to-yellow-600"
@@ -157,7 +157,7 @@ export const WorkflowTab = ({ formId, form }) => {
 
     setIsTestingWebhook(true);
     setTestResult(null);
-    
+
     try {
       await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/form/${formId}/update_webhook`,
@@ -176,10 +176,10 @@ export const WorkflowTab = ({ formId, form }) => {
           headers: { Authorization: localStorage.getItem("token") },
         }
       );
-      
+
       const result = response.data.data;
       setTestResult(result);
-      
+
       if (result.success) {
         toast.success(`✅ Webhook test successful! Status: ${result.statusCode}`);
       } else {
@@ -228,15 +228,15 @@ export const WorkflowTab = ({ formId, form }) => {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="sm:ml-auto">
                     <button
                       onClick={() => toggleSection('webhook')}
                       className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-white/50 rounded-lg transition-colors sm:hidden"
                     >
                       <span>{expandedSection === 'webhook' ? 'Hide' : 'Show'}</span>
-                      {expandedSection === 'webhook' ? 
-                        <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> : 
+                      {expandedSection === 'webhook' ?
+                        <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> :
                         <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
                       }
                     </button>
@@ -258,12 +258,12 @@ export const WorkflowTab = ({ formId, form }) => {
                         Why use webhooks?
                       </span>
                     </div>
-                    {showPayloadInfo ? 
-                      <ChevronUp className="h-4 w-4 text-blue-600" /> : 
+                    {showPayloadInfo ?
+                      <ChevronUp className="h-4 w-4 text-blue-600" /> :
                       <ChevronDown className="h-4 w-4 text-blue-600" />
                     }
                   </button>
-                  
+
                   {showPayloadInfo && (
                     <div className="mt-3 sm:mt-4 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
                       <div className="flex items-center gap-1 sm:gap-2">
@@ -350,11 +350,10 @@ export const WorkflowTab = ({ formId, form }) => {
 
                   {/* Test Result */}
                   {testResult && (
-                    <div className={`p-4 rounded-xl border-2 transition-all duration-300 ${
-                      testResult.success 
-                        ? 'bg-green-50 border-green-200' 
+                    <div className={`p-4 rounded-xl border-2 transition-all duration-300 ${testResult.success
+                        ? 'bg-green-50 border-green-200'
                         : 'bg-red-50 border-red-200'
-                    }`}>
+                      }`}>
                       <div className="flex items-start gap-3">
                         {testResult.success ? (
                           <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
@@ -362,11 +361,10 @@ export const WorkflowTab = ({ formId, form }) => {
                           <X className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
                         )}
                         <div>
-                          <h4 className={`font-semibold text-sm sm:text-base ${
-                            testResult.success ? 'text-green-900' : 'text-red-900'
-                          }`}>
-                            {testResult.success 
-                              ? `Test successful (Status: ${testResult.statusCode})` 
+                          <h4 className={`font-semibold text-sm sm:text-base ${testResult.success ? 'text-green-900' : 'text-red-900'
+                            }`}>
+                            {testResult.success
+                              ? `Test successful (Status: ${testResult.statusCode})`
                               : `Test failed`
                             }
                           </h4>
@@ -399,7 +397,7 @@ export const WorkflowTab = ({ formId, form }) => {
                         </>
                       )}
                     </button>
-                    
+
                     <button
                       onClick={saveWebhookSettings}
                       disabled={isSaving}
@@ -428,12 +426,12 @@ export const WorkflowTab = ({ formId, form }) => {
                       <span className="text-sm sm:text-base font-semibold text-gray-700">
                         View Payload Format
                       </span>
-                      {showPayloadInfo ? 
-                        <ChevronUp className="h-4 w-4 text-gray-400" /> : 
+                      {showPayloadInfo ?
+                        <ChevronUp className="h-4 w-4 text-gray-400" /> :
                         <ChevronDown className="h-4 w-4 text-gray-400" />
                       }
                     </button>
-                    
+
                     {showPayloadInfo && (
                       <div className="mt-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 sm:p-6 border border-blue-200">
                         <h4 className="text-sm sm:text-base font-semibold text-blue-900 mb-3">
@@ -441,7 +439,7 @@ export const WorkflowTab = ({ formId, form }) => {
                         </h4>
                         <div className="bg-gray-900 rounded-xl p-4 overflow-x-auto">
                           <pre className="text-xs sm:text-sm text-green-400 font-mono">
-{`{
+                            {`{
   "event": "form.submission",
   "timestamp": "2024-01-01T12:00:00Z",
   "form": {
@@ -482,16 +480,15 @@ export const WorkflowTab = ({ formId, form }) => {
                   Connect with popular services and automation platforms
                 </p>
               </div>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {apps.slice(3).map((app, index) => (
                   <div
                     key={index}
-                    className={`group relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-4 sm:p-6 border border-gray-200 transition-all duration-300 ${
-                      app.available 
-                        ? 'cursor-pointer hover:shadow-xl hover:border-gray-300 hover:-translate-y-2 hover:from-white hover:to-gray-50' 
+                    className={`group relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-4 sm:p-6 border border-gray-200 transition-all duration-300 ${app.available
+                        ? 'cursor-pointer hover:shadow-xl hover:border-gray-300 hover:-translate-y-2 hover:from-white hover:to-gray-50'
                         : 'opacity-60 cursor-not-allowed'
-                    }`}
+                      }`}
                     onClick={() => app.available && handleDialog(app)}
                   >
                     <div className="flex flex-col gap-4">
@@ -508,7 +505,7 @@ export const WorkflowTab = ({ formId, form }) => {
                           </p>
                         </div>
                       </div>
-                      
+
                       {!app.available && (
                         <div className="flex items-center justify-center">
                           <span className="text-xs font-semibold bg-gray-200 text-gray-600 px-3 py-1 rounded-full">
@@ -516,7 +513,7 @@ export const WorkflowTab = ({ formId, form }) => {
                           </span>
                         </div>
                       )}
-                      
+
                       {app.available && (
                         <div className="flex items-center text-xs sm:text-sm text-gray-500 group-hover:text-gray-700 transition-colors">
                           <span>Click to learn more</span>
@@ -545,21 +542,21 @@ export const WorkflowTab = ({ formId, form }) => {
                   {selectedApp.name}
                 </h2>
               </div>
-              <button 
+              <button
                 onClick={handleCloseDialog}
                 className="p-2 hover:bg-gray-100 rounded-xl transition-colors"
               >
                 <X className="h-5 w-5 text-gray-400" />
               </button>
             </div>
-            
+
             <div className="p-4 sm:p-6 space-y-4">
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-200">
                 <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                   {selectedApp.name} integration is coming soon! For now, you can use our Custom Webhook feature to connect with {selectedApp.name}.
                 </p>
               </div>
-              
+
               {selectedApp.name === "Zapier" && (
                 <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl p-4 border border-orange-200">
                   <div className="flex items-start gap-3">
@@ -567,14 +564,14 @@ export const WorkflowTab = ({ formId, form }) => {
                     <div>
                       <h4 className="font-semibold text-orange-900 text-sm">Pro tip:</h4>
                       <p className="text-xs sm:text-sm text-orange-800 mt-1">
-                        You can already use FormBoost with Zapier! Just use the Custom Webhook URL in your Zapier trigger.
+                        You can already use Formboom with Zapier! Just use the Custom Webhook URL in your Zapier trigger.
                       </p>
                     </div>
                   </div>
                 </div>
               )}
-              
-              <button 
+
+              <button
                 onClick={handleCloseDialog}
                 className="w-full bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-700 font-semibold px-4 py-3 rounded-xl transition-all duration-200 transform hover:scale-105"
               >

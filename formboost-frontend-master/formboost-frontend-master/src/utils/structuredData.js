@@ -1,10 +1,10 @@
-// Structured Data for FormBoost - Rich Snippets and SEO
+// Structured Data for Formboom - Rich Snippets and SEO
 
 export const getOrganizationStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "FormBoost",
-  "alternateName": "FormBoost - Form Builder",
+  "name": "Formboom",
+  "alternateName": "Formboom - Form Builder",
   "url": "https://formboom.site",
   "logo": "https://formboom.site/logo.png",
   "description": "Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code.",
@@ -29,7 +29,7 @@ export const getOrganizationStructuredData = () => ({
 export const getWebsiteStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "FormBoost",
+  "name": "Formboom",
   "url": "https://formboom.site",
   "description": "Build forms that convert like crazy. Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code.",
   "potentialAction": {
@@ -39,14 +39,14 @@ export const getWebsiteStructuredData = () => ({
   },
   "publisher": {
     "@type": "Organization",
-    "name": "FormBoost"
+    "name": "Formboom"
   }
 });
 
 export const getSoftwareApplicationStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "FormBoost",
+  "name": "Formboom",
   "applicationCategory": "BusinessApplication",
   "applicationSubCategory": "Form Builder",
   "operatingSystem": "Web Browser",
@@ -104,7 +104,7 @@ export const getSoftwareApplicationStructuredData = () => ({
   },
   "creator": {
     "@type": "Organization",
-    "name": "FormBoost"
+    "name": "Formboom"
   },
   "featureList": [
     "Drag & Drop Form Builder",
@@ -123,11 +123,11 @@ export const getSoftwareApplicationStructuredData = () => ({
 export const getProductStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "FormBoost Form Builder",
+  "name": "Formboom Form Builder",
   "description": "Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code.",
   "brand": {
     "@type": "Brand",
-    "name": "FormBoost"
+    "name": "Formboom"
   },
   "category": "Software > Business Software > Form Builder",
   "url": "https://formboom.site",
@@ -172,7 +172,7 @@ export const getProductStructuredData = () => ({
         "ratingValue": "5",
         "bestRating": "5"
       },
-      "reviewBody": "FormBoost helped us increase lead conversion by 40%. The integrations are seamless!"
+      "reviewBody": "Formboom helped us increase lead conversion by 40%. The integrations are seamless!"
     },
     {
       "@type": "Review",
@@ -196,42 +196,42 @@ export const getFAQStructuredData = () => ({
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is FormBoost?",
+      "name": "What is Formboom?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "FormBoost is a powerful form builder that allows you to create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code."
+        "text": "Formboom is a powerful form builder that allows you to create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code."
       }
     },
     {
       "@type": "Question",
-      "name": "Is FormBoost free to use?",
+      "name": "Is Formboom free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, FormBoost offers a generous free plan that includes up to 5 forms, 100 submissions per month, basic form builder, email notifications, and more."
+        "text": "Yes, Formboom offers a generous free plan that includes up to 5 forms, 100 submissions per month, basic form builder, email notifications, and more."
       }
     },
     {
       "@type": "Question",
-      "name": "What integrations does FormBoost support?",
+      "name": "What integrations does Formboom support?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "FormBoost integrates with Slack, Google Sheets, Zapier, and 50+ other tools to automate your workflow and streamline your data collection process."
+        "text": "Formboom integrates with Slack, Google Sheets, Zapier, and 50+ other tools to automate your workflow and streamline your data collection process."
       }
     },
     {
       "@type": "Question",
-      "name": "Is FormBoost GDPR compliant?",
+      "name": "Is Formboom GDPR compliant?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, FormBoost is fully GDPR compliant with advanced spam protection and role-based access controls to ensure your data is secure and compliant."
+        "text": "Yes, Formboom is fully GDPR compliant with advanced spam protection and role-based access controls to ensure your data is secure and compliant."
       }
     },
     {
       "@type": "Question",
-      "name": "How fast can I create a form with FormBoost?",
+      "name": "How fast can I create a form with Formboom?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "With FormBoost's intuitive drag-and-drop builder, you can create a professional form in just 2 minutes. Setup is quick and requires no technical knowledge."
+        "text": "With Formboom's intuitive drag-and-drop builder, you can create a professional form in just 2 minutes. Setup is quick and requires no technical knowledge."
       }
     }
   ]
@@ -251,8 +251,8 @@ export const getBreadcrumbStructuredData = (items) => ({
 export const getHowToStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "How to Create a Form with FormBoost",
-  "description": "Learn how to create a professional form in minutes using FormBoost's drag-and-drop builder",
+  "name": "How to Create a Form with Formboom",
+  "description": "Learn how to create a professional form in minutes using Formboom's drag-and-drop builder",
   "image": "https://formboom.site/how-to-create-form.png",
   "totalTime": "PT2M",
   "estimatedCost": {
@@ -263,7 +263,7 @@ export const getHowToStructuredData = () => ({
   "supply": [
     {
       "@type": "HowToSupply",
-      "name": "FormBoost Account"
+      "name": "Formboom Account"
     },
     {
       "@type": "HowToSupply",
@@ -274,7 +274,7 @@ export const getHowToStructuredData = () => ({
     {
       "@type": "HowToStep",
       "name": "Sign Up",
-      "text": "Create your free FormBoost account in seconds",
+      "text": "Create your free Formboom account in seconds",
       "url": "https://formboom.site/signup"
     },
     {

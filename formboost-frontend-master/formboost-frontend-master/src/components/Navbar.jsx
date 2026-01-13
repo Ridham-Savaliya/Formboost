@@ -1,7 +1,8 @@
 import { MenuIcon } from "./OptimizedIcons";
 import Profile from "./Profile";
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/Logo_PNG.png";
+
+const Logo = "https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768281681/formboom_horizontally-removebg-_cypez2.png";
 
 // eslint-disable-next-line
 const Navbar = ({ toggleSidebar }) => {
@@ -13,11 +14,11 @@ const Navbar = ({ toggleSidebar }) => {
             onClick={toggleSidebar}
             className="text-gray-600 hover:text-gray-800 -ml-1 sm:ml-0"
           >
-            <HiMenu className="w-6 h-6 mr-3 sm:mr-4" />
+            <MenuIcon className="w-6 h-6 mr-3 sm:mr-4" />
           </button>
 
           <Link to="/" className="block">
-            <img src={Logo} alt="Logo" className="w-28 sm:w-40 h-auto" />
+            <img src={Logo} alt="Formboom" className="w-36 sm:w-52 md:w-56 h-auto" />
           </Link>
         </div>
       </div>

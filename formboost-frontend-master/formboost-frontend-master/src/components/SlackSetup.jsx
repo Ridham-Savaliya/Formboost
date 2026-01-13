@@ -53,7 +53,7 @@ export const SlackSetup = ({ formId, form }) => {
 
     setIsTestingSlack(true);
     setTestResult(null);
-    
+
     try {
       // Save latest settings before testing
       await axios.patch(
@@ -73,10 +73,10 @@ export const SlackSetup = ({ formId, form }) => {
           headers: { Authorization: localStorage.getItem("token") },
         }
       );
-      
+
       const result = response.data.data;
       setTestResult(result);
-      
+
       if (result.success) {
         toast.success(`✅ Slack test successful! Message sent to your channel.`);
       } else {
@@ -172,9 +172,9 @@ export const SlackSetup = ({ formId, form }) => {
               </div>
             </div>
           </div>
-          <a 
-            href="https://slack.com/apps/A0F7XDUAZ-incoming-webhooks" 
-            target="_blank" 
+          <a
+            href="https://slack.com/apps/A0F7XDUAZ-incoming-webhooks"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 mt-2 sm:mt-3 text-blue-600 hover:text-blue-800 font-medium text-sm"
           >
@@ -203,22 +203,20 @@ export const SlackSetup = ({ formId, form }) => {
 
         {/* Test Result */}
         {testResult && (
-          <div className={`p-4 rounded-lg border ${
-            testResult.success 
-              ? 'bg-green-50 border-green-200' 
+          <div className={`p-4 rounded-lg border ${testResult.success
+              ? 'bg-green-50 border-green-200'
               : 'bg-red-50 border-red-200'
-          }`}>
+            }`}>
             <div className="flex items-center space-x-2">
               {testResult.success ? (
                 <FaCheck className="w-4 h-4 text-green-600" />
               ) : (
                 <FaTimes className="w-4 h-4 text-red-600" />
               )}
-              <span className={`text-sm font-medium ${
-                testResult.success ? 'text-green-800' : 'text-red-800'
-              }`}>
-                {testResult.success 
-                  ? 'Test message sent successfully! Check your Slack channel.' 
+              <span className={`text-sm font-medium ${testResult.success ? 'text-green-800' : 'text-red-800'
+                }`}>
+                {testResult.success
+                  ? 'Test message sent successfully! Check your Slack channel.'
                   : `Test failed: ${testResult.error}`
                 }
               </span>
@@ -245,7 +243,7 @@ export const SlackSetup = ({ formId, form }) => {
               </>
             )}
           </button>
-          
+
           <button
             onClick={saveSlackSettings}
             disabled={isSaving}
@@ -273,7 +271,7 @@ export const SlackSetup = ({ formId, form }) => {
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-purple-500 rounded flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-xs font-bold">FB</span>
               </div>
-              <span className="text-sm sm:text-base font-semibold text-gray-900">FormBoost</span>
+              <span className="text-sm sm:text-base font-semibold text-gray-900">Formboom</span>
               <span className="text-xs text-gray-500">now</span>
             </div>
             <p className="text-sm sm:text-base font-semibold text-gray-900 mb-2">📝 New form submission received!</p>

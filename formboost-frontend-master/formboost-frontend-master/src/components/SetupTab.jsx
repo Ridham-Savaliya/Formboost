@@ -27,13 +27,13 @@ const SetupTab = ({ alias, template }) => {
       { name: 'message', label: 'Message', type: 'textarea', required: true, placeholder: 'Enter your message...' }
     ]
   };
-  
+
   const currentTemplate = template || defaultTemplate;
-  
+
   const generateFieldHTML = (field) => {
     const requiredAttr = field.required ? ' required' : '';
     const placeholder = field.placeholder ? ` placeholder="${field.placeholder}"` : '';
-    
+
     switch (field.type) {
       case 'textarea':
         return `    <div class="form-group">
@@ -56,8 +56,8 @@ ${options}
     </div>`;
     }
   };
-  
-  const formCode = `<form action="${formEndpoint}" method="POST" class="formboost-form">
+
+  const formCode = `<form action="${formEndpoint}" method="POST" class="formboom-form">
   <input type="hidden" name="_fb_back" id="_fb_back" value="">
   <input type="text" name="_fb_hp" id="_fb_hp" value="" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true" />
   <input type="hidden" name="_fb_ts" id="_fb_ts" value="">
@@ -73,7 +73,7 @@ ${options}
     const backField = document.getElementById("_fb_back");
     if (backField) {
       backField.value = window.location.href;
-      console.log('FormBoost: Set _fb_back to:', window.location.href);
+      console.log('FormBoom: Set _fb_back to:', window.location.href);
     }
     const tsField = document.getElementById("_fb_ts");
     if (tsField) {
@@ -83,7 +83,7 @@ ${options}
 </script>
 
 <style>
-.formboost-form {
+.formboom-form {
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
@@ -169,7 +169,7 @@ ${options}
               </div>
             </div>
           </div>
-          
+
           <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 border border-gray-200">
             <div className="flex flex-col lg:flex-row lg:items-center gap-2 sm:gap-3 lg:gap-4">
               <div className="flex-1 min-w-0">
@@ -228,11 +228,10 @@ ${options}
             <div className="flex">
               <button
                 onClick={() => setActiveTab("preview")}
-                className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 font-semibold transition-all duration-200 border-b-2 ${
-                  activeTab === "preview"
+                className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 font-semibold transition-all duration-200 border-b-2 ${activeTab === "preview"
                     ? "bg-white text-[#0080FF] border-[#0080FF] shadow-sm"
                     : "text-gray-600 border-transparent hover:text-gray-900 hover:bg-gray-100"
-                }`}
+                  }`}
               >
                 <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span className="text-xs sm:text-sm">Preview</span>
@@ -240,11 +239,10 @@ ${options}
               </button>
               <button
                 onClick={() => setActiveTab("code")}
-                className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 font-semibold transition-all duration-200 border-b-2 ${
-                  activeTab === "code" 
-                    ? "bg-white text-[#0080FF] border-[#0080FF] shadow-sm" 
+                className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 font-semibold transition-all duration-200 border-b-2 ${activeTab === "code"
+                    ? "bg-white text-[#0080FF] border-[#0080FF] shadow-sm"
                     : "text-gray-600 border-transparent hover:text-gray-900 hover:bg-gray-100"
-                }`}
+                  }`}
               >
                 <Code2 className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span className="text-xs sm:text-sm">Get Code</span>
@@ -264,7 +262,7 @@ ${options}
                       <DemoFormPreview alias={alias} template={template} />
                     </div>
                   </div>
-                  
+
                   {/* Info Panel */}
                   <div className="lg:w-80">
                     <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-blue-200">
@@ -331,12 +329,12 @@ ${options}
                     </button>
                   </div>
                   <div className="overflow-x-auto">
-                    <SyntaxHighlighter 
-                      language="htmlbars" 
-                      style={atomOneDark} 
-                      customStyle={{ 
-                        margin: 0, 
-                        borderRadius: 0, 
+                    <SyntaxHighlighter
+                      language="htmlbars"
+                      style={atomOneDark}
+                      customStyle={{
+                        margin: 0,
+                        borderRadius: 0,
                         fontSize: '14px',
                         padding: '1rem'
                       }}
@@ -367,7 +365,7 @@ ${options}
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-blue-200">
                     <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">
                       Customization Tips

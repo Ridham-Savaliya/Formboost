@@ -68,7 +68,7 @@ export const measureCoreWebVitals = () => {
 export const analyzeBundleSize = () => {
   const scripts = Array.from(document.querySelectorAll('script[src]'));
   const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
-  
+
   const bundleInfo = {
     scripts: [],
     styles: [],
@@ -239,8 +239,8 @@ export const checkImageOptimization = () => {
 
 // Main performance audit function
 export const runPerformanceAudit = () => {
-  console.log('🚀 Running FormBoost Performance Audit...');
-  
+  console.log('🚀 Running Formboom Performance Audit...');
+
   const vitals = measureCoreWebVitals();
   const bundleInfo = analyzeBundleSize();
   const imageIssues = checkImageOptimization();
@@ -262,7 +262,7 @@ export const runPerformanceAudit = () => {
 // Calculate performance score (0-100)
 const calculatePerformanceScore = (vitals) => {
   let score = 100;
-  
+
   // FCP scoring
   if (vitals.FCP > 3000) score -= 25;
   else if (vitals.FCP > 1800) score -= 15;
