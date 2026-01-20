@@ -10,9 +10,9 @@ import {
   getLatestChatId,
   getBotInfo,
 } from '#service/telegram.js';
-import { sendWebhook, formatWebhookPayload, testWebhook } from '#service/webhook.js';
-import { sendSlackMessage, testSlackWebhook } from '#service/slack.js';
-import { addToGoogleSheet, testGoogleSheetsIntegration } from '#service/googlesheets.js';
+import { testWebhook } from '#service/webhook.js';
+import { testSlackWebhook } from '#service/slack.js';
+import { testGoogleSheetsIntegration } from '#service/googlesheets.js';
 
 export const findOne = async (formId) => {
   try {
@@ -196,7 +196,7 @@ export const sendTestNotifications = async (formId) => {
     const sampleFormData = {
       name: 'John Doe',
       email: 'john.doe@example.com',
-      message: 'This is a test notification from Formboost.',
+      message: 'This is a test notification from Formboom.',
     };
     const ip = '127.0.0.1';
     let emailSent = false;
@@ -207,8 +207,13 @@ export const sendTestNotifications = async (formId) => {
       try {
         await sendSubmissionMail(form, sampleFormData, ip);
         emailSent = true;
+<<<<<<< HEAD
       } catch {
         /* Intentionally empty */
+=======
+      } catch (emailError) {
+        console.warn('Email test failed:', emailError.message);
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       }
     }
 
@@ -222,8 +227,13 @@ export const sendTestNotifications = async (formId) => {
           telegramMessage
         );
         telegramSent = Boolean(ok);
+<<<<<<< HEAD
       } catch {
         /* Intentionally empty */
+=======
+      } catch (telegramError) {
+        console.warn('Telegram test failed:', telegramError.message);
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       }
     }
 

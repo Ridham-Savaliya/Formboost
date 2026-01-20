@@ -1,5 +1,5 @@
-// Service Worker for FormBoost - Performance & Caching
-const CACHE_NAME = 'formboost-v1';
+// Service Worker for Formboom - Performance & Caching
+const CACHE_NAME = 'Formboom-v1';
 const urlsToCache = [
   '/',
   '/static/css/main.css',
@@ -26,7 +26,7 @@ self.addEventListener('fetch', event => {
         // Return cached version or fetch from network
         return response || fetch(event.request);
       }
-    )
+      )
   );
 });
 

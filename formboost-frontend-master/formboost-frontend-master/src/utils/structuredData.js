@@ -1,10 +1,15 @@
-// Structured Data for FormBoost - Rich Snippets and SEO
+// Structured Data for Formboom - Rich Snippets and SEO
 
 export const getOrganizationStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "Organization",
+<<<<<<< HEAD
   "name": "FormBoom",
   "alternateName": "FormBoom - Form Builder",
+=======
+  "name": "Formboom",
+  "alternateName": "Formboom - Form Builder",
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
   "url": "https://formboom.site",
   "logo": "https://formboom.site/og-image.png",
   "description": "Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code.",
@@ -29,7 +34,11 @@ export const getOrganizationStructuredData = () => ({
 export const getWebsiteStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
+<<<<<<< HEAD
   "name": "FormBoom",
+=======
+  "name": "Formboom",
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
   "url": "https://formboom.site",
   "description": "Build forms that convert like crazy. Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code.",
   "potentialAction": {
@@ -39,14 +48,22 @@ export const getWebsiteStructuredData = () => ({
   },
   "publisher": {
     "@type": "Organization",
+<<<<<<< HEAD
     "name": "FormBoom"
+=======
+    "name": "Formboom"
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
   }
 });
 
 export const getSoftwareApplicationStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+<<<<<<< HEAD
   "name": "FormBoom",
+=======
+  "name": "Formboom",
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
   "applicationCategory": "BusinessApplication",
   "applicationSubCategory": "Form Builder",
   "operatingSystem": "Web Browser",
@@ -104,7 +121,11 @@ export const getSoftwareApplicationStructuredData = () => ({
   },
   "creator": {
     "@type": "Organization",
+<<<<<<< HEAD
     "name": "FormBoom"
+=======
+    "name": "Formboom"
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
   },
   "featureList": [
     "Drag & Drop Form Builder",
@@ -123,11 +144,19 @@ export const getSoftwareApplicationStructuredData = () => ({
 export const getProductStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "Product",
+<<<<<<< HEAD
   "name": "FormBoom Form Builder",
   "description": "Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code.",
   "brand": {
     "@type": "Brand",
     "name": "FormBoom"
+=======
+  "name": "Formboom Form Builder",
+  "description": "Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code.",
+  "brand": {
+    "@type": "Brand",
+    "name": "Formboom"
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
   },
   "category": "Software > Business Software > Form Builder",
   "url": "https://formboom.site",
@@ -172,7 +201,11 @@ export const getProductStructuredData = () => ({
         "ratingValue": "5",
         "bestRating": "5"
       },
+<<<<<<< HEAD
       "reviewBody": "FormBoom helped us increase lead conversion by 40%. The integrations are seamless!"
+=======
+      "reviewBody": "Formboom helped us increase lead conversion by 40%. The integrations are seamless!"
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
     },
     {
       "@type": "Review",
@@ -196,42 +229,77 @@ export const getFAQStructuredData = () => ({
   "mainEntity": [
     {
       "@type": "Question",
+<<<<<<< HEAD
       "name": "What is FormBoom?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "FormBoom is a powerful form builder that allows you to create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code."
+=======
+      "name": "What is Formboom?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Formboom is a powerful form builder that allows you to create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code."
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       }
     },
     {
       "@type": "Question",
+<<<<<<< HEAD
       "name": "Is FormBoom free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes, FormBoom offers a generous free plan that includes up to 5 forms, 100 submissions per month, basic form builder, email notifications, and more."
+=======
+      "name": "Is Formboom free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Formboom offers a generous free plan that includes up to 5 forms, 100 submissions per month, basic form builder, email notifications, and more."
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       }
     },
     {
       "@type": "Question",
+<<<<<<< HEAD
       "name": "What integrations does FormBoom support?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "FormBoom integrates with Slack, Google Sheets, Zapier, and 50+ other tools to automate your workflow and streamline your data collection process."
+=======
+      "name": "What integrations does Formboom support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Formboom integrates with Slack, Google Sheets, Zapier, and 50+ other tools to automate your workflow and streamline your data collection process."
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       }
     },
     {
       "@type": "Question",
+<<<<<<< HEAD
       "name": "Is FormBoom GDPR compliant?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes, FormBoom is fully GDPR compliant with advanced spam protection and role-based access controls to ensure your data is secure and compliant."
+=======
+      "name": "Is Formboom GDPR compliant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Formboom is fully GDPR compliant with advanced spam protection and role-based access controls to ensure your data is secure and compliant."
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       }
     },
     {
       "@type": "Question",
+<<<<<<< HEAD
       "name": "How fast can I create a form with FormBoom?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "With FormBoom's intuitive drag-and-drop builder, you can create a professional form in just 2 minutes. Setup is quick and requires no technical knowledge."
+=======
+      "name": "How fast can I create a form with Formboom?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With Formboom's intuitive drag-and-drop builder, you can create a professional form in just 2 minutes. Setup is quick and requires no technical knowledge."
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       }
     }
   ]
@@ -251,8 +319,13 @@ export const getBreadcrumbStructuredData = (items) => ({
 export const getHowToStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "HowTo",
+<<<<<<< HEAD
   "name": "How to Create a Form with FormBoom",
   "description": "Learn how to create a professional form in minutes using FormBoom's drag-and-drop builder",
+=======
+  "name": "How to Create a Form with Formboom",
+  "description": "Learn how to create a professional form in minutes using Formboom's drag-and-drop builder",
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
   "image": "https://formboom.site/how-to-create-form.png",
   "totalTime": "PT2M",
   "estimatedCost": {
@@ -263,7 +336,11 @@ export const getHowToStructuredData = () => ({
   "supply": [
     {
       "@type": "HowToSupply",
+<<<<<<< HEAD
       "name": "FormBoom Account"
+=======
+      "name": "Formboom Account"
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
     },
     {
       "@type": "HowToSupply",
@@ -274,7 +351,11 @@ export const getHowToStructuredData = () => ({
     {
       "@type": "HowToStep",
       "name": "Sign Up",
+<<<<<<< HEAD
       "text": "Create your free FormBoom account in seconds",
+=======
+      "text": "Create your free Formboom account in seconds",
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       "url": "https://formboom.site/signup"
     },
     {

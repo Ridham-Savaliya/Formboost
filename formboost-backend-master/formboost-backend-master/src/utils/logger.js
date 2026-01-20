@@ -1,6 +1,5 @@
 import winston from 'winston';
 // import Transport from 'winston-transport';
-import config from '#config/index.js';
 import { Context } from '#utils/context.js';
 import { isEmptyObject } from '#utils/index.js';
 // import LokiTransport from 'winston-loki';

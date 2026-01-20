@@ -10,8 +10,12 @@ const gmailTransporter = nodemailer.createTransport({
 });
 
 export async function sendMail(to, subject, text, html) {
+<<<<<<< HEAD
   // Use EMAIL_FROM if set, otherwise use EMAIL_USER
   const from = process.env.EMAIL_FROM || 'FormBoost <no-reply@formboom.site>';
+=======
+  const from = config.email.from || 'Formboom <no-reply@formboom.site>';
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
 
   const mailOptions = {
     from,

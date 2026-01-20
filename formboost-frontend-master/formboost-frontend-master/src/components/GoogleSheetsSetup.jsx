@@ -54,7 +54,7 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
 
     setIsTestingSheets(true);
     setTestResult(null);
-    
+
     try {
       // Save latest settings before testing
       await axios.patch(
@@ -74,10 +74,10 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
           headers: { Authorization: localStorage.getItem("token") },
         }
       );
-      
+
       const result = response.data.data;
       setTestResult(result);
-      
+
       if (result.success) {
         toast.success(`✅ Google Sheets test successful! Check your spreadsheet.`);
       } else {
@@ -187,14 +187,14 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
               <span className="bg-blue-600 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-xs font-bold flex-shrink-0">4</span>
               <div>
                 <p className="font-semibold">Paste the ID below</p>
-                <p className="text-blue-700">FormBoost will auto-create headers and add rows</p>
+                <p className="text-blue-700">Formboom will auto-create headers and add rows</p>
               </div>
             </div>
           </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2 sm:mt-3">
-            <a 
-              href="https://sheets.google.com" 
-              target="_blank" 
+            <a
+              href="https://sheets.google.com"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 text-green-600 hover:text-green-800 font-medium text-sm"
             >
@@ -231,22 +231,20 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
 
         {/* Test Result */}
         {testResult && (
-          <div className={`p-4 rounded-lg border ${
-            testResult.success 
-              ? 'bg-green-50 border-green-200' 
+          <div className={`p-4 rounded-lg border ${testResult.success
+              ? 'bg-green-50 border-green-200'
               : 'bg-red-50 border-red-200'
-          }`}>
+            }`}>
             <div className="flex items-center space-x-2">
               {testResult.success ? (
                 <FaCheck className="w-4 h-4 text-green-600" />
               ) : (
                 <FaTimes className="w-4 h-4 text-red-600" />
               )}
-              <span className={`text-sm font-medium ${
-                testResult.success ? 'text-green-800' : 'text-red-800'
-              }`}>
-                {testResult.success 
-                  ? 'Test row added successfully! Check your Google Sheet.' 
+              <span className={`text-sm font-medium ${testResult.success ? 'text-green-800' : 'text-red-800'
+                }`}>
+                {testResult.success
+                  ? 'Test row added successfully! Check your Google Sheet.'
                   : `Test failed: ${testResult.error}`
                 }
               </span>
@@ -273,7 +271,7 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
               </>
             )}
           </button>
-          
+
           <button
             onClick={saveSheetsSettings}
             disabled={isSaving}
@@ -297,7 +295,7 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
         <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
           <h4 className="text-sm sm:text-base font-medium text-gray-900 mb-2">📊 Data Format</h4>
           <p className="text-xs sm:text-sm text-gray-600 mb-3">
-            FormBoost will automatically create these columns in your sheet:
+            Formboom will automatically create these columns in your sheet:
           </p>
           <div className="bg-white border rounded p-2 sm:p-3 overflow-x-auto">
             <table className="w-full text-xs">

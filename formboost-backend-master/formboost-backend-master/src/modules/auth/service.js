@@ -29,7 +29,7 @@ export const verifyUser = async (fbToken) => {
           stableIdSource = payload.user_id || payload.sub || payload.email || stableIdSource;
           parsedEmail = (payload.email || '').toLowerCase();
         }
-      } catch (e) {
+      } catch {
         // Fallback to raw token hashing if parsing fails
       }
 

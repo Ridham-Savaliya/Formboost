@@ -32,7 +32,7 @@ function handleProcessError(type, error) {
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
-    message: 'FormBoost Backend is running',
+    message: 'Formboom Backend is running',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
   });
@@ -41,7 +41,7 @@ app.get('/api/health', (req, res) => {
 // Basic API routes placeholder
 app.get('/api', (req, res) => {
   res.json({
-    message: 'FormBoost API Server',
+    message: 'Formboom API Server',
     version: '0.0.1',
     endpoints: ['/api/health'],
   });

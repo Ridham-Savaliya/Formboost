@@ -184,7 +184,7 @@ export const submitFormData = async (alias, formData, ip) => {
         formSubmissionObj.spamScore = 0.9;
         formSubmissionObj.spamReason = `Submitted too quickly (${elapsedMs}ms)`;
       }
-    } catch (e) {
+    } catch {
       // Continue without failing the request
     }
 
@@ -424,7 +424,7 @@ export const submitFormData = async (alias, formData, ip) => {
         try {
           const result = await addToGoogleSheet(
             form.googleSheetsId,
-            'FormBoost Submissions',
+            'Formboom Submissions',
             form,
             formData,
             ip

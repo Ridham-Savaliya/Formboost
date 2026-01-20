@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  
+
   <!-- Homepage -->
   <url>
     <loc>https://formboom.site/</loc>
+<<<<<<< HEAD
     <lastmod>2026-01-20</lastmod>
+=======
+    <lastmod>2024-01-13</lastmod>
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://formboom.site/og-image.png</image:loc>
+      <image:title>FormBoom - Best Form Builder 2024</image:title>
+      <image:caption>Create stunning, high-converting forms in minutes</image:caption>
+    </image:image>
   </url>
+<<<<<<< HEAD
   
   <!-- Sign Up Page -->
   <url>
     <loc>https://formboom.site/signup</loc>
     <lastmod>2026-01-20</lastmod>
+=======
+
+  <!-- Signup Page -->
+  <url>
+    <loc>https://formboom.site/signup</loc>
+    <lastmod>2024-01-13</lastmod>
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
+
   <!-- Login Page -->
   <url>
     <loc>https://formboom.site/login</loc>
+<<<<<<< HEAD
     <lastmod>2026-01-20</lastmod>
+=======
+    <lastmod>2024-01-13</lastmod>
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -34,6 +56,38 @@
     <lastmod>2026-01-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Dashboard -->
+  <url>
+    <loc>https://formboom.site/dashboard</loc>
+    <lastmod>2024-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Pricing (if exists) -->
+  <url>
+    <loc>https://formboom.site/#pricing</loc>
+    <lastmod>2024-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Features (if exists) -->
+  <url>
+    <loc>https://formboom.site/#features</loc>
+    <lastmod>2024-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- FAQ -->
+  <url>
+    <loc>https://formboom.site/#faq</loc>
+    <lastmod>2024-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>

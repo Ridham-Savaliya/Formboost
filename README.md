@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div align="center">
   <!-- LOGO -->
   <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024967/formboost-favicon-color_af2opq.png" alt="Formboost Logo" width="120" style="margin-bottom:16px;" />
@@ -171,47 +172,116 @@ formboost/
 | `npm run seeder:run`    | Run seeders                              |
 | `npm run lint`          | Run ESLint for code quality               |
 | `npm run format`        | Format code with Prettier                 |
+=======
+# FormBoost
+
+FormBoost is a comprehensive web application that provides a powerful form-building and data management solution. It offers a user-friendly interface for creating and customizing forms, as well as advanced features for data analysis and reporting.
+
+## Installation
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
 
 ### Frontend
 
-| Command         | Description                          |
-|-----------------|------------------------------------|
-| `npm run dev`   | Start frontend dev server (Vite)   |
-| `npm run build` | Build production frontend bundle   |
-| `npm run preview`| Preview production build locally  |
-| `npm run lint`  | Run ESLint for frontend code       |
+1. Clone the repository:
+```
+git clone https://github.com/your-username/formboost-frontend.git
+```
+2. Navigate to the project directory:
+```
+cd formboost-frontend
+```
+3. Install dependencies:
+```
+npm install
+```
+4. Start the development server:
+```
+npm run dev
+```
+5. Open your browser and visit `http://localhost:3000` to access the application.
 
----
+### Backend
 
-## 🤝 Contributing
+1. Clone the repository:
+```
+git clone https://github.com/your-username/formboost.git
+```
+2. Navigate to the project directory:
+```
+cd formboost
+```
+3. Install dependencies:
+```
+npm install
+```
+4. Set up the environment variables:
+   - Create a `.env` file in the project root directory.
+   - Add the necessary environment variables, such as database connection details, API keys, and other configuration settings.
+5. Run the database migrations:
+```
+npm run migration:run
+```
+6. Start the development server:
+```
+npm run dev
+```
+7. The backend server will be running at `http://localhost:8000`.
 
-We welcome contributions! Please follow these steps:
+## Usage
 
-1. Fork the repository  
-2. Create your feature branch (`git checkout -b feature/YourFeature`)  
-3. Commit your changes (`git commit -m 'Add some feature'`)  
-4. Push to the branch (`git push origin feature/YourFeature`)  
-5. Open a Pull Request  
+The FormBoost application provides the following key features:
 
-Please ensure your code follows the existing style and passes linting.
+1. **Form Builder**: Create and customize forms with a wide range of input fields, validation rules, and advanced features.
+2. **Data Management**: Collect and store form submissions in a secure database, with options for exporting data in various formats.
+3. **Analytics and Reporting**: Analyze form data using powerful visualization tools and generate custom reports.
+4. **User Management**: Manage user accounts, roles, and permissions to control access to the application.
 
----
+To get started, log in to the application and navigate to the "Forms" section to begin creating and managing your forms.
 
-## 📄 License
+## API
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+The FormBoost backend provides a RESTful API for interacting with the application programmatically. The API documentation can be found at `http://localhost:8000/api/docs`.
 
----
+## Contributing
 
-## 📬 Contact
+We welcome contributions from the community! If you would like to contribute to the FormBoost project, please follow these steps:
 
+<<<<<<< HEAD
 Formboost Team – [contact@formboost.com](mailto:contact@formboost.com)  
 GitHub: [https://github.com/Ridham-Savaliya/formboost](https://github.com/yourusername/formboost)  
 Twitter: [@formboost](https://twitter.com/formboost)  
+=======
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive commit messages.
+4. Push your changes to your forked repository.
+5. Submit a pull request to the main repository.
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
 
----
+Please ensure that your code adheres to the project's coding standards and that you have added appropriate tests.
 
+<<<<<<< HEAD
 <p align="center">
   <em>Formboost &mdash; Empowering your data, one form at a time.</em>
 </p>
 
+=======
+## License
+
+FormBoost is licensed under the [MIT License](LICENSE).
+
+## Testing
+
+The FormBoost project includes a comprehensive test suite to ensure the reliability and stability of the application. To run the tests, use the following commands:
+
+```
+# Frontend
+npm run lint
+
+# Backend
+npm run lint
+npm run test
+```
+
+Make sure all tests pass before submitting any changes.
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275

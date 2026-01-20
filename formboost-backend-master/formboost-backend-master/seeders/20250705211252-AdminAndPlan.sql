@@ -3,7 +3,7 @@ INSERT INTO `Admins` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt
 VALUES (
   UUID(),
   'Dharm Vachhani',
-  'dharm@formboost.site',
+  'dharm@Formboom.site',
   '$2b$10$T0HtuNr9bUMM8wBzGzOnre4ww91qhe7JFQsNrNQO253i.FoX2B1tu',
   NOW(),
   NOW()

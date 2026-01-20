@@ -2,7 +2,7 @@ import { google } from 'googleapis';
 import logger from '#utils/logger.js';
 
 /**
- * Google Sheets service for FormBoost
+ * Google Sheets service for Formboom
  * Requires service account credentials in environment variables
  */
 
@@ -41,7 +41,7 @@ const createSheetsClient = () => {
 /**
  * Add form submission to Google Sheet
  * @param {string} spreadsheetId - Google Sheets ID
- * @param {string} sheetName - Sheet name (default: 'FormBoost Submissions')
+ * @param {string} sheetName - Sheet name (default: 'Formboom Submissions')
  * @param {object} form - Form object
  * @param {object} formData - Form submission data
  * @param {string} ipAddress - Submitter IP
@@ -49,7 +49,7 @@ const createSheetsClient = () => {
  */
 export const addToGoogleSheet = async (
   spreadsheetId,
-  sheetName = 'FormBoost Submissions',
+  sheetName = 'Formboom Submissions',
   form,
   formData,
   ipAddress
@@ -172,10 +172,10 @@ export const testGoogleSheetsIntegration = async (spreadsheetId, form) => {
   const testData = {
     name: 'John Doe',
     email: 'john.doe@example.com',
-    message: 'This is a test submission from FormBoost.',
+    message: 'This is a test submission from Formboom.',
   };
 
-  return await addToGoogleSheet(spreadsheetId, 'FormBoost Test', form, testData, '127.0.0.1');
+  return await addToGoogleSheet(spreadsheetId, 'Formboom Test', form, testData, '127.0.0.1');
 };
 
 /**

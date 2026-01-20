@@ -1,6 +1,6 @@
 -- Create database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS formboost_db;
-USE formboost_db;
+CREATE DATABASE IF NOT EXISTS Formboom_db;
+USE Formboom_db;
 
 -- Create SequelizeMeta table for migration tracking
 CREATE TABLE IF NOT EXISTS `SequelizeMeta` (

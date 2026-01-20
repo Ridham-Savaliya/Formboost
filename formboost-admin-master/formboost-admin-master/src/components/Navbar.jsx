@@ -2,8 +2,12 @@ import { HiMenu } from "react-icons/hi";
 import { FaArrowLeft } from "react-icons/fa6"; // Arrow pointing left icon
 import Profile from "./Profile";
 import { CiSearch } from "react-icons/ci";
+<<<<<<< HEAD
 // Using Cloudinary URL for FormBoom logo
 const logo = "https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768281681/formboom_horizontally-removebg-_cypez2.png";
+=======
+import logo from "../assets/logos/Formboom-high-resolution-logo-transparent.png";
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 

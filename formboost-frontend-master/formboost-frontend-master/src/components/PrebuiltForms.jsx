@@ -144,7 +144,7 @@ const PrebuiltForms = ({ onFormCreated }) => {
         {
           formName: template.name,
           formDescription: template.description,
-          targetEmail: userEmail || 'noreply@formboost.site', // Use user's email as default
+          targetEmail: userEmail || 'noreply@formboom.site', // Use user's email as default
           emailNotification: true,
           filterSpam: true,
           isPrebuilt: true,
@@ -238,7 +238,7 @@ const PrebuiltForms = ({ onFormCreated }) => {
             className="group bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-2xl hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-bl-3xl opacity-50"></div>
-            
+
             <div className="flex items-center mb-4 relative z-10">
               <div className={`w-12 h-12 ${template.color} rounded-xl flex items-center justify-center text-white text-2xl mr-4 shadow-lg group-hover:scale-110 transition-transform duration-200`}>
                 {template.icon}
@@ -253,9 +253,9 @@ const PrebuiltForms = ({ onFormCreated }) => {
                 </p>
               </div>
             </div>
-            
+
             <p className="text-gray-600 mb-5 leading-relaxed">{template.description}</p>
-            
+
             <div className="mb-6">
               <h5 className="text-sm font-semibold text-gray-800 mb-3 flex items-center">
                 <svg className="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">

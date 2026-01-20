@@ -264,11 +264,285 @@ export default (formData, ipAddress, form) => {
         </a>
       </div>
 
+<<<<<<< HEAD
       <p style="font-size: 12px; color: #9ca3af; margin-top: 20px;">
         © ${new Date().getFullYear()} FormBoom. All rights reserved.
       </p>
     </div>
   </div>
+=======
+                                    <img align="center" border="0" src="https://cdn.formboom.site/public/formboom-high-resolution-logo-white-transparent.png" alt="Formboom" title="Formboom" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 35%;max-width: 203px;" width="203" />
+
+                                  </td>
+                                </tr>
+                              </table>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <!--[if (!mso)&(!IE)]><!-->
+                    </div><!--<![endif]-->
+                  </div>
+                </div>
+                <!--[if (mso)|(IE)]></td><![endif]-->
+                <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="u-row-container" style="padding: 0px;background-color: transparent">
+            <div class="u-row" style="margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
+              <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
+                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #ffffff;"><![endif]-->
+
+                <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
+                <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+                  <div style="height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
+                    <!--[if (!mso)&(!IE)]><!-->
+                    <div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
+
+                      <table style="font-family:'Cabin',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;padding:20px;font-family:'Cabin',sans-serif;" align="left">
+
+                              <div>
+                                <style>
+        h3, .logo {
+          text-align: center;
+        }
+        li {
+          max-width: 500px;
+          list-style-type: square;
+          border: 1px solid black;
+          margin: 2px 0px;
+          display: flex;
+          flex-wrap: wrap;
+          overflow-wrap: anywhere;
+        }
+        #logo {
+          width: 50vw;
+        }
+      </style>
+      <h3>New Form Submission</h3>
+      <p>Here are the details:</p>
+      <ul>
+        ${Object.entries(formData)
+          .map(([key, value]) => `<li><strong>${key}:</strong> ${value}</li>`)
+          .join('')}
+      </ul>
+      <p>IP Address: ${ipAddress}</p>
+      <h3>Check All Submissions Here: 
+        <a href="https://app.formboom.site/form/${form.id}">CLICK</a>
+      </h3>
+                              </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <!--[if (!mso)&(!IE)]><!-->
+                    </div><!--<![endif]-->
+                  </div>
+                </div>
+                <!--[if (mso)|(IE)]></td><![endif]-->
+                <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="u-row-container" style="padding: 0px;background-color: transparent">
+            <div class="u-row" style="margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
+              <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
+                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #ffffff;"><![endif]-->
+
+                <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
+                <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+                  <div style="height: 100%;width: 100% !important;">
+                    <!--[if (!mso)&(!IE)]><!-->
+                    <div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
+
+                      <table style="font-family:'Cabin',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 1px;font-family:'Cabin',sans-serif;" align="left">
+
+                              <table height="0px" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 1px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+                                <tbody>
+                                  <tr style="vertical-align: top">
+                                    <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+                                      <span>&#160;</span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table style="font-family:'Cabin',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 20px;font-family:'Cabin',sans-serif;" align="left">
+
+                              <div style="font-size: 14px; line-height: 160%; text-align: left; word-wrap: break-word;">
+                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;">Thank you for choosing Formboom.</span></p>
+                                <p style="line-height: 160%;">&nbsp;</p>
+                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;"><strong>The Formboom Team</strong></span></p>
+                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;"><a style="color: #333333;" href="mailto:contact@formboom.site">contact@formboom.site</a></span></p>
+                                <p style="line-height: 160%;"><span style="color: #333333; line-height: 22.4px;"><a style="color: #333333;" href="#">www.formboom.site</a></span></p>
+                              </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <!--[if (!mso)&(!IE)]><!-->
+                    </div><!--<![endif]-->
+                  </div>
+                </div>
+                <!--[if (mso)|(IE)]></td><![endif]-->
+                <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="u-row-container" style="padding: 0px;background-color: transparent">
+            <div class="u-row" style="margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
+              <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
+                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: transparent;"><![endif]-->
+
+                <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
+                <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+                  <div style="height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
+                    <!--[if (!mso)&(!IE)]><!-->
+                    <div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
+
+                      <table style="font-family:'Cabin',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 6px;font-family:'Cabin',sans-serif;" align="left">
+
+                              <div style="font-size: 14px; line-height: 140%; text-align: center; word-wrap: break-word;">
+                                <p style="line-height: 140%;" class="p1">© 2024 Formboom. All rights reserved.</p>
+                              </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <!--[if (!mso)&(!IE)]><!-->
+                    </div><!--<![endif]-->
+                  </div>
+                </div>
+                <!--[if (mso)|(IE)]></td><![endif]-->
+                <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="u-row-container" style="padding: 0px;background-color: transparent">
+            <div class="u-row" style="margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
+              <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
+                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: transparent;"><![endif]-->
+
+                <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
+                <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+                  <div style="height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
+                    <!--[if (!mso)&(!IE)]><!-->
+                    <div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
+
+                      <table style="font-family:'Cabin',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 0px 15px;font-family:'Cabin',sans-serif;" align="left">
+
+                              <div align="center">
+                                <div style="display: table; max-width:63px;">
+                                  <!--[if (mso)|(IE)]><table width="63" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-collapse:collapse;" align="center"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:63px;"><tr><![endif]-->
+
+
+                                  <!--[if (mso)|(IE)]><td width="22" style="width:22px; padding-right: 10px;" valign="top"><![endif]-->
+                                  <table align="center" border="0" cellspacing="0" cellpadding="0" width="22" height="22" style="width: 22px !important;height: 22px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 10px">
+                                    <tbody>
+                                      <tr style="vertical-align: top">
+                                        <td align="center" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
+                                          <a href="https://linkedin.com/company/formboom" title="LinkedIn" target="_blank">
+                                            <img src="https://cdn.tools.unlayer.com/social/icons/rounded-black/linkedin.png" alt="LinkedIn" title="LinkedIn" width="22" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 22px !important">
+                                          </a>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <!--[if (mso)|(IE)]></td><![endif]-->
+
+                                  <!--[if (mso)|(IE)]><td width="22" style="width:22px; padding-right: 0px;" valign="top"><![endif]-->
+                                  <table align="center" border="0" cellspacing="0" cellpadding="0" width="22" height="22" style="width: 22px !important;height: 22px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px">
+                                    <tbody>
+                                      <tr style="vertical-align: top">
+                                        <td align="center" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
+                                          <a href="https://x.com/FormBoom" title="X" target="_blank">
+                                            <img src="https://cdn.tools.unlayer.com/social/icons/rounded-black/x.png" alt="X" title="X" width="22" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 22px !important">
+                                          </a>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <!--[if (mso)|(IE)]></td><![endif]-->
+
+
+                                  <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+                                </div>
+                              </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <!--[if (!mso)&(!IE)]><!-->
+                    </div><!--<![endif]-->
+                  </div>
+                </div>
+                <!--[if (mso)|(IE)]></td><![endif]-->
+                <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+              </div>
+            </div>
+          </div>
+
+
+
+          <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!--[if mso]></div><![endif]-->
+  <!--[if IE]></div><![endif]-->
+>>>>>>> 40af3738882195070cb782017fb42cd1189d4275
 </body>
 </html>
   `;

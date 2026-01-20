@@ -1,8 +1,8 @@
-# Formboost Backend
+# Formboom Backend
 
 [![Node.js](https://img.shields.io/badge/node-%3E=18.x-brightgreen)](https://nodejs.org/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Formboost Backend is a robust Node.js/Express REST API for managing forms, submissions, users, plans, and admin operations. It features secure authentication, rate limiting, logging, email notifications, and seamless integration with Firebase for user management.
+Formboom Backend is a robust Node.js/Express REST API for managing forms, submissions, users, plans, and admin operations. It features secure authentication, rate limiting, logging, email notifications, and seamless integration with Firebase for user management.
 
 ---
 
@@ -69,7 +69,7 @@ Formboost Backend is a robust Node.js/Express REST API for managing forms, submi
 
 ```sh
 git clone <repo-url>
-cd formboost-backend
+cd Formboom-backend
 npm install
 ```
 

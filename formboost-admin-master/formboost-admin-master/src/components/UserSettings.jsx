@@ -246,11 +246,10 @@ const UserSettings = () => {
                   {tabs.map((tab) => (
                     <li key={tab.id} className="me-2" role="presentation">
                       <button
-                        className={`inline-block p-4 border-b-2 rounded-t-lg ${
-                          activeTab === tab.id
+                        className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === tab.id
                             ? "border-blue-500 text-blue-500 font-bold"
                             : "hover:text-blue-500"
-                        }`}
+                          }`}
                         onClick={() => setActiveTab(tab.id)}
                         type="button"
                         role="tab"
@@ -277,7 +276,7 @@ const UserSettings = () => {
           <div className="copyright">
             © Copyright
             <strong>
-              <span> Formboost</span>
+              <span> Formboom</span>
             </strong>
             . All Rights Reserved
           </div>

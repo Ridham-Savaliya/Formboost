@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   return sendSuccessResponse({
     res,
     statusCode: 200,
-    message: 'FormBoost Backend API',
+    message: 'Formboom Backend API',
     data: {
       version: '0.0.1',
       status: 'running',

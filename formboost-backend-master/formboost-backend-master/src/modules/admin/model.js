@@ -34,7 +34,7 @@ const Admin = sequelize.define(
     tableName: 'admins', // Explicitly define the table name as lowercase
     freezeTableName: true, // Prevents Sequelize from trying to pluralize the table name
     hooks: {
-      beforeCreate: async (user) => {
+      beforeCreate: async () => {
         // Temporarily disabled bcrypt hashing - use plain text for development
         console.warn('Password hashing disabled - using plain text (development only)');
         // const salt = await bcrypt.genSalt(10);

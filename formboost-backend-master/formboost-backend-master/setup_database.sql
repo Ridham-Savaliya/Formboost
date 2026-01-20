@@ -1,5 +1,5 @@
--- Complete database setup for FormBoost
-USE formboost_db;
+-- Complete database setup for Formboom
+USE Formboom_db;
 
 -- Drop existing tables if they exist (in correct order due to foreign keys)
 DROP TABLE IF EXISTS UserPlans;

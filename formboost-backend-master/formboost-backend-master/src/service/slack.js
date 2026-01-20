@@ -17,7 +17,7 @@ export const sendSlackMessage = async (webhookUrl, form, formData, ipAddress) =>
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'FormBoost-Slack/1.0',
+        'User-Agent': 'Formboom-Slack/1.0',
       },
     });
 
@@ -73,8 +73,8 @@ export const formatSlackMessage = (form, formData, ipAddress) => {
             short: true,
           },
         ],
-        footer: 'FormBoost',
-        footer_icon: 'https://formboost.com/favicon.ico',
+        footer: 'Formboom',
+        footer_icon: 'https://Formboom.com/favicon.ico',
         ts: Math.floor(Date.now() / 1000),
       },
     ],
@@ -91,7 +91,7 @@ export const testSlackWebhook = async (webhookUrl, form) => {
   const testData = {
     name: 'John Doe',
     email: 'john.doe@example.com',
-    message: 'This is a test message from FormBoost.',
+    message: 'This is a test message from Formboom.',
   };
 
   return await sendSlackMessage(webhookUrl, form, testData, '127.0.0.1');

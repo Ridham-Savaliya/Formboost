@@ -5,7 +5,7 @@ const DemoFormPreview = ({ alias, template }) => {
   const backRef = useRef(null);
   const tsRef = useRef(null);
   const hpRef = useRef(null);
-  
+
   useEffect(() => {
     // Set the exact current URL for back navigation
     const currentUrl = window.location.href;
@@ -22,12 +22,12 @@ const DemoFormPreview = ({ alias, template }) => {
       { name: 'message', label: 'Message', type: 'textarea', required: true, placeholder: 'Enter your message...' }
     ]
   };
-  
+
   const currentTemplate = template || defaultTemplate;
-  
+
   const renderField = (field, index) => {
     const baseClasses = "mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 transition-all duration-200 text-sm sm:text-base";
-    
+
     switch (field.type) {
       case 'textarea':
         return (
@@ -81,9 +81,9 @@ const DemoFormPreview = ({ alias, template }) => {
         );
     }
   };
-  
+
   return (
-    <section className="formboost-container w-full max-w-md mx-auto">
+    <section className="formboom-container w-full max-w-md mx-auto">
       <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-4 sm:px-6 py-4">
@@ -99,7 +99,7 @@ const DemoFormPreview = ({ alias, template }) => {
             </div>
           </div>
         </div>
-        
+
         {/* Form */}
         <form
           action={formEndpoint}
@@ -143,7 +143,7 @@ const DemoFormPreview = ({ alias, template }) => {
           {/* Footer note */}
           <div className="text-center pt-2">
             <p className="text-xs text-gray-500">
-              Powered by <span className="font-semibold text-primary">FormBoost</span>
+              Powered by <span className="font-semibold text-primary">FormBoom</span>
             </p>
           </div>
         </form>
@@ -159,7 +159,7 @@ const DemoFormPreview = ({ alias, template }) => {
             <p className="text-xs sm:text-sm text-blue-800">
               <span className="font-semibold">Mobile-First Design:</span> This form automatically adapts to any screen size for the best user experience.
             </p>
-          </div>  
+          </div>
         </div>
       </div>
     </section>

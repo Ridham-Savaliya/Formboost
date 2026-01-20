@@ -1,6 +1,5 @@
 import axios from 'axios';
 import config from '#config/index.js';
-import { handleError, throwAppError } from '#utils/exception.js';
 
 export async function sendToDiscord(channel, body) {
   const webhookUrls = config.discord.webhookUrl;
@@ -20,7 +19,7 @@ export async function sendToDiscord(channel, body) {
 
   body = {
     ...body,
-    username: 'Formboost Backend - ' + config.app.env,
+    username: 'Formboom Backend - ' + config.app.env,
   };
 
   try {

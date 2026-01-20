@@ -158,7 +158,7 @@ async function run() {
       allowNull: false,
       defaultValue: 0,
     });
-  } catch (err) {
+  } catch {
     console.log(
       '[DB] Skipping capitalized "Forms" table adjustments: table not found or inaccessible'
     );

@@ -26,9 +26,9 @@ export const sendWebhook = async (webhookUrl, payload, maxRetries = 3) => {
         timeout: 10000, // 10 second timeout
         headers: {
           'Content-Type': 'application/json',
-          'User-Agent': 'FormBoost-Webhook/1.0',
-          'X-FormBoost-Event': 'form.submission',
-          'X-FormBoost-Delivery-ID': generateDeliveryId(),
+          'User-Agent': 'Formboom-Webhook/1.0',
+          'X-Formboom-Event': 'form.submission',
+          'X-Formboom-Delivery-ID': generateDeliveryId(),
         },
         validateStatus: (status) => status < 500, // Don't retry on 4xx errors
       });
@@ -45,7 +45,7 @@ export const sendWebhook = async (webhookUrl, payload, maxRetries = 3) => {
             webhookUrl: maskUrl(webhookUrl),
             statusCode: response.status,
             attempt,
-            deliveryId: response.config.headers['X-FormBoost-Delivery-ID'],
+            deliveryId: response.config.headers['X-Formboom-Delivery-ID'],
           },
         });
         break;
@@ -120,8 +120,8 @@ export const formatWebhookPayload = (form, formData, ipAddress, submission) => {
     },
     data: formData,
     metadata: {
-      userAgent: 'FormBoost/1.0',
-      source: 'formboost',
+      userAgent: 'Formboom/1.0',
+      source: 'Formboom',
     },
   };
 };
@@ -152,11 +152,11 @@ export const testWebhook = async (webhookUrl, form) => {
     data: {
       name: 'John Doe',
       email: 'john.doe@example.com',
-      message: 'This is a test webhook from FormBoost.',
+      message: 'This is a test webhook from Formboom.',
     },
     metadata: {
-      userAgent: 'FormBoost/1.0',
-      source: 'formboost',
+      userAgent: 'Formboom/1.0',
+      source: 'Formboom',
       test: true,
     },
   };
