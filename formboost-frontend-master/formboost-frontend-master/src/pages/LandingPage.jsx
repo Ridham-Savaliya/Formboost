@@ -318,10 +318,13 @@ const LandingPage = () => {
                     <span>Start Building Free</span>
                     <ZapIcon className="w-5 h-5" />
                   </Link>
-                  <button className="w-full sm:w-auto px-8 py-4 border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 flex items-center justify-center space-x-2">
-                    <ZapIcon className="w-5 h-5" />
+                  <a
+                    href="#video-demo"
+                    className="w-full sm:w-auto px-8 py-4 border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 flex items-center justify-center space-x-2"
+                  >
+                    {/* <PlayIcon className="w-5 h-5" /> */}
                     <span>Watch Demo</span>
-                  </button>
+                  </a>
                 </div>
 
                 {/* Trust Indicators */}
@@ -382,6 +385,183 @@ const LandingPage = () => {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Video Demo Section */}
+          <section id="video-demo" className="py-16 sm:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center space-y-4 mb-16">
+                <div className="inline-flex items-center space-x-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
+                  {/* <PlayIcon className="w-4 h-4" /> */}
+                  <span>See FormBoom in Action</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
+                  Watch how easy it is to
+                  <br />
+                  <span className="text-[#0080FF]">build converting forms</span>
+                </h2>
+                <p className="max-w-2xl mx-auto text-lg text-gray-600">
+                  See our drag-and-drop builder in action. From concept to live form in under 2 minutes.
+                </p>
+              </div>
+
+              <div className="relative max-w-5xl mx-auto">
+                {/* Video Container with Unique Design */}
+                <div className="relative group">
+                  {/* Decorative Elements */}
+                  <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-20 animate-pulse"></div>
+                  <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-20 animate-pulse delay-1000"></div>
+                  <div className="absolute top-1/2 -left-12 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full opacity-30 animate-bounce"></div>
+                  <div className="absolute top-1/4 -right-8 w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-30 animate-bounce delay-500"></div>
+
+                  {/* Main Video Container */}
+                  <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200 group-hover:shadow-3xl transition-all duration-500">
+                    {/* Video Header Bar */}
+                    <div className="bg-gray-100 px-6 py-4 border-b border-gray-200">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex space-x-2">
+                            <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                            <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                            <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                          </div>
+                          <div className="text-sm font-medium text-gray-700">FormBoom Demo</div>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                            ● LIVE
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Video Content */}
+                    <div className="relative aspect-video bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
+                      {/* Placeholder Video - Replace with your actual video */}
+                      <video
+                        id="demo-video"
+                        className="w-full h-full object-cover"
+                        poster="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                        muted={isVideoMuted}
+                        autoPlay
+                        onPlay={() => setIsVideoPlaying(true)}
+                        onPause={() => setIsVideoPlaying(false)}
+                      >
+                        <source src="https://res.cloudinary.com/dsqpc6sp6/video/upload/v1768284663/Modern_Tech_Startup_Video_Creation_o8chjo.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+
+                      {/* Video Overlay */}
+                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                        {/* Play/Pause Button */}
+                        <button
+                          onClick={toggleVideo}
+                          className="group/play w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl hover:bg-white hover:scale-110 transition-all duration-300"
+                        >
+                          {/* {isVideoPlaying ? (
+                        <PauseIcon className="w-8 h-8 text-[#0080FF] group-hover/play:scale-110 transition-transform" />
+                      ) : (
+                        <PlayIcon className="w-8 h-8 text-[#0080FF] ml-1 group-hover/play:scale-110 transition-transform" />
+                      )} */}
+                        </button>
+                      </div>
+
+                      {/* Video Controls */}
+                      <div className="absolute bottom-4 right-4 flex items-center space-x-2">
+                        <button
+                          onClick={toggleMute}
+                          className="w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-200"
+                        >
+                          {/* {isVideoMuted ? (
+                        <VolumeXIcon className="w-5 h-5" />
+                      ) : (
+                        <Volume2Icon className="w-5 h-5" />
+                      )} */}
+                        </button>
+                      </div>
+
+                      {/* Progress Indicator */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
+                        <div className="h-full bg-[#0080FF] w-0 transition-all duration-300" id="video-progress"></div>
+                      </div>
+                    </div>
+
+                    {/* Video Stats */}
+                    <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex items-center space-x-2 text-gray-600">
+                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                            <span>2:34 Demo Length</span>
+                          </div>
+                          <div className="text-gray-400">|</div>
+                          <div className="text-gray-600">Form Builder Walkthrough</div>
+                        </div>
+                        <div className="flex items-center space-x-2 text-gray-500">
+                          <span>👀 10,000+ views</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Floating Feature Cards */}
+                  <div className="absolute -left-8 top-1/4 hidden lg:block">
+                    <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-200 transform -rotate-6 hover:rotate-0 transition-transform duration-300">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                          <ZapIcon className="w-4 h-4 text-[#0080FF]" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-gray-900">Drag & Drop</div>
+                          <div className="text-xs text-gray-500">Visual Builder</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="absolute -right-8 top-3/4 hidden lg:block">
+                    <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-200 transform rotate-6 hover:rotate-0 transition-transform duration-300">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                          <CheckIcon className="w-4 h-4 text-green-600" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-gray-900">Live Preview</div>
+                          <div className="text-xs text-gray-500">Real-time Updates</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Video Features Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+                  <div className="text-center space-y-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto shadow-lg">
+                      <ZapIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900">2-Minute Setup</h3>
+                    <p className="text-gray-600 text-sm">Watch how quickly you can build professional forms with our intuitive interface.</p>
+                  </div>
+
+                  <div className="text-center space-y-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto shadow-lg">
+                      <SettingsIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900">Smart Features</h3>
+                    <p className="text-gray-600 text-sm">See conditional logic, auto-responses, and integrations working seamlessly together.</p>
+                  </div>
+
+                  <div className="text-center space-y-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto shadow-lg">
+                      <CheckIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900">Instant Results</h3>
+                    <p className="text-gray-600 text-sm">From design to deployment - see your form go live and start collecting responses immediately.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -556,15 +736,15 @@ const LandingPage = () => {
                         <div className="space-y-3">
                           <div className="flex items-center space-x-3">
                             <ZapIcon className="w-5 h-5 text-[#0080FF]" />
-                            <span className="text-gray-700">5+ years building web applications</span>
+                            <span>5+ years building web applications</span>
                           </div>
                           <div className="flex items-center space-x-3">
                             <ZapIcon className="w-5 h-5 text-[#0080FF]" />
-                            <span className="text-gray-700">Passionate about clean code and great UX</span>
+                            <span>Passionate about clean code and great UX</span>
                           </div>
                           <div className="flex items-center space-x-3">
                             <HeartIcon className="w-5 h-5 text-red-500" />
-                            <span className="text-gray-700">Built with love for the developer community</span>
+                            <span>Built with love for the developer community</span>
                           </div>
                         </div>
                       </div>
