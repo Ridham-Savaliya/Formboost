@@ -1,10 +1,10 @@
 <<<<<<< HEAD
 <div align="center">
   <!-- LOGO -->
-  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024967/formboost-favicon-color_af2opq.png" alt="Formboost Logo" width="120" style="margin-bottom:16px;" />
+  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768279506/Screenshot_2026-01-13_101050-removebg-preview_s6ovvz.png" alt="Formboom Logo" width="120" style="margin-bottom:16px;" />
 
   <!-- Title -->
-  <h1 style="font-weight:900; font-size:46px; margin-bottom:0;">Formboost</h1>
+  <h1 style="font-weight:900; font-size:46px; margin-bottom:0;">Formboom</h1>
 
   <!-- Subtitle -->
   <p style="font-size:19px; font-weight:500; color:#5e5e5e; margin-top:6px;">
@@ -26,15 +26,15 @@
 </p>
 
 
-# 🚀 Formboost
+# 🚀 Formboom
 
-> **Formboost** — The Ultimate Next-Gen Form & Data Management Platform  
+> **Formboom** — The Ultimate Next-Gen Form & Data Management Platform  
 > Empower your workflows with powerful, intuitive, and scalable form creation, data visualization, and analytics — all in one seamless experience.
 
 ---
 
 <div align="center">
-  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765025074/Logo_PNG_qhhmqu.png" width="40%" alt="Formboost Logo"/>
+  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765025074/Logo_PNG_qhhmqu.png" width="40%" alt="Formboom Logo"/>
 </div>
 *Your forms, supercharged.*
 
@@ -42,7 +42,7 @@
 
 ## Table of Contents
 
-- [About Formboost](#about-formboost)  
+- [About Formboom](#about-Formboom)  
 - [Features](#features)  
 - [Tech Stack](#tech-stack)  
 - [Getting Started](#getting-started)  
@@ -55,10 +55,10 @@
 
 ---
 
-## About Formboost
+## About Formboom
 
-Formboost is a modern, full-stack form builder and data analytics platform designed to simplify data collection and visualization for businesses and developers alike.  
-Built with cutting-edge technologies, Formboost offers a premium user experience with robust backend services and a sleek, responsive frontend.
+Formboom is a modern, full-stack form builder and data analytics platform designed to simplify data collection and visualization for businesses and developers alike.  
+Built with cutting-edge technologies, Formboom offers a premium user experience with robust backend services and a sleek, responsive frontend.
 
 ---
 
@@ -103,8 +103,8 @@ Built with cutting-edge technologies, Formboost offers a premium user experience
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/formboost.git
-cd formboost
+git clone https://github.com/yourusername/Formboom.git
+cd Formboom
 ```
 
 #### Backend Setup
@@ -134,7 +134,7 @@ Open your browser at `http://localhost:3000` (or the port shown in terminal).
 ## 📁 Project Structure
 
 ```
-formboost/
+Formboom/
 ├── backend/                # Express API server
 │   ├── src/
 │   │   ├── app.js          # Express app setup
@@ -173,9 +173,9 @@ formboost/
 | `npm run lint`          | Run ESLint for code quality               |
 | `npm run format`        | Format code with Prettier                 |
 =======
-# FormBoost
+# Formboom
 
-FormBoost is a comprehensive web application that provides a powerful form-building and data management solution. It offers a user-friendly interface for creating and customizing forms, as well as advanced features for data analysis and reporting.
+Formboom is a comprehensive web application that provides a powerful form-building and data management solution. It offers a user-friendly interface for creating and customizing forms, as well as advanced features for data analysis and reporting.
 
 ## Installation
 >>>>>>> 40af3738882195070cb782017fb42cd1189d4275
@@ -184,11 +184,11 @@ FormBoost is a comprehensive web application that provides a powerful form-build
 
 1. Clone the repository:
 ```
-git clone https://github.com/your-username/formboost-frontend.git
+git clone https://github.com/your-username/Formboom-frontend.git
 ```
 2. Navigate to the project directory:
 ```
-cd formboost-frontend
+cd Formboom-frontend
 ```
 3. Install dependencies:
 ```
@@ -204,11 +204,11 @@ npm run dev
 
 1. Clone the repository:
 ```
-git clone https://github.com/your-username/formboost.git
+git clone https://github.com/your-username/Formboom.git
 ```
 2. Navigate to the project directory:
 ```
-cd formboost
+cd Formboom
 ```
 3. Install dependencies:
 ```
@@ -229,7 +229,7 @@ npm run dev
 
 ## Usage
 
-The FormBoost application provides the following key features:
+The Formboom application provides the following key features:
 
 1. **Form Builder**: Create and customize forms with a wide range of input fields, validation rules, and advanced features.
 2. **Data Management**: Collect and store form submissions in a secure database, with options for exporting data in various formats.
@@ -240,16 +240,16 @@ To get started, log in to the application and navigate to the "Forms" section to
 
 ## API
 
-The FormBoost backend provides a RESTful API for interacting with the application programmatically. The API documentation can be found at `http://localhost:8000/api/docs`.
+The Formboom backend provides a RESTful API for interacting with the application programmatically. The API documentation can be found at `http://localhost:8000/api/docs`.
 
 ## Contributing
 
-We welcome contributions from the community! If you would like to contribute to the FormBoost project, please follow these steps:
+We welcome contributions from the community! If you would like to contribute to the Formboom project, please follow these steps:
 
 <<<<<<< HEAD
-Formboost Team – [contact@formboost.com](mailto:contact@formboost.com)  
-GitHub: [https://github.com/Ridham-Savaliya/formboost](https://github.com/yourusername/formboost)  
-Twitter: [@formboost](https://twitter.com/formboost)  
+Formboom Team – [contact@Formboom.com](mailto:contact@Formboom.com)  
+GitHub: [https://github.com/Ridham-Savaliya/Formboom](https://github.com/yourusername/Formboom)  
+Twitter: [@Formboom](https://twitter.com/Formboom)  
 =======
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
@@ -262,17 +262,17 @@ Please ensure that your code adheres to the project's coding standards and that 
 
 <<<<<<< HEAD
 <p align="center">
-  <em>Formboost &mdash; Empowering your data, one form at a time.</em>
+  <em>Formboom &mdash; Empowering your data, one form at a time.</em>
 </p>
 
 =======
 ## License
 
-FormBoost is licensed under the [MIT License](LICENSE).
+Formboom is licensed under the [MIT License](LICENSE).
 
 ## Testing
 
-The FormBoost project includes a comprehensive test suite to ensure the reliability and stability of the application. To run the tests, use the following commands:
+The Formboom project includes a comprehensive test suite to ensure the reliability and stability of the application. To run the tests, use the following commands:
 
 ```
 # Frontend
