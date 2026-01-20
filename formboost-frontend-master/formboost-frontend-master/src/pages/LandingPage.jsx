@@ -103,11 +103,7 @@ const LandingPage = () => {
     {
       name: "Shashank Das",
       role: "Frontend Developer",
-<<<<<<< HEAD
       content: "FormBoom helped us increase lead conversion by 40%. The integrations are seamless!",
-=======
-      content: "Formboom helped us increase lead conversion by 40%. The integrations are seamless!",
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       avatar: "https://res.cloudinary.com/dsqpc6sp6/image/upload/v1757609752/WhatsApp_Image_2025-09-11_at_22.25.02_3871f916_jzseqo.jpg"
     },
     {
@@ -132,11 +128,7 @@ const LandingPage = () => {
         "Webhook integrations",
         "Basic analytics",
         "Community support",
-<<<<<<< HEAD
         "FormBoom branding"
-=======
-        "Formboom branding"
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       ],
       cta: "Start Free",
       popular: false,
@@ -194,15 +186,9 @@ const LandingPage = () => {
   return (
     <>
       <SEOHead
-<<<<<<< HEAD
         title="FormBoom — Build Forms That Convert Like Crazy | #1 Form Builder 2024"
         description="Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code. Join 10,000+ teams already boosting their conversions with FormBoom. Free forever plan available!"
         keywords="formboom, form builder, online forms, lead generation, form automation, no-code forms, contact forms, survey builder, form analytics, workflow automation, form integrations, drag drop form builder, best form builder 2024"
-=======
-        title="FormBoom: Best Form Builder 2024 | Free Online Form Maker & Survey Tool"
-        description="FormBoom is the #1 rated form builder software for 2024. Create beautiful, high-converting forms in minutes with our drag-and-drop builder. Free forever plan with unlimited forms, advanced analytics, webhooks & integrations. No coding required. Trusted by 10,000+ teams worldwide."
-        keywords="form builder, best form builder, free form builder, online form builder, form maker, contact form builder, survey builder, form creator, form builder software, drag and drop form builder, web form builder, form builder tool, typeform alternative, google forms alternative, jotform alternative, wufoo alternative, formstack alternative, cognito forms alternative, form automation, lead generation forms, no code form builder, embedded forms, custom forms, form analytics, webhook forms, form integrations, survey maker, questionnaire builder, feedback forms, registration forms, order forms, payment forms, html form builder, responsive forms, mobile forms, wordpress form builder alternative"
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
         structuredData={combinedStructuredData}
         type="website"
       />
@@ -233,12 +219,6 @@ const LandingPage = () => {
                 <a href="#features" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
                   Features
                 </a>
-<<<<<<< HEAD
-=======
-                <a href="#video-demo" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
-                  Demo
-                </a>
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                 <a href="#testimonials" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
                   Reviews
                 </a>
@@ -282,10 +262,6 @@ const LandingPage = () => {
               <div className="px-4 py-6 space-y-4">
                 <nav className="space-y-4">
                   <a href="#features" className="block text-gray-600 font-medium">Features</a>
-<<<<<<< HEAD
-=======
-                  <a href="#video-demo" className="block text-gray-600 font-medium">Demo</a>
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                   <a href="#testimonials" className="block text-gray-600 font-medium">Reviews</a>
                   <a href="#pricing" className="block text-gray-600 font-medium">Pricing</a>
                   <a href="#faq" className="block text-gray-600 font-medium">Help</a>
@@ -342,20 +318,10 @@ const LandingPage = () => {
                     <span>Start Building Free</span>
                     <ZapIcon className="w-5 h-5" />
                   </Link>
-<<<<<<< HEAD
                   <button className="w-full sm:w-auto px-8 py-4 border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 flex items-center justify-center space-x-2">
                     <ZapIcon className="w-5 h-5" />
                     <span>Watch Demo</span>
                   </button>
-=======
-                  <a
-                    href="#video-demo"
-                    className="w-full sm:w-auto px-8 py-4 border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 flex items-center justify-center space-x-2"
-                  >
-                    {/* <PlayIcon className="w-5 h-5" /> */}
-                    <span>Watch Demo</span>
-                  </a>
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                 </div>
 
                 {/* Trust Indicators */}
@@ -377,196 +343,12 @@ const LandingPage = () => {
             </div>
           </section>
 
-<<<<<<< HEAD
-=======
-          {/* Video Demo Section */}
-          <section id="video-demo" className="py-16 sm:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center space-y-4 mb-16">
-                <div className="inline-flex items-center space-x-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
-                  {/* <PlayIcon className="w-4 h-4" /> */}
-                  <span>See Formboom in Action</span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-                  Watch how easy it is to
-                  <br />
-                  <span className="text-[#0080FF]">build converting forms</span>
-                </h2>
-                <p className="max-w-2xl mx-auto text-lg text-gray-600">
-                  See our drag-and-drop builder in action. From concept to live form in under 2 minutes.
-                </p>
-              </div>
-
-              <div className="relative max-w-5xl mx-auto">
-                {/* Video Container with Unique Design */}
-                <div className="relative group">
-                  {/* Decorative Elements */}
-                  <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-20 animate-pulse"></div>
-                  <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-20 animate-pulse delay-1000"></div>
-                  <div className="absolute top-1/2 -left-12 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full opacity-30 animate-bounce"></div>
-                  <div className="absolute top-1/4 -right-8 w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-30 animate-bounce delay-500"></div>
-
-                  {/* Main Video Container */}
-                  <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200 group-hover:shadow-3xl transition-all duration-500">
-                    {/* Video Header Bar */}
-                    <div className="bg-gray-100 px-6 py-4 border-b border-gray-200">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="flex space-x-2">
-                            <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                            <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                            <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                          </div>
-                          <div className="text-sm font-medium text-gray-700">Formboom Demo</div>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
-                            ● LIVE
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Video Content */}
-                    <div className="relative aspect-video bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
-                      {/* Placeholder Video - Replace with your actual video */}
-                      <video
-                        id="demo-video"
-                        className="w-full h-full object-cover"
-                        poster="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                        muted={isVideoMuted}
-                        autoPlay
-                        onPlay={() => setIsVideoPlaying(true)}
-                        onPause={() => setIsVideoPlaying(false)}
-                      >
-                        <source src="https://res.cloudinary.com/dsqpc6sp6/video/upload/v1768284663/Modern_Tech_Startup_Video_Creation_o8chjo.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-
-                      {/* Video Overlay */}
-                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                        {/* Play/Pause Button */}
-                        <button
-                          onClick={toggleVideo}
-                          className="group/play w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl hover:bg-white hover:scale-110 transition-all duration-300"
-                        >
-                          {/* {isVideoPlaying ? (
-                        <PauseIcon className="w-8 h-8 text-[#0080FF] group-hover/play:scale-110 transition-transform" />
-                      ) : (
-                        <PlayIcon className="w-8 h-8 text-[#0080FF] ml-1 group-hover/play:scale-110 transition-transform" />
-                      )} */}
-                        </button>
-                      </div>
-
-                      {/* Video Controls */}
-                      <div className="absolute bottom-4 right-4 flex items-center space-x-2">
-                        <button
-                          onClick={toggleMute}
-                          className="w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-200"
-                        >
-                          {/* {isVideoMuted ? (
-                        <VolumeXIcon className="w-5 h-5" />
-                      ) : (
-                        <Volume2Icon className="w-5 h-5" />
-                      )} */}
-                        </button>
-                      </div>
-
-                      {/* Progress Indicator */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
-                        <div className="h-full bg-[#0080FF] w-0 transition-all duration-300" id="video-progress"></div>
-                      </div>
-                    </div>
-
-                    {/* Video Stats */}
-                    <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex items-center space-x-2 text-gray-600">
-                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                            <span>2:34 Demo Length</span>
-                          </div>
-                          <div className="text-gray-400">|</div>
-                          <div className="text-gray-600">Form Builder Walkthrough</div>
-                        </div>
-                        <div className="flex items-center space-x-2 text-gray-500">
-                          <span>👀 10,000+ views</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Floating Feature Cards */}
-                  <div className="absolute -left-8 top-1/4 hidden lg:block">
-                    <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-200 transform -rotate-6 hover:rotate-0 transition-transform duration-300">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                          <ZapIcon className="w-4 h-4 text-[#0080FF]" />
-                        </div>
-                        <div>
-                          <div className="text-sm font-semibold text-gray-900">Drag & Drop</div>
-                          <div className="text-xs text-gray-500">Visual Builder</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="absolute -right-8 top-3/4 hidden lg:block">
-                    <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-200 transform rotate-6 hover:rotate-0 transition-transform duration-300">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                          <CheckIcon className="w-4 h-4 text-green-600" />
-                        </div>
-                        <div>
-                          <div className="text-sm font-semibold text-gray-900">Live Preview</div>
-                          <div className="text-xs text-gray-500">Real-time Updates</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Video Features Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-                  <div className="text-center space-y-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto shadow-lg">
-                      <ZapIcon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900">2-Minute Setup</h3>
-                    <p className="text-gray-600 text-sm">Watch how quickly you can build professional forms with our intuitive interface.</p>
-                  </div>
-
-                  <div className="text-center space-y-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto shadow-lg">
-                      <SettingsIcon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900">Smart Features</h3>
-                    <p className="text-gray-600 text-sm">See conditional logic, auto-responses, and integrations working seamlessly together.</p>
-                  </div>
-
-                  <div className="text-center space-y-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto shadow-lg">
-                      <CheckIcon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900">Instant Results</h3>
-                    <p className="text-gray-600 text-sm">From design to deployment - see your form go live and start collecting responses immediately.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
           {/* Features Section */}
           <section id="features" className="py-16 sm:py-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center space-y-4 mb-16">
                 <div className="inline-block px-4 py-2 bg-blue-100 text-[#0080FF] rounded-full text-sm font-medium">
-<<<<<<< HEAD
                   Why Choose FormBoom
-=======
-                  Why Choose Formboom
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
                   Everything you need to <br />
@@ -767,11 +549,7 @@ const LandingPage = () => {
 
                         <p className="text-gray-700 leading-relaxed">
                           After years of building forms for countless projects and dealing with the frustration of
-<<<<<<< HEAD
                           complex form builders, I decided to create something different. FormBoom is my vision
-=======
-                          complex form builders, I decided to create something different. Formboom is my vision
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                           of what form building should be - simple, powerful, and developer-friendly.
                         </p>
 
@@ -826,11 +604,7 @@ const LandingPage = () => {
                             <CodeIcon className="w-10 h-10" />
                           </div>
                           <div>
-<<<<<<< HEAD
                             <div className="text-2xl font-bold">FormBoom</div>
-=======
-                            <div className="text-2xl font-bold">Formboom</div>
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                             <div className="text-blue-100">Creator</div>
                           </div>
                           <div className="text-sm text-blue-100">
@@ -857,11 +631,7 @@ const LandingPage = () => {
                   ❓ Frequently Asked Questions
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-<<<<<<< HEAD
                   Everything you need to know about FormBoom
-=======
-                  Everything you need to know about Formboom
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                 </h2>
                 <p className="text-lg text-gray-600">
                   Can't find the answer you're looking for? Reach out to our support team.
@@ -871,108 +641,61 @@ const LandingPage = () => {
               <div className="space-y-6">
                 <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
                   <summary className="flex items-center justify-between cursor-pointer">
-<<<<<<< HEAD
                     <h3 className="text-lg font-semibold text-gray-900">What is FormBoom?</h3>
                     <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                   </summary>
                   <p className="mt-4 text-gray-600 leading-relaxed">
                     FormBoom is a powerful form builder that allows you to create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code. It's designed for businesses of all sizes who want to boost their conversion rates.
-=======
-                    <h3 className="text-lg font-semibold text-gray-900">What is Formboom?</h3>
-                    <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-4 text-gray-600 leading-relaxed">
-                    Formboom is a powerful form builder that allows you to create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code. It's designed for businesses of all sizes who want to boost their conversion rates.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                   </p>
                 </details>
 
                 <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
                   <summary className="flex items-center justify-between cursor-pointer">
-<<<<<<< HEAD
                     <h3 className="text-lg font-semibold text-gray-900">Is FormBoom free to use?</h3>
                     <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                   </summary>
                   <p className="mt-4 text-gray-600 leading-relaxed">
                     Yes! FormBoom offers a generous free plan that includes up to 5 forms, 100 submissions per month, basic form builder, email notifications, webhook integrations, and community support. No credit card required to get started.
-=======
-                    <h3 className="text-lg font-semibold text-gray-900">Is Formboom free to use?</h3>
-                    <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-4 text-gray-600 leading-relaxed">
-                    Yes! Formboom offers a generous free plan that includes up to 5 forms, 100 submissions per month, basic form builder, email notifications, webhook integrations, and community support. No credit card required to get started.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                   </p>
                 </details>
 
                 <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
                   <summary className="flex items-center justify-between cursor-pointer">
-<<<<<<< HEAD
                     <h3 className="text-lg font-semibold text-gray-900">What integrations does FormBoom support?</h3>
                     <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                   </summary>
                   <p className="mt-4 text-gray-600 leading-relaxed">
                     FormBoom integrates with Slack, Google Sheets, Zapier, and 50+ other tools to automate your workflow. You can connect your forms to your favorite apps and streamline your data collection process without any technical knowledge.
-=======
-                    <h3 className="text-lg font-semibold text-gray-900">What integrations does Formboom support?</h3>
-                    <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-4 text-gray-600 leading-relaxed">
-                    Formboom integrates with Slack, Google Sheets, Zapier, and 50+ other tools to automate your workflow. You can connect your forms to your favorite apps and streamline your data collection process without any technical knowledge.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                   </p>
                 </details>
 
                 <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
                   <summary className="flex items-center justify-between cursor-pointer">
-<<<<<<< HEAD
                     <h3 className="text-lg font-semibold text-gray-900">Is FormBoom GDPR compliant?</h3>
                     <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                   </summary>
                   <p className="mt-4 text-gray-600 leading-relaxed">
                     Absolutely! FormBoom is fully GDPR compliant with advanced spam protection and role-based access controls. We take data privacy seriously and ensure your forms and submissions are secure and compliant with international data protection regulations.
-=======
-                    <h3 className="text-lg font-semibold text-gray-900">Is Formboom GDPR compliant?</h3>
-                    <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-4 text-gray-600 leading-relaxed">
-                    Absolutely! Formboom is fully GDPR compliant with advanced spam protection and role-based access controls. We take data privacy seriously and ensure your forms and submissions are secure and compliant with international data protection regulations.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                   </p>
                 </details>
 
                 <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
                   <summary className="flex items-center justify-between cursor-pointer">
-<<<<<<< HEAD
                     <h3 className="text-lg font-semibold text-gray-900">How fast can I create a form with FormBoom?</h3>
                     <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                   </summary>
                   <p className="mt-4 text-gray-600 leading-relaxed">
                     With FormBoom's intuitive drag-and-drop builder, you can create a professional form in just 2 minutes! Our pre-made templates and smart components make it incredibly fast to build forms that convert. No technical knowledge required.
-=======
-                    <h3 className="text-lg font-semibold text-gray-900">How fast can I create a form with Formboom?</h3>
-                    <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-4 text-gray-600 leading-relaxed">
-                    With Formboom's intuitive drag-and-drop builder, you can create a professional form in just 2 minutes! Our pre-made templates and smart components make it incredibly fast to build forms that convert. No technical knowledge required.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                   </p>
                 </details>
 
                 <details className="group bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors">
                   <summary className="flex items-center justify-between cursor-pointer">
                     <h3 className="text-lg font-semibold text-gray-900">Can I customize the look of my forms?</h3>
-<<<<<<< HEAD
                     <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                   </summary>
                   <p className="mt-4 text-gray-600 leading-relaxed">
                     Yes! FormBoom offers extensive customization options including custom branding, colors, fonts, and layouts. Pro and Enterprise plans include advanced customization features and the ability to remove FormBoom branding completely.
-=======
-                    <span className="text-gray-500 group-open-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-4 text-gray-600 leading-relaxed">
-                    Yes! Formboom offers extensive customization options including custom branding, colors, fonts, and layouts. Pro and Enterprise plans include advanced customization features and the ability to remove Formboom branding completely.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                   </p>
                 </details>
 
@@ -982,11 +705,7 @@ const LandingPage = () => {
                     <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                   </summary>
                   <p className="mt-4 text-gray-600 leading-relaxed">
-<<<<<<< HEAD
                     Absolutely! FormBoom provides real-time analytics to track form performance, conversion rates, and user behavior. Get detailed insights into your form submissions, completion rates, and optimize for better results.
-=======
-                    Absolutely! Formboom provides real-time analytics to track form performance, conversion rates, and user behavior. Get detailed insights into your form submissions, completion rates, and optimize for better results.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                   </p>
                 </details>
 
@@ -996,11 +715,7 @@ const LandingPage = () => {
                     <span className="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                   </summary>
                   <p className="mt-4 text-gray-600 leading-relaxed">
-<<<<<<< HEAD
                     We offer community support for free users, priority support for Pro users, and dedicated support for Enterprise customers. Our team is committed to helping you succeed with FormBoom and achieve your conversion goals.
-=======
-                    We offer community support for free users, priority support for Pro users, and dedicated support for Enterprise customers. Our team is committed to helping you succeed with Formboom and achieve your conversion goals.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                   </p>
                 </details>
               </div>
@@ -1030,11 +745,7 @@ const LandingPage = () => {
                         Ready to boost your conversions?
                       </h2>
                       <p className="max-w-2xl mx-auto text-lg sm:text-xl text-white/90">
-<<<<<<< HEAD
                         Join thousands of businesses already using FormBoom to capture more leads and automate their workflows.
-=======
-                        Join thousands of businesses already using Formboom to capture more leads and automate their workflows.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                       </p>
                     </div>
 
@@ -1074,11 +785,7 @@ const LandingPage = () => {
                   <div className="w-8 h-8 bg-[#0080FF] rounded-lg flex items-center justify-center">
                     <span className="text-white font-bold">F</span>
                   </div>
-<<<<<<< HEAD
                   <span className="font-bold text-white">FormBoom</span>
-=======
-                  <span className="font-bold text-white">Formboom</span>
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
                 </Link>
                 <p className="text-sm text-gray-400 max-w-xs">
                   Build beautiful forms, capture leads, and automate your workflow—all in one powerful platform.
@@ -1118,11 +825,7 @@ const LandingPage = () => {
 
             <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
               <p className="text-sm text-gray-400">
-<<<<<<< HEAD
                 © {new Date().getFullYear()} FormBoom. Made with ❤️ for creators everywhere.
-=======
-                © {new Date().getFullYear()} Formboom. Made with ❤️ for creators everywhere.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
               </p>
               <div className="flex items-center space-x-4 mt-4 sm:mt-0">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">

@@ -14,11 +14,7 @@ const Navbar = ({ toggleSidebar }) => {
             onClick={toggleSidebar}
             className="text-gray-600 hover:text-gray-800 -ml-1 sm:ml-0"
           >
-<<<<<<< HEAD
             <MenuIcon className="w-6 h-6 m-3" />
-=======
-            <MenuIcon className="w-6 h-6 mr-3 sm:mr-4" />
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
           </button>
 
           <Link to="/" className="block">
