@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const SEOHead = ({ 
-  title = "FormBoost — Build forms that convert like crazy", 
+const SEOHead = ({
+  title = "FormBoom — Build forms that convert like crazy",
   description = "Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code. Join 10,000+ teams already boosting their conversions.",
   keywords = "form builder, online forms, lead generation, form automation, no-code forms, contact forms, survey builder, form analytics, workflow automation, form integrations",
   image = "https://formboom.site/og-image.png",
   type = "website",
-  author = "FormBoost",
+  author = "FormBoom",
   structuredData = null
 }) => {
   const location = useLocation();
@@ -29,7 +29,7 @@ const SEOHead = ({
     updateMetaTag('property', 'og:image', image);
     updateMetaTag('property', 'og:url', currentUrl);
     updateMetaTag('property', 'og:type', type);
-    updateMetaTag('property', 'og:site_name', 'FormBoost');
+    updateMetaTag('property', 'og:site_name', 'FormBoom');
     updateMetaTag('property', 'og:locale', 'en_US');
 
     // Twitter Card tags
@@ -37,8 +37,8 @@ const SEOHead = ({
     updateMetaTag('name', 'twitter:title', title);
     updateMetaTag('name', 'twitter:description', description);
     updateMetaTag('name', 'twitter:image', image);
-    updateMetaTag('name', 'twitter:site', '@FormBoost');
-    updateMetaTag('name', 'twitter:creator', '@FormBoost');
+    updateMetaTag('name', 'twitter:site', '@FormBoom');
+    updateMetaTag('name', 'twitter:creator', '@FormBoom');
 
     // Additional SEO tags
     updateMetaTag('name', 'theme-color', '#0080FF');
