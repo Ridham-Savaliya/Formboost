@@ -207,13 +207,8 @@ export const sendTestNotifications = async (formId) => {
       try {
         await sendSubmissionMail(form, sampleFormData, ip);
         emailSent = true;
-<<<<<<< HEAD
       } catch {
         /* Intentionally empty */
-=======
-      } catch (emailError) {
-        console.warn('Email test failed:', emailError.message);
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       }
     }
 
@@ -227,13 +222,8 @@ export const sendTestNotifications = async (formId) => {
           telegramMessage
         );
         telegramSent = Boolean(ok);
-<<<<<<< HEAD
       } catch {
         /* Intentionally empty */
-=======
-      } catch (telegramError) {
-        console.warn('Telegram test failed:', telegramError.message);
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
       }
     }
 

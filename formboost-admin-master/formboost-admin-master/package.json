@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "formboom-admin",
-=======
   "name": "Formboom-frontend",
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
   "private": true,
   "version": "0.0.0",
   "type": "module",

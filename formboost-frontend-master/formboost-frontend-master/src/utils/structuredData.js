@@ -104,7 +104,7 @@ export const getSoftwareApplicationStructuredData = () => ({
   },
   "creator": {
     "@type": "Organization",
-    "name": "FormBoom"
+    "name": "Formboom"
   },
   "featureList": [
     "Drag & Drop Form Builder",

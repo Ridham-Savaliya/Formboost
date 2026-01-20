@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div align="center">
   <!-- LOGO -->
   <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768279506/Screenshot_2026-01-13_101050-removebg-preview_s6ovvz.png" alt="Formboom Logo" width="120" style="margin-bottom:16px;" />
@@ -11,7 +10,6 @@
     Smart Forms, Cleaner Insights.
   </p>
 </div>
-
 
 
 
@@ -81,7 +79,7 @@ Built with cutting-edge technologies, Formboom offers a premium user experience 
 ## 🛠️ Tech Stack
 
 | Frontend                          | Backend                          | Database & Others               |
-|----------------------------------|---------------------------------|--------------------------------|
+|----------------------------------|--------------------------------|--------------------------------|
 | React 18, Vite                   | Node.js, Express                | MySQL (via Sequelize ORM)       |
 | Chakra UI, MUI, TailwindCSS      | JWT, Bcrypt, Helmet, CORS       | Firebase Admin                  |
 | React Router DOM, Recoil         | Joi Validation, Multer           | Winston Logging, Loki           |
@@ -172,13 +170,6 @@ Formboom/
 | `npm run seeder:run`    | Run seeders                              |
 | `npm run lint`          | Run ESLint for code quality               |
 | `npm run format`        | Format code with Prettier                 |
-=======
-# Formboom
-
-Formboom is a comprehensive web application that provides a powerful form-building and data management solution. It offers a user-friendly interface for creating and customizing forms, as well as advanced features for data analysis and reporting.
-
-## Installation
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
 
 ### Frontend
 
@@ -200,33 +191,6 @@ npm run dev
 ```
 5. Open your browser and visit `http://localhost:3000` to access the application.
 
-### Backend
-
-1. Clone the repository:
-```
-git clone https://github.com/your-username/Formboom.git
-```
-2. Navigate to the project directory:
-```
-cd Formboom
-```
-3. Install dependencies:
-```
-npm install
-```
-4. Set up the environment variables:
-   - Create a `.env` file in the project root directory.
-   - Add the necessary environment variables, such as database connection details, API keys, and other configuration settings.
-5. Run the database migrations:
-```
-npm run migration:run
-```
-6. Start the development server:
-```
-npm run dev
-```
-7. The backend server will be running at `http://localhost:8000`.
-
 ## Usage
 
 The Formboom application provides the following key features:
@@ -246,26 +210,14 @@ The Formboom backend provides a RESTful API for interacting with the application
 
 We welcome contributions from the community! If you would like to contribute to the Formboom project, please follow these steps:
 
-<<<<<<< HEAD
-Formboom Team – [contact@Formboom.com](mailto:contact@Formboom.com)  
-GitHub: [https://github.com/Ridham-Savaliya/Formboom](https://github.com/yourusername/Formboom)  
-Twitter: [@Formboom](https://twitter.com/Formboom)  
-=======
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
 3. Make your changes and commit them with descriptive commit messages.
 4. Push your changes to your forked repository.
 5. Submit a pull request to the main repository.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
 
 Please ensure that your code adheres to the project's coding standards and that you have added appropriate tests.
 
-<<<<<<< HEAD
-<p align="center">
-  <em>Formboom &mdash; Empowering your data, one form at a time.</em>
-</p>
-
-=======
 ## License
 
 Formboom is licensed under the [MIT License](LICENSE).
@@ -284,4 +236,13 @@ npm run test
 ```
 
 Make sure all tests pass before submitting any changes.
->>>>>>> 40af3738882195070cb782017fb42cd1189d4275
+
+## Contact
+
+Formboom Team – [contact@formboom.com](mailto:contact@formboom.com)  
+GitHub: [https://github.com/Ridham-Savaliya/Formboom](https://github.com/yourusername/Formboom)  
+Twitter: [@Formboom](https://twitter.com/Formboom)  
+
+<p align="center">
+  <em>Formboom &mdash; Empowering your data, one form at a time.</em>
+</p>

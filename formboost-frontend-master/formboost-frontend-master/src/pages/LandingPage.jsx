@@ -395,7 +395,7 @@ const LandingPage = () => {
               <div className="text-center space-y-4 mb-16">
                 <div className="inline-flex items-center space-x-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
                   {/* <PlayIcon className="w-4 h-4" /> */}
-                  <span>See FormBoom in Action</span>
+                  <span>See Formboom in Action</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
                   Watch how easy it is to
@@ -427,7 +427,7 @@ const LandingPage = () => {
                             <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
                             <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                           </div>
-                          <div className="text-sm font-medium text-gray-700">FormBoom Demo</div>
+                          <div className="text-sm font-medium text-gray-700">Formboom Demo</div>
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
