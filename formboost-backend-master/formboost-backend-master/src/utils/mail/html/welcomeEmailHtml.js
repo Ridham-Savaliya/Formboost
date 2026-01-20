@@ -10,7 +10,7 @@ export default (userName, userEmail) => {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Welcome to FormBoost!</title>
+  <title>Welcome to FormBoom!</title>
   <style>
     body {
       margin: 0;
@@ -201,8 +201,8 @@ export default (userName, userEmail) => {
 <body>
   <div class="email-container">
     <div class="header">
-      <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024967/formboost-favicon-color_af2opq.png" alt="FormBoost Logo">
-      <h1>Welcome to FormBoost!</h1>
+      <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768281681/formboom_horizontally-removebg-_cypez2.png" alt="FormBoom Logo" style="max-width:250px;height:auto;">
+      <h1>Welcome to FormBoom!</h1>
 <p style="color:#111827;font-weight:600;">
   Your journey to effortless form management starts here
 </p>
@@ -214,7 +214,7 @@ export default (userName, userEmail) => {
       <div class="welcome-message">
         <h2>Hi ${userName}! 👋</h2>
         <p>
-          We're thrilled to have you join the FormBoost community! You've just unlocked 
+          We're thrilled to have you join the FormBoom community! You've just unlocked 
           a powerful platform to manage your forms, collect submissions, and streamline 
           your workflow.
         </p>
@@ -260,7 +260,7 @@ export default (userName, userEmail) => {
       <div class="cta-section">
         <h3>Ready to Get Started?</h3>
         <p>Click below to head to your dashboard and create your first form!</p>
-        <a href="https://app.formboost.site/dashboard" class="cta-button">
+        <a href="https://app.formboom.site/dashboard" class="cta-button">
           Go to Dashboard →
         </a>
       </div>
@@ -282,36 +282,36 @@ export default (userName, userEmail) => {
         </p>
         <p style="color: #6b7280; font-size: 14px;">
           Check out our 
-          <a href="https://formboost.site/docs" style="color: ${primaryColor}; text-decoration: none; font-weight: 600;">documentation</a> 
+          <a href="https://formboom.site/docs" style="color: ${primaryColor}; text-decoration: none; font-weight: 600;">documentation</a> 
           or reach out to our support team at 
-          <a href="mailto:contact@formboost.site" style="color: ${primaryColor}; text-decoration: none; font-weight: 600;">contact@formboost.site</a>
+          <a href="mailto:contact@formboom.site" style="color: ${primaryColor}; text-decoration: none; font-weight: 600;">contact@formboom.site</a>
         </p>
       </div>
     </div>
 
     <div class="footer">
-      <p style="font-weight: 600; color: #111827; margin-bottom: 15px;">The FormBoost Team</p>
+      <p style="font-weight: 600; color: #111827; margin-bottom: 15px;">The FormBoom Team</p>
       <p>Making form management simple, powerful, and delightful</p>
       <p>
-        <a href="mailto:contact@formboost.site">contact@formboost.site</a> • 
-        <a href="https://formboost.site">www.formboost.site</a>
+        <a href="mailto:contact@formboom.site">contact@formboom.site</a> • 
+        <a href="https://formboom.site">www.formboom.site</a>
       </p>
       
       <div class="social-links">
-        <a href="https://linkedin.com/company/formboost" target="_blank">
+        <a href="https://linkedin.com/company/formboom" target="_blank">
           <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="24" height="24">
         </a>
-        <a href="https://x.com/FormBoost" target="_blank">
+        <a href="https://x.com/FormBoom" target="_blank">
           <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" alt="X (Twitter)" width="24" height="24">
         </a>
       </div>
 
       <p style="font-size: 12px; color: #9ca3af; margin-top: 20px;">
-        © ${new Date().getFullYear()} FormBoost. All rights reserved.
+        © ${new Date().getFullYear()} FormBoom. All rights reserved.
       </p>
       
       <p style="font-size: 11px; color: #9ca3af; margin-top: 15px;">
-        You're receiving this email because you signed up for FormBoost.
+        You're receiving this email because you signed up for FormBoom.
       </p>
     </div>
   </div>

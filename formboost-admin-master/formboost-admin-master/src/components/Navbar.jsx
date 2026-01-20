@@ -2,7 +2,8 @@ import { HiMenu } from "react-icons/hi";
 import { FaArrowLeft } from "react-icons/fa6"; // Arrow pointing left icon
 import Profile from "./Profile";
 import { CiSearch } from "react-icons/ci";
-import logo from "../assets/logos/formboost-high-resolution-logo-transparent.png";
+// Using Cloudinary URL for FormBoom logo
+const logo = "https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768281681/formboom_horizontally-removebg-_cypez2.png";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
@@ -26,16 +27,14 @@ const Navbar = ({ toggleSidebar }) => {
             <div className="relative w-10 h-10 flex items-center justify-center">
               {/* Hamburger icon */}
               <HiMenu
-                className={`h-10 w-10 absolute transition-opacity duration-500 ease-in-out transform ${
-                  isSidebarOpen ? "opacity-0" : "opacity-100"
-                }`}
+                className={`h-10 w-10 absolute transition-opacity duration-500 ease-in-out transform ${isSidebarOpen ? "opacity-0" : "opacity-100"
+                  }`}
                 style={{ transition: "opacity 0.3s ease-in-out" }}
               />
               {/* Arrow icon */}
               <GiHamburgerMenu
-                className={`h-9 w-9 absolute transition-opacity duration-500 ease-in-out transform ${
-                  isSidebarOpen ? "opacity-100" : "opacity-0"
-                }`}
+                className={`h-9 w-9 absolute transition-opacity duration-500 ease-in-out transform ${isSidebarOpen ? "opacity-100" : "opacity-0"
+                  }`}
                 style={{ transition: "opacity 0.3s ease-in-out" }}
               />
             </div>
@@ -45,7 +44,7 @@ const Navbar = ({ toggleSidebar }) => {
             <img
               className="w-fit h-6 object-cover"
               src={logo}
-              alt="logo"
+              alt="FormBoom logo"
               type="image/png"
               rel="image"
             />

@@ -1,5 +1,5 @@
 export default (formData, ipAddress, form) => {
-  // Filter out internal FormBoost fields
+  // Filter out internal FormBoom fields
   const cleanFormData = Object.entries(formData).filter(([key]) => !key.startsWith('_fb_'));
 
   const formDataRows = cleanFormData
@@ -206,7 +206,7 @@ export default (formData, ipAddress, form) => {
 <body>
   <div class="email-container">
     <div class="header">
-      <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024967/formboost-favicon-color_af2opq.png" alt="FormBoost Logo">
+      <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768281681/formboom_horizontally-removebg-_cypez2.png" alt="FormBoom Logo" style="max-width:200px;height:auto;">
       <h1>New Form Submission!</h1>
     </div>
 
@@ -248,24 +248,24 @@ export default (formData, ipAddress, form) => {
     </div>
 
     <div class="footer">
-      <p style="font-weight: 600; color: #111827; margin-bottom: 15px;">FormBoost Team</p>
+      <p style="font-weight: 600; color: #111827; margin-bottom: 15px;">FormBoom Team</p>
       <p>Making form management simple and powerful</p>
       <p>
-        <a href="mailto:contact@formboom.site">contact@formboomsite</a> • 
+        <a href="mailto:contact@formboom.site">contact@formboom.site</a> • 
         <a href="https://formboom.site">www.formboom.site</a>
       </p>
       
       <div class="social-links">
-        <a href="https://linkedin.com/company/formboost" target="_blank">
+        <a href="https://linkedin.com/company/formboom" target="_blank">
           <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="24" height="24">
         </a>
-        <a href="https://x.com/FormBoost" target="_blank">
+        <a href="https://x.com/FormBoom" target="_blank">
           <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" alt="X (Twitter)" width="24" height="24">
         </a>
       </div>
 
       <p style="font-size: 12px; color: #9ca3af; margin-top: 20px;">
-        © ${new Date().getFullYear()} FormBoost. All rights reserved.
+        © ${new Date().getFullYear()} FormBoom. All rights reserved.
       </p>
     </div>
   </div>
