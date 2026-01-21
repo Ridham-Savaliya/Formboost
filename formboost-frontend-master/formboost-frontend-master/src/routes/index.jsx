@@ -6,6 +6,8 @@ import SignUpForm from "../components/SignUpForm";
 import LoginForm from "../components/LoginForm";
 import { UserDashboard } from "../pages/UserDashboard";
 import LandingPage from "../pages/LandingPage";
+import Blog from "../pages/Blog";
+import BlogPost from "../pages/BlogPost";
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
@@ -44,6 +46,8 @@ const AppRoutes = () => {
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<LandingPage />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/login" element={<LoginForm />} />
 

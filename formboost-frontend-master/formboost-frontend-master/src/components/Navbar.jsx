@@ -42,6 +42,12 @@ const Navbar = ({ toggleSidebar }) => {
         {/* Quick Links - Hidden on mobile */}
         <div className="hidden md:flex items-center gap-2">
           <Link
+            to="/blog"
+            className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0080FF] hover:bg-blue-50 rounded-xl transition-all duration-200"
+          >
+            Blog
+          </Link>
+          <Link
             to="/dashboard"
             className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-xl transition-all duration-200"
           >

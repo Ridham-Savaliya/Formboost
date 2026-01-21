@@ -228,6 +228,9 @@ const LandingPage = () => {
                 <a href="#faq" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
                   Help
                 </a>
+                <Link to="/blog" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+                  Blog
+                </Link>
               </nav>
 
               {/* Desktop Actions */}
@@ -265,6 +268,7 @@ const LandingPage = () => {
                   <a href="#testimonials" className="block text-gray-600 font-medium">Reviews</a>
                   <a href="#pricing" className="block text-gray-600 font-medium">Pricing</a>
                   <a href="#faq" className="block text-gray-600 font-medium">Help</a>
+                  <Link to="/blog" className="block text-[#0080FF] font-bold">Blog</Link>
                 </nav>
                 <div className="pt-4 border-t border-gray-200 space-y-3">
                   <Link to="/login" className="block w-full text-center py-3 text-gray-700 font-medium border border-gray-300 rounded-xl hover:bg-gray-50">
@@ -277,7 +281,7 @@ const LandingPage = () => {
               </div>
             </div>
           )}
-        </header>
+        </header >
 
         <main>
           {/* Hero Section */}
@@ -973,6 +977,16 @@ const LandingPage = () => {
               </div>
 
               <div>
+                <h3 className="font-semibold text-white mb-4">Blog</h3>
+                <div className="space-y-2 text-sm">
+                  <Link to="/blog/best-free-form-builders-2024" className="block hover:text-white transition-colors">Best Free Form Builders</Link>
+                  <Link to="/blog/formboom-vs-typeform-comparison" className="block hover:text-white transition-colors">FormBoom vs Typeform</Link>
+                  <Link to="/blog/how-to-automate-lead-capture" className="block hover:text-white transition-colors">Automation Guide</Link>
+                  <Link to="/blog" className="block text-[#0080FF] font-bold hover:text-blue-400 transition-colors">View All Post →</Link>
+                </div>
+              </div>
+
+              <div>
                 <h3 className="font-semibold text-white mb-4">Product</h3>
                 <div className="space-y-2 text-sm">
                   <a href="#" className="block hover:text-white transition-colors">Features</a>
@@ -1024,7 +1038,7 @@ const LandingPage = () => {
             </div>
           </div>
         </footer>
-      </div>
+      </div >
     </>
   );
 };
