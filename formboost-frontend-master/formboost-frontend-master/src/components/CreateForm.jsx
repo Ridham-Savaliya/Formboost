@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { formStatsState } from "../recoil/states";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
+import { createPortal } from "react-dom";
 
 const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
   const [formName, setFormName] = useState("");
@@ -59,9 +60,9 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
 
   if (!showModal) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-800 bg-opacity-50">
-      <div className="relative p-4 w-full max-w-md bg-white rounded-lg shadow-md">
+  return createPortal(
+    <div className="fixed inset-0 z-[100] flex justify-center items-center w-full h-full bg-gray-800/60 backdrop-blur-sm">
+      <div className="relative p-4 w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl border border-gray-100">
         <div className="flex items-center justify-between p-4 border-b">
           <h3 className="text-lg font-extrabold text-[#0080FF]">
             Create New Form
@@ -159,15 +160,15 @@ const CreateForm = ({ showModal, toggleModal, onFormCreated }) => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`text-white items-center bg-[#0080FF] hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center w-full ${
-              isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            className={`text-white items-center bg-[#0080FF] hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center w-full ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+              }`}
           >
             {isSubmitting ? "Creating..." : "Create Form"}
           </button>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

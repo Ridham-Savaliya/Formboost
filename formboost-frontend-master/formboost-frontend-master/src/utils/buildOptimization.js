@@ -12,7 +12,7 @@ export const analyzeBundleComposition = () => {
       utils: 'axios + date-fns + jwt-decode',
       firebase: 'firebase',
       charts: '@mui/x-charts + @mui/material',
-      toast: 'react-toastify'
+      toast: 'sonner'
     },
     removed: {
       'chakra-ui': 'Removed - unused UI library (~500KB)',

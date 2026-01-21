@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import { decodeTokenUserId } from "../utils/constants";
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import { useRecoilValue } from 'recoil';
 import { authState } from '../recoil/auth';
 

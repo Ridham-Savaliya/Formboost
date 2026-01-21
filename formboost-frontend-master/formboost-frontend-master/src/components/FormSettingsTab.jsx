@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FiTrash2, FiX } from "react-icons/fi";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import axios from "axios";
 import TelegramSetup from "./TelegramSetup";
 
@@ -74,7 +74,7 @@ const FormSettingsTab = ({ formId, onDelete }) => {
           },
         }
       );
-      
+
       // Update Telegram settings (always persist token/chat even if toggle is off)
       await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/form/${formId}/update_telegram`,
@@ -117,7 +117,7 @@ const FormSettingsTab = ({ formId, onDelete }) => {
         if (telegramSent) parts.push('Telegram');
         toast.success(`Test sent via ${parts.join(' & ')}`);
       } else {
-        toast.warn("Test dispatched, but delivery not confirmed. Check configuration and try again.");
+        toast.warning("Test dispatched, but delivery not confirmed. Check configuration and try again.");
       }
     } catch (e) {
       console.error(e);
@@ -142,7 +142,7 @@ const FormSettingsTab = ({ formId, onDelete }) => {
         setTelegramChatId(chatId);
         toast.success("Chat ID detected and filled.");
       } else {
-        toast.warn("No recent chat found. Open Telegram and /start the bot.");
+        toast.warning("No recent chat found. Open Telegram and /start the bot.");
       }
     } catch (e) {
       console.error(e);
@@ -243,7 +243,7 @@ const FormSettingsTab = ({ formId, onDelete }) => {
           </p>
         </div>
       </div>
-      
+
       {/* Warning Banner */}
       <div className="rounded-md bg-yellow-50 border border-yellow-200 p-2 sm:p-3 text-yellow-800 text-xs sm:text-sm">
         Heads up: Due to occasional technical issues, email or Telegram delivery may be delayed or

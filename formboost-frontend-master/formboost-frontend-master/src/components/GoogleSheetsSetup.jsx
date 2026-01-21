@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { LuFileSpreadsheet } from "react-icons/lu";
 import { FaCheck, FaTimes, FaExternalLinkAlt, FaInfoCircle, FaCopy } from "react-icons/fa";
 import { IoRocket, IoCheckmarkCircle, IoFlash } from "react-icons/io5";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import axios from "axios";
 
 export const GoogleSheetsSetup = ({ formId, form }) => {
@@ -232,8 +232,8 @@ export const GoogleSheetsSetup = ({ formId, form }) => {
         {/* Test Result */}
         {testResult && (
           <div className={`p-4 rounded-lg border ${testResult.success
-              ? 'bg-green-50 border-green-200'
-              : 'bg-red-50 border-red-200'
+            ? 'bg-green-50 border-green-200'
+            : 'bg-red-50 border-red-200'
             }`}>
             <div className="flex items-center space-x-2">
               {testResult.success ? (

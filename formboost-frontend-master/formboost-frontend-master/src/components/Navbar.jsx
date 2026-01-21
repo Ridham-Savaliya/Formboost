@@ -1,28 +1,55 @@
 import { MenuIcon } from "./OptimizedIcons";
 import Profile from "./Profile";
 import { Link } from "react-router-dom";
+import { HiOutlineSparkles } from "react-icons/hi";
 
 const Logo = "https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768281681/formboom_horizontally-removebg-_cypez2.png";
 
-// eslint-disable-next-line
 const Navbar = ({ toggleSidebar }) => {
   return (
-    <nav className="bg-white shadow-md px-3 py-2 sm:px-4 sm:py-3 h-14 sm:h-16 fixed top-0 left-0 right-0 z-30 flex items-center justify-between safe-pt safe-px">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center">
-          <button
-            onClick={toggleSidebar}
-            className="text-gray-600 hover:text-gray-800 -ml-1 sm:ml-0"
-          >
-            <MenuIcon className="w-6 h-6 m-3" />
-          </button>
+    <nav className="bg-white/95 backdrop-blur-xl border-b border-gray-100 px-3 py-2 sm:px-6 sm:py-3 h-16 sm:h-[68px] fixed top-0 left-0 right-0 z-30 flex items-center justify-between safe-pt safe-px">
+      {/* Left Side */}
+      <div className="flex items-center gap-2">
+        {/* Menu Toggle */}
+        <button
+          onClick={toggleSidebar}
+          className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-xl transition-all duration-200"
+          aria-label="Toggle sidebar"
+        >
+          <MenuIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
 
-          <Link to="/" className="block">
-            <img src={Logo} alt="Formboom" className="w-36 sm:w-52 md:w-56 h-auto" />
+        {/* Logo */}
+        <Link to="/" className="flex items-center group">
+          {/* Mobile Logo (Icon Only) */}
+          <div className="sm:hidden flex items-center">
+            <div className="w-9 h-9 bg-gradient-to-br from-[#0080FF] to-blue-600 rounded-xl flex items-center justify-center shadow-md shadow-[#0080FF]/20">
+              <HiOutlineSparkles className="w-5 h-5 text-white" />
+            </div>
+          </div>
+
+          {/* Desktop Logo */}
+          <img
+            src={Logo}
+            alt="Formboom"
+            className="hidden sm:block w-40 md:w-48 lg:w-52 h-auto"
+          />
+        </Link>
+      </div>
+
+      {/* Right Side */}
+      <div className="flex items-center gap-3 sm:gap-4">
+        {/* Quick Links - Hidden on mobile */}
+        <div className="hidden md:flex items-center gap-2">
+          <Link
+            to="/dashboard"
+            className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-xl transition-all duration-200"
+          >
+            Dashboard
           </Link>
         </div>
-      </div>
-      <div className="flex m-4 items-center space-x-3 sm:space-x-4">
+
+        {/* Profile */}
         <Profile />
       </div>
     </nav>

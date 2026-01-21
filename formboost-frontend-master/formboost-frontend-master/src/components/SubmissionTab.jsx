@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import axios from "axios";
-import { 
-  MdOutlineDownload, 
-  MdOutlineContentCopy, 
-  MdInbox, 
+import {
+  MdOutlineDownload,
+  MdOutlineContentCopy,
+  MdInbox,
   MdReportProblem,
   MdSearch,
   MdKeyboardArrowDown,
@@ -14,7 +14,7 @@ import {
 } from "react-icons/md";
 import { HiEye, HiFilter } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 const SubmissionTab = ({ formId }) => {
   const [submissions, setSubmissions] = useState([]);
@@ -171,22 +171,20 @@ const SubmissionTab = ({ formId }) => {
           {/* Tab Switcher */}
           <div className="flex bg-gray-100 rounded-lg p-0.5 sm:p-1">
             <button
-              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-[11px] sm:text-sm font-medium transition-all ${
-                activeTab === "inbox"
+              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-[11px] sm:text-sm font-medium transition-all ${activeTab === "inbox"
                   ? "bg-white text-primary shadow-sm"
                   : "text-gray-600 hover:text-gray-900"
-              }`}
+                }`}
               onClick={() => setActiveTab("inbox")}
             >
               <MdInbox className="w-5 h-5" />
               <span>Inbox</span>
             </button>
             <button
-              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-[11px] sm:text-sm font-medium transition-all ${
-                activeTab === "spam"
+              className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-1.5 sm:py-2 px-2 sm:px-4 rounded-md text-[11px] sm:text-sm font-medium transition-all ${activeTab === "spam"
                   ? "bg-white text-red-500 shadow-sm"
                   : "text-gray-600 hover:text-gray-900"
-              }`}
+                }`}
               onClick={() => setActiveTab("spam")}
             >
               <MdReportProblem className="w-5 h-5" />
@@ -446,8 +444,8 @@ Submitted At: ${format(new Date(submission.submittedAt), "PPpp")}
 
 Form Submission Data:
 ${submission.formSubmissionData
-  .map((field) => `${field.key}: ${field.value}`)
-  .join("\n")}
+        .map((field) => `${field.key}: ${field.value}`)
+        .join("\n")}
     `;
     navigator.clipboard.writeText(details.trim());
     toast.success("Copied to clipboard");

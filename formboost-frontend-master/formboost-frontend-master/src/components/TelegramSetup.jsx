@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { IoChatbubble, IoRocket, IoCheckmarkCircle, IoOpenOutline, IoFlash, IoTime, IoWarning } from 'react-icons/io5';
 import { FaHashtag } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import axios from 'axios';
 
-const TelegramSetup = ({ 
-  formId, 
-  telegramNotification, 
+const TelegramSetup = ({
+  formId,
+  telegramNotification,
   setTelegramNotification,
   telegramBotToken,
   setTelegramBotToken,
   telegramChatId,
   setTelegramChatId,
-  onUpdate 
+  onUpdate
 }) => {
   const [step, setStep] = useState(1);
   const [isTestingConnection, setIsTestingConnection] = useState(false);
@@ -40,7 +40,7 @@ const TelegramSetup = ({
 
   const validateBotToken = async () => {
     if (!telegramBotToken) return;
-    
+
     setConnectionStatus('connecting');
     try {
       // This would be a new endpoint to validate bot token
@@ -51,7 +51,7 @@ const TelegramSetup = ({
           headers: { Authorization: localStorage.getItem("token") },
         }
       );
-      
+
       if (response.data.success) {
         setBotInfo(response.data.data);
         setConnectionStatus('success');
@@ -78,7 +78,7 @@ const TelegramSetup = ({
         toast.success("Chat ID detected and filled automatically!");
         setStep(3);
       } else {
-        toast.warn("No recent chat found. Please start a conversation with your bot first.");
+        toast.warning("No recent chat found. Please start a conversation with your bot first.");
       }
     } catch (e) {
       console.error(e);
@@ -96,7 +96,7 @@ const TelegramSetup = ({
         { testTelegramOnly: true },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
-      
+
       if (res?.data?.data?.telegramSent) {
         toast.success("🎉 Test notification sent successfully!");
         setStep(4);
@@ -117,8 +117,8 @@ const TelegramSetup = ({
         <React.Fragment key={stepNum}>
           <div className={`
             flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300
-            ${stepNum <= currentStep 
-              ? 'bg-[#0080FF] border-[#0080FF] text-white' 
+            ${stepNum <= currentStep
+              ? 'bg-[#0080FF] border-[#0080FF] text-white'
               : 'bg-white border-gray-300 text-gray-400'
             }
           `}>
@@ -196,7 +196,7 @@ const TelegramSetup = ({
               </div>
               <h4 className="text-base sm:text-lg font-semibold text-gray-900">Create Your Bot</h4>
             </div>
-            
+
             <div className="ml-8 sm:ml-11 space-y-3 sm:space-y-4 px-2 sm:px-0">
               <div className="p-3 sm:p-4 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="flex items-start space-x-2 sm:space-x-3">
@@ -270,7 +270,7 @@ const TelegramSetup = ({
                 </div>
                 <h4 className="text-base sm:text-lg font-semibold text-gray-900">Connect Your Chat</h4>
               </div>
-              
+
               <div className="ml-8 sm:ml-11 space-y-3 sm:space-y-4 px-2 sm:px-0">
                 <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
                   <div className="flex items-start space-x-3">
@@ -338,7 +338,7 @@ const TelegramSetup = ({
                 </div>
                 <h4 className="text-base sm:text-lg font-semibold text-gray-900">Test Your Setup</h4>
               </div>
-              
+
               <div className="ml-8 sm:ml-11 px-2 sm:px-0">
                 <button
                   type="button"

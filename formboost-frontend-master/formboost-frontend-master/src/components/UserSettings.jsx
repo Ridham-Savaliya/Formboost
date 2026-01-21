@@ -1,4 +1,4 @@
-import "react-toastify/dist/ReactToastify.css";
+
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ProfileInfo } from "./ProfileInfo";
@@ -43,11 +43,10 @@ const UserSettings = ({ userId }) => {
           {tabs.map((tab) => (
             <li key={tab.id} className="me-2" role="presentation">
               <button
-                className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg ${
-                  activeTab === tab.id
+                className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg ${activeTab === tab.id
                     ? "border-[#0080FF] text-[#0080FF] font-bold"
                     : "hover:text-[#0080FF]"
-                }`}
+                  }`}
                 onClick={() => handleTabClick(tab.id)}
                 type="button"
                 role="tab"

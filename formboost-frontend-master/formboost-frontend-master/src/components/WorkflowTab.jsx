@@ -17,7 +17,7 @@ import { FaSlack, FaDiscord, FaTelegram, FaMailchimp, FaTrello } from "react-ico
 import { LuFileSpreadsheet } from "react-icons/lu";
 import { SiZapier } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import axios from "axios";
 import { SlackSetup } from "./SlackSetup";
 import { GoogleSheetsSetup } from "./GoogleSheetsSetup";
@@ -351,8 +351,8 @@ export const WorkflowTab = ({ formId, form }) => {
                   {/* Test Result */}
                   {testResult && (
                     <div className={`p-4 rounded-xl border-2 transition-all duration-300 ${testResult.success
-                        ? 'bg-green-50 border-green-200'
-                        : 'bg-red-50 border-red-200'
+                      ? 'bg-green-50 border-green-200'
+                      : 'bg-red-50 border-red-200'
                       }`}>
                       <div className="flex items-start gap-3">
                         {testResult.success ? (
@@ -486,8 +486,8 @@ export const WorkflowTab = ({ formId, form }) => {
                   <div
                     key={index}
                     className={`group relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-4 sm:p-6 border border-gray-200 transition-all duration-300 ${app.available
-                        ? 'cursor-pointer hover:shadow-xl hover:border-gray-300 hover:-translate-y-2 hover:from-white hover:to-gray-50'
-                        : 'opacity-60 cursor-not-allowed'
+                      ? 'cursor-pointer hover:shadow-xl hover:border-gray-300 hover:-translate-y-2 hover:from-white hover:to-gray-50'
+                      : 'opacity-60 cursor-not-allowed'
                       }`}
                     onClick={() => app.available && handleDialog(app)}
                   >
