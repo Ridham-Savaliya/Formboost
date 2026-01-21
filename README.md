@@ -32,7 +32,7 @@
 ---
 
 <div align="center">
-  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765025074/Logo_PNG_qhhmqu.png" width="40%" alt="Formboom Logo"/>
+  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768281681/formboom_horizontally-removebg-_cypez2.png" width="40%" alt="Formboom Logo"/>
 </div>
 *Your forms, supercharged.*
 
