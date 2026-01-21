@@ -185,7 +185,8 @@ export const getOptimizationSummary = () => {
       'CSS optimization utilities',
       'Performance monitoring tools',
       'Image optimization component',
-      'SEO enhancements (meta tags, structured data, sitemap)'
+      'SEO enhancements (meta tags, structured data, sitemap)',
+      'Auto-indexing setup (Dynamic Sitemap & IndexNow API integration)'
     ],
     estimatedImprovements: {
       'Bundle Size': 'Reduced by ~1.7MB (Chakra UI + react-icons removal)',
