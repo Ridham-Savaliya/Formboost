@@ -18,7 +18,7 @@
 <p align="center">
 
   <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/8_dbshoi.jpg" width="350" />  
-  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/11_zlek1t.jpg" width="350" /> 
+  <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768976277/Gemini_Generated_Image_7158oi7158oi7158_kwnenx.png" width="350" /> 
     <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/7_rqqvyh.jpg" width="350" />  
   <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1765024304/12_zc9rqv.jpg" width="350" />  
 </p>
