@@ -2,19 +2,22 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Mock blog data since we can't easily import from src in a raw node script without setup
-// In a real scenario, we could use a build step or ts-node
-const blogPosts = [
-    { id: "best-free-form-builders-2024", date: "2024-01-20" },
-    { id: "formboom-vs-typeform-comparison", date: "2024-01-15" },
-    { id: "how-to-automate-lead-capture", date: "2024-01-10" },
-    { id: "google-forms-alternatives-2024", date: "2024-01-22" }
-];
+import { blogPosts } from '../src/data/blogPosts.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const BASE_URL = 'https://formboom.site';
+
+const formatDate = (dateStr) => {
+    try {
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return new Date().toISOString().split('T')[0];
+        return d.toISOString().split('T')[0];
+    } catch (e) {
+        return new Date().toISOString().split('T')[0];
+    }
+};
 
 const staticRoutes = [
     { url: '/', priority: '1.0', changefreq: 'daily' },
@@ -45,7 +48,7 @@ const generateSitemap = () => {
     ${blogPosts.map(post => `
     <url>
         <loc>${BASE_URL}/blog/${post.id}</loc>
-        <lastmod>${post.date}</lastmod>
+        <lastmod>${formatDate(post.date)}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>`).join('')}

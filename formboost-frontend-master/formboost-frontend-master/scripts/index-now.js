@@ -1,17 +1,23 @@
 import axios from 'axios';
 
+import { blogPosts } from '../src/data/blogPosts.js';
+
 const HOST = 'formboom.site';
 const KEY = '7bd9e9f1a0b34e5c8a9f2e3d4c5b6a71'; // This should be a unique key file in the root
 const KEY_LOCATION = `https://${HOST}/indexnow-key.txt`;
 
-const urls = [
-    `https://${HOST}/`,
-    `https://${HOST}/blog`,
-    `https://${HOST}/blog/best-free-form-builders-2024`,
-    `https://${HOST}/blog/formboom-vs-typeform-comparison`,
-    `https://${HOST}/blog/how-to-automate-lead-capture`,
-    `https://${HOST}/blog/google-forms-alternatives-2024`
+const staticRoutes = [
+    '/',
+    '/blog',
 ];
+
+const urls = [
+    ...staticRoutes.map(route => `https://${HOST}${route}`),
+    ...blogPosts.map(post => `https://${HOST}/blog/${post.id}`)
+];
+
+// Ensure unique URLs
+const uniqueUrls = [...new Set(urls)];
 
 const submitToIndexNow = async () => {
     try {
@@ -19,7 +25,7 @@ const submitToIndexNow = async () => {
             host: HOST,
             key: KEY,
             keyLocation: KEY_LOCATION,
-            urlList: urls
+            urlList: uniqueUrls
         });
 
         if (response.status === 200) {
