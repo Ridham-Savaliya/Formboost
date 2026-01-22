@@ -46,8 +46,8 @@ export const sendSubmissionMail = async (form, formData, ip) => {
 
 export const sendWelcomeEmail = async (userName, userEmail) => {
   try {
-    const emailSubject = "🎉 Welcome to FormBoost - Let's Get Started!";
-    const emailText = `Welcome to FormBoost, ${userName}! We're excited to have you on board.`;
+    const emailSubject = "🎉 Welcome to Fromboom - Let's Get Started!";
+    const emailText = `Welcome to Fromboom, ${userName}! We're excited to have you on board.`;
     const emailHtml = welcomeEmailHtml(userName, userEmail);
 
     logger.info({
