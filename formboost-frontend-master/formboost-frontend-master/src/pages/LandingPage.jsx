@@ -1010,8 +1010,8 @@ const LandingPage = () => {
                 <h3 className="font-semibold text-white mb-4">Company</h3>
                 <div className="space-y-2 text-sm">
                   <a href="#" className="block hover:text-white transition-colors">About</a>
-                  <a href="#" className="block hover:text-white transition-colors">Privacy</a>
-                  <a href="#" className="block hover:text-white transition-colors">Terms</a>
+                  <Link to="/privacy-policy" className="block hover:text-white transition-colors">Privacy Policy</Link>
+                  <Link to="/terms-of-service" className="block hover:text-white transition-colors">Terms of Service</Link>
                   <a href="#" className="block hover:text-white transition-colors">Status</a>
                 </div>
               </div>

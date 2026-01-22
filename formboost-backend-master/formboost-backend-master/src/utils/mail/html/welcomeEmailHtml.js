@@ -10,7 +10,7 @@ export default (userName, userEmail) => {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Welcome to FormBoom!</title>
+  <title>Welcome to Formboom!</title>
   <style>
     body {
       margin: 0;
@@ -201,8 +201,8 @@ export default (userName, userEmail) => {
 <body>
   <div class="email-container">
     <div class="header">
-      <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768281681/formboom_horizontally-removebg-_cypez2.png" alt="FormBoom Logo" style="max-width:250px;height:auto;">
-      <h1>Welcome to FormBoom!</h1>
+      <img src="https://res.cloudinary.com/dsqpc6sp6/image/upload/v1768281681/formboom_horizontally-removebg-_cypez2.png" alt="Formboom Logo" style="max-width:250px;height:auto;">
+      <h1>Welcome to Formboom!</h1>
 <p style="color:#111827;font-weight:600;">
   Your journey to effortless form management starts here
 </p>
@@ -214,7 +214,7 @@ export default (userName, userEmail) => {
       <div class="welcome-message">
         <h2>Hi ${userName}! 👋</h2>
         <p>
-          We're thrilled to have you join the FormBoom community! You've just unlocked 
+          We're thrilled to have you join the Formboom community! You've just unlocked 
           a powerful platform to manage your forms, collect submissions, and streamline 
           your workflow.
         </p>
@@ -290,7 +290,7 @@ export default (userName, userEmail) => {
     </div>
 
     <div class="footer">
-      <p style="font-weight: 600; color: #111827; margin-bottom: 15px;">The FormBoom Team</p>
+      <p style="font-weight: 600; color: #111827; margin-bottom: 15px;">The Formboom Team</p>
       <p>Making form management simple, powerful, and delightful</p>
       <p>
         <a href="mailto:contact@formboom.site">contact@formboom.site</a> • 
@@ -307,11 +307,11 @@ export default (userName, userEmail) => {
       </div>
 
       <p style="font-size: 12px; color: #9ca3af; margin-top: 20px;">
-        © ${new Date().getFullYear()} FormBoom. All rights reserved.
+        © ${new Date().getFullYear()} Formboom. All rights reserved.
       </p>
       
       <p style="font-size: 11px; color: #9ca3af; margin-top: 15px;">
-        You're receiving this email because you signed up for FormBoom.
+        You're receiving this email because you signed up for Formboom.
       </p>
     </div>
   </div>
