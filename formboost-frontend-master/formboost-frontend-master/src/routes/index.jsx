@@ -8,8 +8,8 @@ import { UserDashboard } from "../pages/UserDashboard";
 import LandingPage from "../pages/LandingPage";
 import Blog from "../pages/Blog";
 import BlogPost from "../pages/BlogPost";
-import PrivacyPolicy from "../pages/PrivacyPolicy";
-import TermsOfService from "../pages/TermsOfService";
+import Privacy from "../pages/Privacy";
+import Terms from "../pages/Terms";
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
@@ -52,8 +52,8 @@ const AppRoutes = () => {
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/login" element={<LoginForm />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/privacy-policy" element={<Privacy />} />
+        <Route path="/terms-of-service" element={<Terms />} />
 
         {/* Protected dashboard routes under /dashboard */}
         <Route

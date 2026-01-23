@@ -22,8 +22,7 @@ import {
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,25 +32,7 @@ const LandingPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleVideo = () => {
-    const video = document.getElementById('demo-video');
-    if (video) {
-      if (isVideoPlaying) {
-        video.pause();
-      } else {
-        video.play();
-      }
-      setIsVideoPlaying(!isVideoPlaying);
-    }
-  };
 
-  const toggleMute = () => {
-    const video = document.getElementById('demo-video');
-    if (video) {
-      video.muted = !video.muted;
-      setIsVideoMuted(!isVideoMuted);
-    }
-  };
 
   const features = [
     {
@@ -442,53 +423,22 @@ const LandingPage = () => {
                     </div>
 
                     {/* Video Content */}
-                    <div className="relative aspect-video bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
-                      {/* Placeholder Video - Replace with your actual video */}
-                      <video
-                        id="demo-video"
-                        className="w-full h-full object-cover"
-                        poster="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                        muted={isVideoMuted}
-                        autoPlay
-                        onPlay={() => setIsVideoPlaying(true)}
-                        onPause={() => setIsVideoPlaying(false)}
-                      >
-                        <source src="https://res.cloudinary.com/dsqpc6sp6/video/upload/v1768284663/Modern_Tech_Startup_Video_Creation_o8chjo.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
+                    <div className="relative aspect-video bg-black overflow-hidden">
+                      <iframe
+                        className="absolute inset-0 w-full h-full scale-[1.01]"
+                        src="https://www.youtube.com/embed/V1zo6ypr0n8?autoplay=1&mute=1&loop=1&playlist=V1zo6ypr0n8&controls=0&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0"
+                        title="Formboom Demo Video"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
 
-                      {/* Video Overlay */}
-                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                        {/* Play/Pause Button */}
-                        <button
-                          onClick={toggleVideo}
-                          className="group/play w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl hover:bg-white hover:scale-110 transition-all duration-300"
-                        >
-                          {/* {isVideoPlaying ? (
-                        <PauseIcon className="w-8 h-8 text-[#0080FF] group-hover/play:scale-110 transition-transform" />
-                      ) : (
-                        <PlayIcon className="w-8 h-8 text-[#0080FF] ml-1 group-hover/play:scale-110 transition-transform" />
-                      )} */}
-                        </button>
-                      </div>
+                      {/* Subtle Overlay to match theme */}
+                      <div className="absolute inset-0 bg-blue-900/5 pointer-events-none"></div>
 
-                      {/* Video Controls */}
-                      <div className="absolute bottom-4 right-4 flex items-center space-x-2">
-                        <button
-                          onClick={toggleMute}
-                          className="w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-200"
-                        >
-                          {/* {isVideoMuted ? (
-                        <VolumeXIcon className="w-5 h-5" />
-                      ) : (
-                        <Volume2Icon className="w-5 h-5" />
-                      )} */}
-                        </button>
-                      </div>
-
-                      {/* Progress Indicator */}
+                      {/* Progress Indicator (Purely visual now for aesthetic) */}
                       <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
-                        <div className="h-full bg-[#0080FF] w-0 transition-all duration-300" id="video-progress"></div>
+                        <div className="h-full bg-[#0080FF] w-1/3 transition-all duration-1000 animate-[progress_10s_linear_infinite]"></div>
                       </div>
                     </div>
 
