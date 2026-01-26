@@ -167,9 +167,9 @@ const LandingPage = () => {
   return (
     <>
       <SEOHead
-        title="FormBoom — Build Forms That Convert Like Crazy | #1 Form Builder 2024"
+        title="FormBoom — Build Forms That Convert Like Crazy | #1 Form Builder 2026"
         description="Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code. Join 10,000+ teams already boosting their conversions with FormBoom. Free forever plan available!"
-        keywords="formboom, form builder, online forms, lead generation, form automation, no-code forms, contact forms, survey builder, form analytics, workflow automation, form integrations, drag drop form builder, best form builder 2024"
+        keywords="formboom, form builder, online forms, lead generation, form automation, no-code forms, contact forms, survey builder, form analytics, workflow automation, form integrations, drag drop form builder, best form builder 2026"
         structuredData={combinedStructuredData}
         type="website"
       />
@@ -929,7 +929,7 @@ const LandingPage = () => {
               <div>
                 <h3 className="font-semibold text-white mb-4">Blog</h3>
                 <div className="space-y-2 text-sm">
-                  <Link to="/blog/best-free-form-builders-2024" className="block hover:text-white transition-colors">Best Free Form Builders</Link>
+                  <Link to="/blog/best-free-form-builders-2026" className="block hover:text-white transition-colors">Best Free Form Builders</Link>
                   <Link to="/blog/formboom-vs-typeform-comparison" className="block hover:text-white transition-colors">FormBoom vs Typeform</Link>
                   <Link to="/blog/how-to-automate-lead-capture" className="block hover:text-white transition-colors">Automation Guide</Link>
                   <Link to="/blog" className="block text-[#0080FF] font-bold hover:text-blue-400 transition-colors">View All Post →</Link>

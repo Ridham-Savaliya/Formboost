@@ -8,7 +8,7 @@ export const getOrganizationStructuredData = () => ({
   "url": "https://formboom.site",
   "logo": "https://formboom.site/og-image.png",
   "description": "Create stunning forms, collect valuable leads, and automate your entire workflow—all without writing a single line of code.",
-  "foundingDate": "2024",
+  "foundingDate": "2026",
   "founder": {
     "@type": "Person",
     "name": "Ridham Savaliya",

@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { blogPosts } from "../data/blogPosts";
+import blogPosts from "../data/blogPosts";
 import SEOHead from "../components/SEOHead";
 import { ZapIcon } from "../components/OptimizedIcons";
 import { useEffect } from "react";

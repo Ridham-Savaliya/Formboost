@@ -441,14 +441,14 @@ export const WorkflowTab = ({ formId, form }) => {
                           <pre className="text-xs sm:text-sm text-green-400 font-mono">
                             {`{
   "event": "form.submission",
-  "timestamp": "2024-01-01T12:00:00Z",
+  "timestamp": "2026-01-01T12:00:00Z",
   "form": {
     "id": "form-id",
     "name": "Contact Form"
   },
   "submission": {
     "id": "submission-id",
-    "submittedAt": "2024-01-01T12:00:00Z"
+    "submittedAt": "2026-01-01T12:00:00Z"
   },
   "data": {
     "name": "John Doe",
