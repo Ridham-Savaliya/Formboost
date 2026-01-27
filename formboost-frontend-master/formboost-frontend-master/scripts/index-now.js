@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { blogPosts } from '../src/data/blogPosts.js';
+import blogPosts from '../src/data/blogPosts.js';
 
 const HOST = 'formboom.site';
 const KEY = '7bd9e9f1a0b34e5c8a9f2e3d4c5b6a71'; // This should be a unique key file in the root

@@ -9,31 +9,31 @@
     
     <url>
         <loc>https://formboom.site/</loc>
-        <lastmod>2026-01-23</lastmod>
+        <lastmod>2026-01-27</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://formboom.site/signup</loc>
-        <lastmod>2026-01-23</lastmod>
+        <lastmod>2026-01-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://formboom.site/login</loc>
-        <lastmod>2026-01-23</lastmod>
+        <lastmod>2026-01-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://formboom.site/dashboard</loc>
-        <lastmod>2026-01-23</lastmod>
+        <lastmod>2026-01-27</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://formboom.site/blog</loc>
-        <lastmod>2026-01-23</lastmod>
+        <lastmod>2026-01-27</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
@@ -41,26 +41,62 @@
     <!-- Blog Posts -->
     
     <url>
-        <loc>https://formboom.site/blog/best-free-form-builders-2026</loc>
+        <loc>https://formboom.site/blog/ai-form-builder-2026</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://formboom.site/blog/google-forms-alternative</loc>
+        <lastmod>2026-01-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://formboom.site/blog/typeform-alternative</loc>
+        <lastmod>2026-01-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://formboom.site/blog/jotform-speed-comparison</loc>
+        <lastmod>2026-01-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://formboom.site/blog/form-conversion-guide</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://formboom.site/blog/free-form-builders-2026</loc>
+        <lastmod>2026-01-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://formboom.site/blog/webhook-automation-guide</loc>
+        <lastmod>2026-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://formboom.site/blog/zero-dollar-marketing-stack</loc>
         <lastmod>2026-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://formboom.site/blog/formboom-vs-typeform-comparison</loc>
-        <lastmod>2026-01-14</lastmod>
+        <loc>https://formboom.site/blog/form-builder-pricing-exposed</loc>
+        <lastmod>2026-01-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://formboom.site/blog/how-to-automate-lead-capture</loc>
-        <lastmod>2026-01-09</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://formboom.site/blog/google-forms-alternatives-2026</loc>
-        <lastmod>2026-01-21</lastmod>
+        <loc>https://formboom.site/blog/mobile-forms-2026</loc>
+        <lastmod>2026-01-17</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

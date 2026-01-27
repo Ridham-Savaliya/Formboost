@@ -230,13 +230,13 @@ export default (formData, ipAddress, form) => {
       <div class="metadata">
         <p><strong>📍 IP Address:</strong> ${ipAddress}</p>
         <p><strong>🕐 Submitted At:</strong> ${new Date().toLocaleString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  })}</p>
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        })}</p>
       </div>
 
       <div style="text-align: center; margin: 40px 0 30px 0;">
