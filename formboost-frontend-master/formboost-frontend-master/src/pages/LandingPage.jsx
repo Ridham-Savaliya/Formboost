@@ -431,6 +431,7 @@ const LandingPage = () => {
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
+                        data-nosnippet
                       ></iframe>
 
                       {/* Subtle Overlay to match theme */}
