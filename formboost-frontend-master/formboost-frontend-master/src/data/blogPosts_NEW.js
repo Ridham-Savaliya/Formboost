@@ -2,22 +2,22 @@
 // Written with professional content writing best practices and high-traffic keywords
 
 const blogPosts = [
-  {
-    id: "best-free-form-builders-2026",
-    slug: "best-free-form-builders-2026",
-    title: "Best Free Form Builders in 2026: We Tested 25+ Tools (Real Data)",
-    excerpt: "Tired of hitting submission limits? We spent 100+ hours testing every major free form builder. Here's what actually works—and what will cost you later.",
-    author: "Emily Rodriguez",
-    date: "2026-12-15",
-    readTime: "22 min read",
-    category: "Comparisons",
-    tags: ["Free Tools", "Comparison", "Reviews", "Form Builders", "Google Forms Alternative"],
-    featured: true,
-    trending: true,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
-    metaDescription: "We tested 25+ free form builders in 2026. Compare features, limits, and hidden costs. See which tool offers the best value for small businesses and startups.",
-    keywords: "best free form builder 2026, free form builder, form builder comparison, free online forms, Google Forms alternative, no-code form builder",
-    content: `
+    {
+        id: "best-free-form-builders-2026",
+        slug: "best-free-form-builders-2026",
+        title: "Best Free Form Builders in 2026: We Tested 25+ Tools (Real Data)",
+        excerpt: "Tired of hitting submission limits? We spent 100+ hours testing every major free form builder. Here's what actually works—and what will cost you later.",
+        author: "Emily Rodriguez",
+        date: "2026-12-15",
+        readTime: "22 min read",
+        category: "Comparisons",
+        tags: ["Free Tools", "Comparison", "Reviews", "Form Builders", "Google Forms Alternative"],
+        featured: true,
+        trending: true,
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+        metaDescription: "We tested 25+ free form builders in 2026. Compare features, limits, and hidden costs. See which tool offers the best value for small businesses and startups.",
+        keywords: "best free form builder 2026, free form builder, form builder comparison, free online forms, Google Forms alternative, no-code form builder",
+        content: `
       <p style="font-size: 18px; color: #475569; line-height: 1.7; margin-bottom: 24px;">
         Here's a frustrating scenario: You build the perfect form, launch your campaign, and hit your submission limit three days later. Now you're either locked out of responses or facing an unexpected $29/month bill.
       </p>
@@ -334,24 +334,24 @@ const blogPosts = [
         </p>
       </div>
     `
-  },
+    },
 
-  {
-    id: "formboom-vs-typeform-comparison",
-    slug: "formboom-vs-typeform-comparison",
-    title: "FormBoom vs Typeform 2026: Honest Comparison (We Tested Both for 90 Days)",
-    excerpt: "Paying $708/year for Typeform? We tested both platforms head-to-head. Here's why 2,400+ users switched to FormBoom and saved thousands.",
-    author: "Marcus Chen",
-    date: "2026-11-28",
-    readTime: "18 min read",
-    category: "Comparisons",
-    tags: ["Typeform", "Comparison", "Pricing", "Alternative", "ROI"],
-    featured: true,
-    trending: true,
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800",
-    metaDescription: "FormBoom vs Typeform: Complete 2026 comparison. See pricing differences ($960/year savings), feature analysis, and why businesses are switching.",
-    keywords: "formboom vs typeform, typeform alternative, form builder comparison, cheaper than typeform, typeform pricing",
-    content: `
+    {
+        id: "formboom-vs-typeform-comparison",
+        slug: "formboom-vs-typeform-comparison",
+        title: "FormBoom vs Typeform 2026: Honest Comparison (We Tested Both for 90 Days)",
+        excerpt: "Paying $708/year for Typeform? We tested both platforms head-to-head. Here's why 2,400+ users switched to FormBoom and saved thousands.",
+        author: "Marcus Chen",
+        date: "2026-11-28",
+        readTime: "18 min read",
+        category: "Comparisons",
+        tags: ["Typeform", "Comparison", "Pricing", "Alternative", "ROI"],
+        featured: true,
+        trending: true,
+        image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800",
+        metaDescription: "FormBoom vs Typeform: Complete 2026 comparison. See pricing differences ($960/year savings), feature analysis, and why businesses are switching.",
+        keywords: "formboom vs typeform, typeform alternative, form builder comparison, cheaper than typeform, typeform pricing",
+        content: `
       <p style="font-size: 18px; color: #475569; line-height: 1.7; margin-bottom: 24px;">
         "We love Typeform's design, but $99/month feels like highway robbery for a form builder."
       </p>
@@ -607,24 +607,24 @@ const blogPosts = [
         </p>
       </div>
     `
-  },
+    },
 
-  {
-    id: "how-to-automate-lead-capture",
-    slug: "how-to-automate-lead-capture",
-    title: "Lead Capture Automation Guide 2026: Save 20+ Hours Weekly (Complete Playbook)",
-    excerpt: "Stop copying leads manually. This automation playbook shows you exactly how to connect forms → CRM → email in under 30 minutes. Includes templates.",
-    author: "Jessica Martinez",
-    date: "2026-10-15",
-    readTime: "25 min read",
-    category: "Automation",
-    tags: ["Automation", "Lead Generation", "Webhooks", "CRM", "Integration", "Productivity"],
-    featured: true,
-    trending: true,
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800",
-    metaDescription: "Complete 2026 guide to lead capture automation. Step-by-step tutorial: forms → CRM → email → Slack. Includes Zapier templates and webhook examples.",
-    keywords: "lead capture automation, automate lead generation, form automation, CRM automation, webhook automation, marketing automation",
-    content: `
+    {
+        id: "how-to-automate-lead-capture",
+        slug: "how-to-automate-lead-capture",
+        title: "Lead Capture Automation Guide 2026: Save 20+ Hours Weekly (Complete Playbook)",
+        excerpt: "Stop copying leads manually. This automation playbook shows you exactly how to connect forms → CRM → email in under 30 minutes. Includes templates.",
+        author: "Jessica Martinez",
+        date: "2026-10-15",
+        readTime: "25 min read",
+        category: "Automation",
+        tags: ["Automation", "Lead Generation", "Webhooks", "CRM", "Integration", "Productivity"],
+        featured: true,
+        trending: true,
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800",
+        metaDescription: "Complete 2026 guide to lead capture automation. Step-by-step tutorial: forms → CRM → email → Slack. Includes Zapier templates and webhook examples.",
+        keywords: "lead capture automation, automate lead generation, form automation, CRM automation, webhook automation, marketing automation",
+        content: `
       <p style="font-size: 19px; color: #475569; line-height: 1.7; margin-bottom: 24px; font-weight: 500;">
         Here's a painful truth: <strong>If you're manually copying leads from forms into your CRM, you're wasting 20+ hours every single week.</strong>
       </p>
@@ -905,226 +905,7 @@ const blogPosts = [
         </p>
       </div>
     `
-  },
-
-  {
-    id: "how-to-create-contact-form-guide",
-    slug: "how-to-create-contact-form-guide",
-    title: "How to Create a Contact Form in 2026: Complete Step-by-Step Guide",
-    excerpt: "Learn 5 proven methods to create contact forms—from no-code to React. Includes code examples, GDPR tips, and conversion best practices.",
-    author: "David Kim",
-    date: "2026-12-01",
-    readTime: "18 min read",
-    category: "Tutorials",
-    tags: ["Contact Forms", "Tutorial", "WordPress", "No-Code"],
-    featured: true,
-    image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=800",
-    metaDescription: "Complete 2026 guide on creating contact forms. 5 methods compared with code examples. Includes GDPR compliance and mobile-responsive design tips.",
-    keywords: "how to create contact form, contact form tutorial, make contact form online, WordPress contact form, HTML contact form",
-    content: `
-      <p style="font-size: 19px; color: #475569; line-height: 1.7; margin-bottom: 24px; font-weight: 500;">
-        Every website needs a contact form. Yet <strong>67% of small business sites</strong> have broken forms or none at all—costing them $12,000+ in lost leads annually.
-      </p>
-      
-      <p style="font-size: 18px; color: #475569; line-height: 1.7; margin-bottom: 32px;">
-        This guide shows 5 methods to create professional contact forms—from 5-minute no-code builders to custom React code. Choose what fits your skill level.
-      </p>
-
-      <h2 style="font-size: 32px; font-weight: 700; color: #1e293b; margin-top: 48px; margin-bottom: 24px;">Method 1: No-Code Builder (Fastest)</h2>
-
-      <p><strong>Time:</strong> 5 minutes | <strong>Skill Level:</strong> Beginner</p>
-
-      <ol style="line-height: 2; color: #475569; margin: 24px 0;">
-        <li>Sign up free at FormBoom.com</li>
-        <li>Use AI: "Create contact form with name, email, phone, message"</li>
-        <li>Customize colors to match your brand</li>
-        <li>Copy embed code</li>
-        <li>Paste on your website</li>
-      </ol>
-
-      <div style="background: #d1fae5; border-left: 4px solid #10b981; padding: 20px; margin: 24px 0; border-radius: 8px;">
-        <p style="font-weight: 600; color: #065f46; margin-bottom: 8px;">✅ Why This Works:</p>
-        <p style="color: #065f46; line-height: 1.7; margin: 0;">
-          No-code builders handle spam protection, mobile responsiveness, and email delivery automatically. Saves 10+ hours of coding and debugging.
-        </p>
-      </div>
-
-      <h2 style="font-size: 32px; font-weight: 700; color: #1e293b; margin-top: 56px; margin-bottom: 24px;">Method 2: WordPress Plugin</h2>
-
-      <p><strong>Time:</strong> 10 minutes | <strong>For:</strong> WordPress sites</p>
-
-      <p><strong>Using Contact Form 7:</strong></p>
-      <ol style="line-height: 2; color: #475569;">
-        <li>Plugins → Add New → Search "Contact Form 7"</li>
-        <li>Install and Activate</li>
-        <li>Contact → Add New Form</li>
-        <li>Customize with shortcodes</li>
-        <li>Copy shortcode [contact-form-7 id="123"]</li>
-        <li>Paste in your page/post</li>
-      </ol>
-
-      <h2 style="font-size: 32px; font-weight: 700; color: #1e293b; margin-top: 56px; margin-bottom: 24px;">Essential Best Practices</h2>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 32px 0;">
-        <div style="background: #d1fae5; padding: 24px; border-radius: 12px;">
-          <h3 style="font-size: 20px; font-weight: 600; color: #065f46; margin-bottom: 12px;">✅ DO:</h3>
-          <ul style="margin: 0; padding-left: 20px; color: #065f46; line-height: 1.8;">
-            <li>Keep it to 3-5 fields max</li>
-            <li>Use clear labels</li>
-            <li>Make mobile-responsive</li>
-            <li>Add spam protection</li>
-            <li>Send confirmation emails</li>
-          </ul>
-        </div>
-        <div style="background: #fee2e2; padding: 24px; border-radius: 12px;">
-          <h3 style="font-size: 20px; font-weight: 600; color: #991b1b; margin-bottom: 12px;">❌ DON'T:</h3>
-          <ul style="margin: 0; padding-left: 20px; color: #991b1b; line-height: 1.8;">
-            <li>Ask unnecessary questions</li>
-            <li>Use annoying CAPTCHAs</li>
-            <li>Forget mobile testing</li>
-            <li>Skip error messages</li>
-            <li>Use generic "Submit"</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 style="font-size: 32px; font-weight: 700; color: #1e293b; margin-top: 56px; margin-bottom: 24px;">GDPR Compliance Checklist</h2>
-
-      <div style="background: #f0f9ff; border: 2px solid #0284c7; border-radius: 12px; padding: 24px; margin: 32px 0;">
-        <ul style="margin: 0; padding-left: 24px; color: #0c4a6e; line-height: 2;">
-          <li>☑ Add consent checkbox</li>
-          <li>☑ Link to privacy policy</li>
-          <li>☑ Explain data usage</li>
-          <li>☑ Use SSL (HTTPS)</li>
-          <li>☑ Allow data deletion requests</li>
-        </ul>
-      </div>
-
-      <div style="text-align: center; margin-top: 48px; padding: 40px 24px; background: linear-gradient(135deg, #0080FF 0%, #0059B2 100%); border-radius: 20px;">
-        <h3 style="font-size: 28px; font-weight: 700; color: white; margin-bottom: 16px;">Create Your Contact Form in 30 Seconds</h3>
-        <p style="font-size: 17px; color: rgba(255,255,255,0.95); margin-bottom: 28px; max-width: 600px; margin-left: auto; margin-right: auto;">
-          Use FormBoom's AI to generate professional contact forms instantly—no coding required.
-        </p>
-        <a href="/signup" style="display: inline-block; background: white; color: #0080FF; padding: 16px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 18px;">
-          Start Building Free →
-        </a>
-      </div>
-    `
-  },
-
-  {
-    id: "embed-form-website-guide",
-    slug: "embed-form-website-guide",
-    title: "How to Embed Forms on Any Website (WordPress, Wix, Shopify + More)",
-    excerpt: "Complete guide to embedding forms on WordPress, Wix, Shopify, and HTML sites. Includes troubleshooting for common iframe and responsive design issues.",
-    author: "Sarah Johnson",
-    date: "2026-11-18",
-    readTime: "14 min read",
-    category: "Tutorials",
-    tags: ["Embed", "WordPress", "Wix", "Shopify", "Tutorial"],
-    featured: false,
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800",
-    metaDescription: "Step-by-step guide on how to embed forms on WordPress, Wix, Shopify, and custom websites. Includes iframe code examples and mobile responsiveness tips.",
-    keywords: "how to embed form, embed contact form, add form to website, WordPress embed, iframe form, embed form HTML",
-    content: `
-      <p style="font-size: 18px; color: #475569; line-height: 1.7; margin-bottom: 24px;">
-        Built the perfect form but stuck on <em>"Where does this code go?"</em> This guide shows exactly how to embed forms on ANY platform.
-      </p>
-
-      <h2 style="font-size: 32px; font-weight: 700; color: #1e293b; margin-top: 48px; margin-bottom: 24px;">Embed on WordPress</h2>
-
-      <h3 style="font-size: 24px; font-weight: 600; color: #1e293b; margin-top: 32px; margin-bottom: 16px;">Method 1: Gutenberg Block</h3>
-
-      <ol style="line-height: 2; color: #475569;">
-        <li>Edit page/post</li>
-        <li>Click <strong>+</strong> → Search "Custom HTML"</li>
-        <li>Paste your iframe code</li>
-        <li>Publish</li>
-      </ol>
-
-      <h3 style="font-size: 24px; font-weight: 600; color: #1e293b; margin-top: 32px; margin-bottom: 16px;">Method 2: Shortcode</h3>
-
-      <p>If your form has a shortcode like <code style="background: #f1f5f9; padding: 2px 8px; border-radius: 4px;">[form id="123"]</code>:</p>
-      <ol style="line-height: 2; color: #475569;">
-        <li>Copy shortcode</li>
-        <li>Paste directly in WordPress editor</li>
-        <li>Save</li>
-      </ol>
-
-      <h2 style="font-size: 32px; font-weight: 700; color: #1e293b; margin-top: 56px; margin-bottom: 24px;">Embed on Wix</h2>
-
-      <ol style="line-height: 2; color: #475569;">
-        <li>Wix Editor → <strong>+ Add Elements</strong></li>
-        <li>Scroll to <strong>Embed Code</strong></li>
-        <li>Choose "Embed HTML" or "iFrame"</li>
-        <li>Paste code</li>
-        <li>Drag to position</li>
-        <li>Publish</li>
-      </ol>
-
-      <h2 style="font-size: 32px; font-weight: 700; color: #1e293b; margin-top: 56px; margin-bottom: 24px;">Embed on Shopify</h2>
-
-      <ol style="line-height: 2; color: #475569;">
-        <li>Admin → <strong>Pages</strong> → Select page</li>
-        <li>Click <strong>Show HTML</strong> (< > icon)</li>
-        <li>Paste iframe code</li>
-        <li>Save</li>
-      </ol>
-
-      <h2 style="font-size: 32px; font-weight: 700; color: #1e293b; margin-top: 56px; margin-bottom: 24px;">Embed in HTML Site</h2>
-
-      <pre style="background: #1e293b; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin: 24px 0;">&lt;div class="form-container"&gt;
-  &lt;iframe 
-    src="https://formboom.app/form/your-id" 
-    width="100%" 
-    height="600" 
-    frameborder="0"&gt;
-  &lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;style&gt;
-  .form-container {
-    max-width: 700px;
-    margin: 40px auto;
-  }
-  .form-container iframe {
-    width: 100%;
-    border-radius: 8px;
-  }
-&lt;/style&gt;</pre>
-
-      <h2 style="font-size: 32px; font-weight: 700; color: #1e293b; margin-top: 56px; margin-bottom: 24px;">Troubleshooting</h2>
-
-      <div style="background: #fee2e2; border-left: 4px solid #ef4444; padding: 20px; margin: 24px 0; border-radius: 8px;">
-        <h3 style="font-size: 20px; font-weight: 600; color: #991b1b; margin-bottom: 12px;">❌ Form Not Showing?</h3>
-        <ul style="margin: 0; padding-left: 24px; color: #7f1d1d; line-height: 1.8;">
-          <li>Check you pasted the FULL code</li>
-          <li>Verify form is published</li>
-          <li>Clear cache (Ctrl+Shift+R)</li>
-          <li>Check browser console for errors</li>
-        </ul>
-      </div>
-
-      <div style="background: #fee2e2; border-left: 4px solid #ef4444; padding: 20px; margin: 24px 0; border-radius: 8px;">
-        <h3 style="font-size: 20px; font-weight: 600; color: #991b1b; margin-bottom: 12px;">❌ Form Cut Off?</h3>
-        <ul style="margin: 0; padding-left: 24px; color: #7f1d1d; line-height: 1.8;">
-          <li>Increase height value in iframe</li>
-          <li>Use height="auto" or larger px value</li>
-          <li>Add CSS for responsive scaling</li>
-        </ul>
-      </div>
-
-      <div style="text-align: center; margin-top: 48px; padding: 40px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; color: white;">
-        <h3 style="font-size: 26px; font-weight: 700; margin-bottom: 16px; color: white;">Get Easy-to-Embed Forms</h3>
-        <p style="font-size: 17px; color: rgba(255,255,255,0.95); margin-bottom: 28px; max-width: 600px; margin-left: auto; margin-right: auto;">
-          FormBoom generates clean embed codes that work on WordPress, Shopify, Wix, and custom sites.
-        </p>
-        <a href="/signup" style="display: inline-block; background: white; color: #667eea; padding: 14px 36px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 17px;">
-          Create & Embed Free →
-        </a>
-      </div>
-    `
-  }
+    }
 
 ];
 
