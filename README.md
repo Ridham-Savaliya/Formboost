@@ -5,10 +5,22 @@
   <!-- Title -->
   <h1 style="font-weight:900; font-size:46px; margin-bottom:0;">Formboom</h1>
 
+  
+
   <!-- Subtitle -->
   <p style="font-size:19px; font-weight:500; color:#5e5e5e; margin-top:6px;">
     Smart Forms, Cleaner Insights.
   </p>
+
+  <p align="center">
+  <a href="https://stats.uptimerobot.com/B2elwuqnhE" target="_blank">
+    <img
+      src="https://img.shields.io/badge/Server%20Status-Online-brightgreen?style=for-the-badge&logo=uptimerobot"
+      alt="Server Status"
+    />
+  </a>
+</p>
+
 </div>
 
 
